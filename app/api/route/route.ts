@@ -8,19 +8,49 @@ const ZONE_KEYWORD_MAP: Array<{
   coord?: { lat: number; lng: number };
 }> = [
   {
-    keywords: ['central expy', 'central expressway', 'cte', 'braddell', 'ang mo kio'],
+    keywords: ['central expy', 'central expressway', 'cte', 'braddell', 'serangoon', 'balestier'],
     zoneId: 'CTE_SOUTHBOUND_BRADDELL',
     gantryIds: [31, 33, 34],
     coord: { lat: 1.3410, lng: 103.8560 },
   },
   {
-    keywords: ['central expy', 'central expressway', 'cte', 'moulmein', 'balestier'],
-    zoneId: 'CTE_NORTHBOUND_PIE',
+    keywords: ['cte slip', 'cte', 'serangoon rd', 'pie (changi)'],
+    zoneId: 'CTE_SLIP_PIE_SERANGOON',
+    gantryIds: [68],
+    coord: { lat: 1.3350, lng: 103.8570 },
+  },
+  {
+    keywords: ['central expy', 'central expressway', 'cte', 'ang mo kio'],
+    zoneId: 'CTE_SOUTHBOUND_AMK',
     gantryIds: [35],
+    coord: { lat: 1.3600, lng: 103.8540 },
+  },
+  {
+    keywords: ['cte northbound', 'central expy', 'central expressway', 'cte', 'braddell'],
+    zoneId: 'CTE_NORTHBOUND_PIE_BRADDELL',
+    gantryIds: [46, 67],
     coord: { lat: 1.3262, lng: 103.8580 },
   },
   {
-    keywords: ['ayer rajah expy', 'ayer rajah expressway', 'ayer rajah', 'aye', 'jurong town hall', 'clementi'],
+    keywords: ['cte northbound', 'jalan bahagia'],
+    zoneId: 'CTE_NORTHBOUND_JALAN_BAHAGIA',
+    gantryIds: [51],
+    coord: { lat: 1.3210, lng: 103.8590 },
+  },
+  {
+    keywords: ['ayer rajah expy', 'ayer rajah expressway', 'aye', 'jurong town hall', 'clementi'],
+    zoneId: 'AYE_CITYBOUND_SET3',
+    gantryIds: [52, 53, 74],
+    coord: { lat: 1.3180, lng: 103.7650 },
+  },
+  {
+    keywords: ['ayer rajah expy', 'ayer rajah expressway', 'aye', 'north buona vista', 'buona vista'],
+    zoneId: 'AYE_TUASBOUND_NORTH_BUONA_VISTA',
+    gantryIds: [41],
+    coord: { lat: 1.2980, lng: 103.7870 },
+  },
+  {
+    keywords: ['ayer rajah expy', 'ayer rajah expressway', 'aye', 'jurong town hall'],
     zoneId: 'AYE_JURONG_TOWN_HALL',
     gantryIds: [36],
     coord: { lat: 1.3275, lng: 103.7435 },
@@ -28,19 +58,43 @@ const ZONE_KEYWORD_MAP: Array<{
   {
     keywords: ['kallang-paya lebar expy', 'kallang paya lebar expressway', 'kallang paya lebar', 'kpe', 'defu', 'buangkok'],
     zoneId: 'KPE_SOUTHBOUND_DEFU',
-    gantryIds: [71],
+    gantryIds: [50],
     coord: { lat: 1.3530, lng: 103.8965 },
+  },
+  {
+    keywords: ['marina coastal expy', 'marina coastal expressway', 'mce', 'central blvd', 'maxwell'],
+    zoneId: 'MCE_WESTBOUND',
+    gantryIds: [90, 91],
+    coord: { lat: 1.2720, lng: 103.8510 },
+  },
+  {
+    keywords: ['marina coastal expy', 'marina coastal expressway', 'mce', 'marina blvd'],
+    zoneId: 'MCE_EASTBOUND',
+    gantryIds: [92, 93],
+    coord: { lat: 1.2740, lng: 103.8540 },
   },
   {
     keywords: ['pan island expy', 'pan island expressway', 'pan island', 'pie', 'bendemeer', 'kallang bahru', 'woodsville'],
     zoneId: 'PIE_EASTBOUND_KALLANG',
-    gantryIds: [90, 91],
+    gantryIds: [32, 45],
     coord: { lat: 1.3220, lng: 103.8640 },
+  },
+  {
+    keywords: ['pan island expy', 'pan island expressway', 'pie', 'adam rd', 'mount pleasant'],
+    zoneId: 'PIE_EASTBOUND_ADAM',
+    gantryIds: [37, 38],
+    coord: { lat: 1.3320, lng: 103.8290 },
+  },
+  {
+    keywords: ['pan island expy', 'pie slip', 'cte'],
+    zoneId: 'PIE_SLIP_CTE',
+    gantryIds: [42],
+    coord: { lat: 1.3280, lng: 103.8560 },
   },
   {
     keywords: ['pan island expy', 'pan island expressway', 'pan island', 'pie', 'eunos', 'jalan eunos'],
     zoneId: 'PIE_WESTBOUND_EUNOS',
-    gantryIds: [45],
+    gantryIds: [65],
     coord: { lat: 1.3280, lng: 103.8990 },
   },
   {
