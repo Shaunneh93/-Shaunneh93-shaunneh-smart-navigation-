@@ -1,0 +1,6 @@
+{
+  "name": "NEHvigation",
+  "description": "Shaunneh's Smart Navigation and ERP Router",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
