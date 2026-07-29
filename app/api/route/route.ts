@@ -14,7 +14,7 @@ const ZONE_KEYWORD_MAP: Array<{
     coord: { lat: 1.3410, lng: 103.8560 },
   },
   {
-    keywords: ['cte slip', 'cte', 'serangoon rd', 'pie (changi)'],
+    keywords: ['cte slip', 'serangoon rd', 'pie (changi)'],
     zoneId: 'CTE_SLIP_PIE_SERANGOON',
     gantryIds: [68],
     coord: { lat: 1.3350, lng: 103.8570 },
@@ -26,13 +26,13 @@ const ZONE_KEYWORD_MAP: Array<{
     coord: { lat: 1.3600, lng: 103.8540 },
   },
   {
-    keywords: ['cte northbound', 'central expy', 'central expressway', 'cte', 'braddell'],
+    keywords: ['cte northbound', 'cte (sle)', 'northbound cte', 'towards sle', 'towards ang mo kio'],
     zoneId: 'CTE_NORTHBOUND_PIE_BRADDELL',
     gantryIds: [46, 67],
     coord: { lat: 1.3262, lng: 103.8580 },
   },
   {
-    keywords: ['cte northbound', 'jalan bahagia'],
+    keywords: ['cte northbound', 'jalan bahagia', 'northbound cte'],
     zoneId: 'CTE_NORTHBOUND_JALAN_BAHAGIA',
     gantryIds: [51],
     coord: { lat: 1.3210, lng: 103.8590 },
@@ -170,7 +170,9 @@ function detectLtaZoneIds(route: any): { zoneIds: string[]; gantryIds: number[] 
     }
   });
 
-  // 2. Coordinate proximity matching (check step start/end locations)
+  // 2. Coordinate proximity matching with directional check
+  const isHeadingSouth = leg?.start_location?.lat > leg?.end_location?.lat;
+
   steps.forEach((step: any) => {
     const stepLocations = [
       step.start_location,
@@ -183,10 +185,19 @@ function detectLtaZoneIds(route: any): { zoneIds: string[]; gantryIds: number[] 
 
       if (sLat && sLng) {
         ZONE_KEYWORD_MAP.forEach((mapping) => {
+          // Skip northbound gantries if route is heading south
+          if (isHeadingSouth && (mapping.zoneId.includes('NORTHBOUND') || mapping.zoneId.includes('TUASBOUND'))) {
+            return;
+          }
+          // Skip southbound gantries if route is heading north
+          if (!isHeadingSouth && (mapping.zoneId.includes('SOUTHBOUND') || mapping.zoneId.includes('CITYBOUND'))) {
+            return;
+          }
+
           if (mapping.coord) {
             const dist = haversineKm(sLat, sLng, mapping.coord.lat, mapping.coord.lng);
-            // If within 0.8 km of gantry centroid
-            if (dist <= 0.8) {
+            // 250m threshold for precise highway gantry matching
+            if (dist <= 0.25) {
               zoneSet.add(mapping.zoneId);
               mapping.gantryIds.forEach((id) => gantrySet.add(id));
             }
