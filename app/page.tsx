@@ -438,13 +438,16 @@ export default function Home() {
     const dest = route?.destinationCoords || { latitude: destCoords.lat, longitude: destCoords.lng };
     const orig = route?.originCoords || { latitude: originCoords.lat, longitude: originCoords.lng };
 
-    let mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${orig.latitude},${orig.longitude}&destination=${dest.latitude},${dest.longitude}&travelmode=driving`;
+    const originParam = originText ? encodeURIComponent(originText) : `${orig.latitude},${orig.longitude}`;
+    const destParam = destText ? encodeURIComponent(destText) : `${dest.latitude},${dest.longitude}`;
+
+    let mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${originParam}&destination=${destParam}&travelmode=driving`;
 
     if (mode === 'via' && route?.waypoints && Array.isArray(route.waypoints) && route.waypoints.length > 0) {
       const wp = route.waypoints[0];
       if (wp?.latitude && wp?.longitude) {
-        // 'via:' prefix indicates a non-stopover pass-through point so Google Maps won't add a stop or prompt 'Next Stop'
-        mapsUrl += `&waypoints=via:${wp.latitude},${wp.longitude}`;
+        // Use clean lat,lng coordinates for waypoints without 'via:' prefix to prevent mobile Google Maps app from treating 'via:' as destination text
+        mapsUrl += `&waypoints=${wp.latitude},${wp.longitude}`;
       }
     }
 
