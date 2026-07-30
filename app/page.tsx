@@ -425,22 +425,26 @@ export default function Home() {
     }
   };
 
-  const launchGoogleMaps = (route: any) => {
+  const launchGoogleMaps = (route: any, mode: 'via' | 'direct' = 'via') => {
     const dest = route?.destinationCoords || { latitude: destCoords.lat, longitude: destCoords.lng };
     const orig = route?.originCoords || { latitude: originCoords.lat, longitude: originCoords.lng };
 
     let mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${orig.latitude},${orig.longitude}&destination=${dest.latitude},${dest.longitude}&travelmode=driving`;
 
-    if (route?.waypoints && Array.isArray(route.waypoints) && route.waypoints.length > 0) {
-      const total = route.waypoints.length;
-      const midPoint = route.waypoints[Math.floor(total / 2)];
-      
-      if (midPoint?.latitude && midPoint?.longitude) {
-        const waypointsString = `${midPoint.latitude},${midPoint.longitude}`;
-        mapsUrl += `&waypoints=${encodeURIComponent(waypointsString)}`;
+    if (mode === 'via') {
+      if (route?.waypoints && Array.isArray(route.waypoints) && route.waypoints.length > 0) {
+        const total = route.waypoints.length;
+        const midPoint = route.waypoints[Math.floor(total / 2)];
+        
+        if (midPoint?.latitude && midPoint?.longitude) {
+          // Using 'via:' prefix instructs Google Maps to shape the route through this coordinate
+          // as a pass-through point WITHOUT creating a stopover station / destination flag.
+          const waypointsString = `via:${midPoint.latitude},${midPoint.longitude}`;
+          mapsUrl += `&waypoints=${encodeURIComponent(waypointsString)}`;
+        }
+      } else if (route?.via && typeof route.via === 'string') {
+        mapsUrl += `&via=${encodeURIComponent(route.via)}`;
       }
-    } else if (route?.via && typeof route.via === 'string') {
-      mapsUrl += `&via=${encodeURIComponent(route.via)}`;
     }
 
     window.open(mapsUrl, '_blank');
@@ -899,28 +903,51 @@ export default function Home() {
   
 </div>
 
-                <button 
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedRouteId(routeKey);
-                    launchGoogleMaps(route);
-                  }}
-                  style={{
-                    marginTop: '14px',
-                    padding: '10px 16px',
-                    backgroundColor: isWinner ? '#16a34a' : '#2563eb',
-                    color: '#ffffff',
-                    border: 'none',
-                    borderRadius: '6px',
-                    cursor: 'pointer',
-                    fontWeight: 'bold',
-                    width: '100%',
-                    fontSize: '14px'
-                  }}
-                >
-                  Navigate This Route
-                </button>
+                <div style={{ display: 'flex', gap: '8px', marginTop: '14px' }}>
+                  <button 
+                    type="button"
+                    title="Opens Google Maps with pass-through 'via:' points (no intermediate stops)"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedRouteId(routeKey);
+                      launchGoogleMaps(route, 'via');
+                    }}
+                    style={{
+                      flex: 1,
+                      padding: '10px 12px',
+                      backgroundColor: isWinner ? '#16a34a' : '#2563eb',
+                      color: '#ffffff',
+                      border: 'none',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontWeight: 'bold',
+                      fontSize: '13px'
+                    }}
+                  >
+                    🧭 Navigate Route (Seamless)
+                  </button>
+                  <button 
+                    type="button"
+                    title="Opens Google Maps with direct Origin & Destination only"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedRouteId(routeKey);
+                      launchGoogleMaps(route, 'direct');
+                    }}
+                    style={{
+                      padding: '10px 12px',
+                      backgroundColor: '#334155',
+                      color: '#cbd5e1',
+                      border: '1px solid #475569',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontWeight: '500',
+                      fontSize: '12px'
+                    }}
+                  >
+                    📍 Direct A-to-B
+                  </button>
+                </div>
               </div>
             );
           })}
