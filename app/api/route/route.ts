@@ -1,101 +1,103 @@
 import { NextResponse } from 'next/server';
 
-// Zone and Gantry mapping table for active ERP gantries
-const ZONE_KEYWORD_MAP: Array<{
-  keywords: string[];
+// Zone and Gantry configuration table for active ERP gantries in Singapore
+interface ZoneConfig {
   zoneId: string;
   gantryIds: number[];
-  coord?: { lat: number; lng: number };
-}> = [
+  coord: { lat: number; lng: number };
+  headingRange?: { min: number; max: number };
+}
+
+const ZONE_CONFIGS: ZoneConfig[] = [
   {
-    keywords: ['cte southbound', 'southbound cte', 'cte after braddell', 'cte (city)'],
     zoneId: 'CTE_SOUTHBOUND_BRADDELL',
     gantryIds: [31, 33, 34],
     coord: { lat: 1.3410, lng: 103.8560 },
+    headingRange: { min: 135, max: 225 }, // Southbound
   },
   {
-    keywords: ['cte slip to pie', 'slip road to pie (changi)', 'cte slip road'],
     zoneId: 'CTE_SLIP_PIE_SERANGOON',
     gantryIds: [68],
     coord: { lat: 1.3350, lng: 103.8570 },
+    headingRange: { min: 80, max: 160 }, // Slip road turning SE towards PIE Changi
   },
   {
-    keywords: ['cte southbound between amk', 'southbound cte amk', 'cte after amk'],
     zoneId: 'CTE_SOUTHBOUND_AMK',
     gantryIds: [35],
     coord: { lat: 1.3600, lng: 103.8540 },
+    headingRange: { min: 135, max: 225 }, // Southbound
   },
   {
-    keywords: ['cte northbound', 'cte (sle)', 'northbound cte', 'towards sle', 'towards ang mo kio'],
     zoneId: 'CTE_NORTHBOUND_PIE_BRADDELL',
     gantryIds: [46, 67],
     coord: { lat: 1.3262, lng: 103.8580 },
+    headingRange: { min: 315, max: 45 }, // Northbound
   },
   {
-    keywords: ['cte northbound', 'jalan bahagia', 'northbound cte'],
     zoneId: 'CTE_NORTHBOUND_JALAN_BAHAGIA',
     gantryIds: [51],
     coord: { lat: 1.3210, lng: 103.8590 },
+    headingRange: { min: 315, max: 45 }, // Northbound
   },
   {
-    keywords: ['aye citybound', 'citybound aye', 'aye towards city'],
     zoneId: 'AYE_CITYBOUND_SET3',
     gantryIds: [52, 53, 74],
     coord: { lat: 1.3180, lng: 103.7650 },
+    headingRange: { min: 45, max: 135 }, // Eastbound
   },
   {
-    keywords: ['aye tuasbound', 'tuasbound aye', 'aye towards tuas'],
     zoneId: 'AYE_TUASBOUND_NORTH_BUONA_VISTA',
     gantryIds: [41],
     coord: { lat: 1.2980, lng: 103.7870 },
+    headingRange: { min: 225, max: 315 }, // Westbound
   },
   {
-    keywords: ['aye west of jurong town hall'],
     zoneId: 'AYE_JURONG_TOWN_HALL',
     gantryIds: [36],
     coord: { lat: 1.3275, lng: 103.7435 },
+    headingRange: { min: 225, max: 315 }, // Westbound
   },
   {
-    keywords: ['kpe southbound', 'southbound kpe', 'kpe after defu'],
     zoneId: 'KPE_SOUTHBOUND_DEFU',
     gantryIds: [50],
     coord: { lat: 1.3530, lng: 103.8965 },
+    headingRange: { min: 135, max: 225 }, // Southbound
   },
   {
-    keywords: ['mce westbound', 'westbound mce'],
     zoneId: 'MCE_WESTBOUND',
     gantryIds: [90, 91],
     coord: { lat: 1.2720, lng: 103.8510 },
+    headingRange: { min: 210, max: 310 }, // Westbound
   },
   {
-    keywords: ['mce eastbound', 'eastbound mce'],
     zoneId: 'MCE_EASTBOUND',
     gantryIds: [92, 93],
     coord: { lat: 1.2740, lng: 103.8540 },
+    headingRange: { min: 30, max: 130 }, // Eastbound
   },
   {
-    keywords: ['pie eastbound after kallang', 'eastbound pie kallang'],
     zoneId: 'PIE_EASTBOUND_KALLANG',
     gantryIds: [32, 45],
     coord: { lat: 1.3220, lng: 103.8640 },
+    headingRange: { min: 45, max: 135 }, // Eastbound
   },
   {
-    keywords: ['pie eastbound after adam', 'eastbound pie adam'],
     zoneId: 'PIE_EASTBOUND_ADAM',
     gantryIds: [37, 38],
     coord: { lat: 1.3320, lng: 103.8290 },
+    headingRange: { min: 45, max: 135 }, // Eastbound
   },
   {
-    keywords: ['pie slip road into cte', 'pie slip to cte'],
     zoneId: 'PIE_SLIP_CTE',
     gantryIds: [42],
     coord: { lat: 1.3280, lng: 103.8560 },
+    headingRange: { min: 135, max: 225 }, // Southbound onto CTE
   },
   {
-    keywords: ['pie westbound before eunos', 'westbound pie eunos'],
     zoneId: 'PIE_WESTBOUND_EUNOS',
     gantryIds: [65],
     coord: { lat: 1.3280, lng: 103.8990 },
+    headingRange: { min: 225, max: 315 }, // Westbound
   },
 ];
 
@@ -111,7 +113,59 @@ function haversineKm(lat1: number, lon1: number, lat2: number, lon2: number): nu
   return R * c;
 }
 
-// Upgraded zone and gantry detection combining keyword matching & GPS proximity
+function calculateBearing(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const dLng = (lng2 - lng1) * (Math.PI / 180);
+  const y = Math.sin(dLng) * Math.cos(lat2 * (Math.PI / 180));
+  const x =
+    Math.cos(lat1 * (Math.PI / 180)) * Math.sin(lat2 * (Math.PI / 180)) -
+    Math.sin(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * Math.cos(dLng);
+  let brng = Math.atan2(y, x) * (180 / Math.PI);
+  return (brng + 360) % 360;
+}
+
+function isHeadingMatching(heading: number, min: number, max: number): boolean {
+  if (min <= max) {
+    return heading >= min && heading <= max;
+  }
+  return heading >= min || heading <= max;
+}
+
+function decodePolyline(encoded: string): Array<{ lat: number; lng: number }> {
+  if (!encoded) return [];
+  let index = 0;
+  const len = encoded.length;
+  let lat = 0;
+  let lng = 0;
+  const array: Array<{ lat: number; lng: number }> = [];
+
+  while (index < len) {
+    let b: number;
+    let shift = 0;
+    let result = 0;
+    do {
+      b = encoded.charCodeAt(index++) - 63;
+      result |= (b & 0x1f) << shift;
+      shift += 5;
+    } while (b >= 0x20);
+    const dlat = (result & 1) !== 0 ? ~(result >> 1) : result >> 1;
+    lat += dlat;
+
+    shift = 0;
+    result = 0;
+    do {
+      b = encoded.charCodeAt(index++) - 63;
+      result |= (b & 0x1f) << shift;
+      shift += 5;
+    } while (b >= 0x20);
+    const dlng = (result & 1) !== 0 ? ~(result >> 1) : result >> 1;
+    lng += dlng;
+
+    array.push({ lat: lat / 1e5, lng: lng / 1e5 });
+  }
+  return array;
+}
+
+// Upgraded zone and gantry detection using GPS polyline trajectory & directional bearing
 function detectLtaZoneIds(route: any): { zoneIds: string[]; gantryIds: number[] } {
   const zoneSet = new Set<string>();
   const gantrySet = new Set<number>();
@@ -119,56 +173,48 @@ function detectLtaZoneIds(route: any): { zoneIds: string[]; gantryIds: number[] 
   const leg = route.legs?.[0];
   const steps = leg?.steps || [];
 
-  const fullText = (
-    (route.summary || '') +
-    ' ' +
-    steps.map((s: any) => s.html_instructions || '').join(' ')
-  ).toLowerCase();
+  let points: Array<{ lat: number; lng: number }> = [];
 
-  // 1. Keyword-based matching
-  ZONE_KEYWORD_MAP.forEach((mapping) => {
-    const isMatch = mapping.keywords.some((keyword) => fullText.includes(keyword));
-    if (isMatch) {
-      zoneSet.add(mapping.zoneId);
-      mapping.gantryIds.forEach((id) => gantrySet.add(id));
-    }
-  });
+  if (route.overview_polyline?.points) {
+    points = decodePolyline(route.overview_polyline.points);
+  }
 
-  // 2. Coordinate proximity matching with directional check
-  const isHeadingSouth = leg?.start_location?.lat > leg?.end_location?.lat;
-
-  steps.forEach((step: any) => {
-    const stepLocations = [
-      step.start_location,
-      step.end_location,
-    ].filter(Boolean);
-
-    stepLocations.forEach((loc) => {
-      const sLat = typeof loc.lat === 'function' ? loc.lat() : loc.lat;
-      const sLng = typeof loc.lng === 'function' ? loc.lng() : loc.lng;
-
-      if (sLat && sLng) {
-        ZONE_KEYWORD_MAP.forEach((mapping) => {
-          // Skip northbound gantries if route is heading south
-          if (isHeadingSouth && (mapping.zoneId.includes('NORTHBOUND') || mapping.zoneId.includes('TUASBOUND'))) {
-            return;
-          }
-          // Skip southbound gantries if route is heading north
-          if (!isHeadingSouth && (mapping.zoneId.includes('SOUTHBOUND') || mapping.zoneId.includes('CITYBOUND'))) {
-            return;
-          }
-
-          if (mapping.coord) {
-            const dist = haversineKm(sLat, sLng, mapping.coord.lat, mapping.coord.lng);
-            // 250m threshold for precise highway gantry matching
-            if (dist <= 0.25) {
-              zoneSet.add(mapping.zoneId);
-              mapping.gantryIds.forEach((id) => gantrySet.add(id));
-            }
-          }
-        });
+  if (points.length < 5 && steps.length > 0) {
+    steps.forEach((step: any) => {
+      if (step.polyline?.points) {
+        points.push(...decodePolyline(step.polyline.points));
+      } else {
+        if (step.start_location) points.push({ lat: step.start_location.lat, lng: step.start_location.lng });
+        if (step.end_location) points.push({ lat: step.end_location.lat, lng: step.end_location.lng });
       }
     });
+  }
+
+  if (points.length === 0) {
+    return { zoneIds: [], gantryIds: [] };
+  }
+
+  ZONE_CONFIGS.forEach((config) => {
+    for (let i = 0; i < points.length; i++) {
+      const pt = points[i];
+      const dist = haversineKm(pt.lat, pt.lng, config.coord.lat, config.coord.lng);
+
+      if (dist <= 0.18) {
+        if (config.headingRange) {
+          const prevPt = points[Math.max(0, i - 2)];
+          const nextPt = points[Math.min(points.length - 1, i + 2)];
+          const heading = calculateBearing(prevPt.lat, prevPt.lng, nextPt.lat, nextPt.lng);
+
+          if (!isHeadingMatching(heading, config.headingRange.min, config.headingRange.max)) {
+            continue;
+          }
+        }
+
+        zoneSet.add(config.zoneId);
+        config.gantryIds.forEach((id) => gantrySet.add(id));
+        break;
+      }
+    }
   });
 
   return {
