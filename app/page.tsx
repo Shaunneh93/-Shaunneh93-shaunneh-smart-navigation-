@@ -434,8 +434,8 @@ export default function Home() {
     if (mode === 'via' && route?.waypoints && Array.isArray(route.waypoints) && route.waypoints.length > 0) {
       const wp = route.waypoints[0];
       if (wp?.latitude && wp?.longitude) {
-        // Precise highway centerline coordinate forces Google Maps onto this specific expressway route
-        mapsUrl += `&waypoints=${wp.latitude},${wp.longitude}`;
+        // 'via:' prefix indicates a non-stopover pass-through point so Google Maps won't add a stop or prompt 'Next Stop'
+        mapsUrl += `&waypoints=via:${wp.latitude},${wp.longitude}`;
       }
     }
 

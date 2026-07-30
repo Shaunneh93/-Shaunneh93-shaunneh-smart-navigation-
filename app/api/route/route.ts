@@ -397,26 +397,26 @@ function getSignatureWaypoint(route: any) {
     }
   }
 
-  // Decode candidate step polyline or use step start/end midpoint
+  // Decode candidate step polyline (use 25% mark along the step to hit the open-air main carriageway entry rather than underground tunnel midpoints or exit ramps)
   if (candidateStep) {
     if (candidateStep.polyline?.points) {
       const stepPoints = decodePolyline(candidateStep.polyline.points);
       if (stepPoints.length > 0) {
-        const midPt = stepPoints[Math.floor(stepPoints.length * 0.5)];
-        return [{ latitude: midPt.lat, longitude: midPt.lng }];
+        // Pick 25% along the step to pin the main trunk line securely
+        const idx = Math.floor(stepPoints.length * 0.25);
+        const targetPt = stepPoints[idx] || stepPoints[0];
+        return [{ latitude: targetPt.lat, longitude: targetPt.lng }];
       }
     }
-    if (candidateStep.start_location && candidateStep.end_location) {
-      const midLat = (candidateStep.start_location.lat + candidateStep.end_location.lat) / 2;
-      const midLng = (candidateStep.start_location.lng + candidateStep.end_location.lng) / 2;
-      return [{ latitude: midLat, longitude: midLng }];
+    if (candidateStep.start_location) {
+      return [{ latitude: candidateStep.start_location.lat, longitude: candidateStep.start_location.lng }];
     }
   }
 
-  // Ultimate fallback to overview polyline midpoint
+  // Ultimate fallback to overview polyline (at 30% mark along main route)
   const rawPoints = decodePolyline(route.overview_polyline?.points || '');
   if (rawPoints.length === 0) return [];
-  const midPt = rawPoints[Math.floor(rawPoints.length * 0.5)];
+  const midPt = rawPoints[Math.floor(rawPoints.length * 0.3)] || rawPoints[0];
   return [{ latitude: midPt.lat, longitude: midPt.lng }];
 }
 
