@@ -4,6 +4,9 @@ import Google from "next-auth/providers/google";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET || "default_dev_secret_nehvigation_12345",
+  pages: {
+    error: "/auth/error",
+  },
   providers: [
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID || "MOCK_CLIENT_ID",

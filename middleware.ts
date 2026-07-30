@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export default auth((req) => {
   const isLoggedIn = !!req.auth;
-  const isAuthRoute = req.nextUrl.pathname.startsWith("/api/auth");
+  const isAuthRoute = req.nextUrl.pathname.startsWith("/api/auth") || req.nextUrl.pathname.startsWith("/auth/error");
 
   // If GOOGLE_CLIENT_ID is not set in env, skip forcing redirect so app preview works
   if (!process.env.GOOGLE_CLIENT_ID) {
@@ -23,6 +23,6 @@ export default auth((req) => {
 });
 
 export const config = {
-  // Apply middleware to all pages except static assets and Next.js internals
-  matcher: ["/((?!api/auth|_next/static|_next/image|favicon.ico).*)"],
+  // Apply middleware to all pages except static assets, auth error page, and Next.js internals
+  matcher: ["/((?!api/auth|auth/error|_next/static|_next/image|favicon.ico).*)"],
 };

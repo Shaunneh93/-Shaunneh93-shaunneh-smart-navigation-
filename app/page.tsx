@@ -366,6 +366,15 @@ export default function Home() {
     );
   };
 
+  const swapLocations = () => {
+    const tempText = originText;
+    const tempCoords = originCoords;
+    setOriginText(destText);
+    setOriginCoords(destCoords);
+    setDestText(tempText);
+    setDestCoords(tempCoords);
+  };
+
   const handleSearch = async () => {
     if (!originCoords.lat || !destCoords.lat) {
       alert('Please select both a valid start location and destination.');
@@ -442,28 +451,122 @@ export default function Home() {
     window.open(mapsUrl, '_blank');
   };
 
-  if (loadError) return <div style={{ color: 'red', padding: '20px' }}>Error loading Google Maps API. Check API Restrictions in Console.</div>;
-  if (!isLoaded) return <div style={{ color: '#fff', padding: '20px', textAlign: 'center' }}>Loading Google Maps...</div>;
+  if (loadError) return <div style={{ color: '#ef4444', padding: '20px', textAlign: 'center' }}>Error loading Google Maps API. Check API Restrictions in Console.</div>;
+  if (!isLoaded) return <div style={{ color: '#f8fafc', padding: '40px 20px', textAlign: 'center', fontSize: '16px' }}>⌛ Loading Google Maps...</div>;
 
   const isFormValid = Boolean(originCoords.lat && destCoords.lat);
 
   return (
-    <main style={{ padding: '30px 20px', fontFamily: 'sans-serif', maxWidth: '500px', margin: '0 auto', color: '#ffffff' }}>
-      <h1 style={{ textAlign: 'center', fontSize: '24px', marginBottom: '20px' }}>NEHvigation</h1>
+    <main style={{ padding: '16px 12px 32px 12px', fontFamily: 'system-ui, -apple-system, sans-serif', maxWidth: '540px', margin: '0 auto', color: '#f8fafc' }}>
+      {/* HEADER BAR */}
+      <header style={{ textAlign: 'center', marginBottom: '16px', paddingTop: '4px' }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', backgroundColor: '#1e293b', border: '1px solid #334155', padding: '4px 10px', borderRadius: '20px', fontSize: '11px', color: '#38bdf8', marginBottom: '6px' }}>
+          <span>🇸🇬 Singapore ERP & Toll Route Optimizer</span>
+        </div>
+        <h1 style={{ fontSize: '26px', fontWeight: '800', margin: '0 0 2px 0', letterSpacing: '-0.5px', background: 'linear-gradient(135deg, #38bdf8 0%, #818cf8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+          NEHvigation
+        </h1>
+        <p style={{ margin: 0, fontSize: '12px', color: '#94a3b8' }}>Real-time LTA ERP gantries + Smart waypoint navigation</p>
+      </header>
 
-      {/* ERP TIME & VEHICLE CONTROLS */}
-      <div style={{ backgroundColor: '#0f172a', padding: '16px', borderRadius: '8px', marginBottom: '16px', border: '1px solid #334155' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-          <label style={{ fontSize: '12px', fontWeight: 'bold', color: '#94a3b8' }}>
+      {/* LOCATION SETUP CARD WITH SWAP */}
+      <section style={{ backgroundColor: '#0f172a', padding: '16px', borderRadius: '12px', marginBottom: '12px', border: '1px solid #334155', boxShadow: '0 4px 16px rgba(0,0,0,0.2)' }}>
+        {/* START LOCATION */}
+        <div style={{ marginBottom: '8px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+            <label style={{ fontSize: '13px', fontWeight: '700', color: '#38bdf8', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span>🟢</span> Start Location
+            </label>
+            <button 
+              type="button"
+              onClick={useCurrentLocation}
+              style={{ minHeight: '36px', padding: '4px 10px', fontSize: '12px', backgroundColor: '#0284c7', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '4px' }}
+            >
+              🎯 Use GPS
+            </button>
+          </div>
+
+          <Autocomplete
+            onLoad={(autocomplete) => (originAutocompleteRef.current = autocomplete)}
+            onPlaceChanged={onOriginPlaceChanged}
+            options={{ componentRestrictions: { country: 'sg' } }}
+          >
+            <input 
+              type="text" 
+              placeholder="Type start address or tap 'Use GPS'..." 
+              value={originText} 
+              onChange={(e) => {
+                setOriginText(e.target.value);
+                setOriginCoords({ lat: '', lng: '' });
+              }}
+              style={{ width: '100%', height: '48px', padding: '0 12px', borderRadius: '8px', border: '1px solid #475569', backgroundColor: '#1e293b', color: '#fff', boxSizing: 'border-box' }}
+            />
+          </Autocomplete>
+        </div>
+
+        {/* SWAP LOCATIONS BUTTON */}
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '4px 0' }}>
+          <button
+            type="button"
+            onClick={swapLocations}
+            title="Swap Start & Destination"
+            style={{
+              minHeight: '36px',
+              padding: '4px 14px',
+              fontSize: '12px',
+              backgroundColor: '#1e293b',
+              color: '#38bdf8',
+              border: '1px solid #334155',
+              borderRadius: '20px',
+              cursor: 'pointer',
+              fontWeight: '600',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}
+          >
+            ⇅ Swap Locations
+          </button>
+        </div>
+
+        {/* DESTINATION */}
+        <div>
+          <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', color: '#ef4444', marginBottom: '6px' }}>🔴 Destination</label>
+
+          <Autocomplete
+            onLoad={(autocomplete) => (destAutocompleteRef.current = autocomplete)}
+            onPlaceChanged={onDestPlaceChanged}
+            options={{ componentRestrictions: { country: 'sg' } }}
+          >
+            <input 
+              type="text" 
+              placeholder="Search destination address..." 
+              value={destText} 
+              onChange={(e) => {
+                setDestText(e.target.value);
+                setDestCoords({ lat: '', lng: '' });
+              }}
+              style={{ width: '100%', height: '48px', padding: '0 12px', borderRadius: '8px', border: '1px solid #475569', backgroundColor: '#1e293b', color: '#fff', boxSizing: 'border-box' }}
+            />
+          </Autocomplete>
+        </div>
+      </section>
+
+      {/* ERP DEPARTURE WINDOW CARD */}
+      <section style={{ backgroundColor: '#0f172a', padding: '14px 16px', borderRadius: '12px', marginBottom: '12px', border: '1px solid #334155' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+          <label style={{ fontSize: '12px', fontWeight: '700', color: '#94a3b8', letterSpacing: '0.3px' }}>
             🕒 ERP DEPARTURE WINDOW
           </label>
-          <span style={{ fontSize: '11px', backgroundColor: '#1e293b', color: '#38bdf8', padding: '4px 8px', borderRadius: '6px', border: '1px solid #0284c7', fontWeight: 'bold' }}>
+          <span style={{ fontSize: '11px', backgroundColor: '#1e293b', color: '#38bdf8', padding: '3px 8px', borderRadius: '6px', border: '1px solid #0284c7', fontWeight: '600' }}>
             🚗 Passenger Cars
           </span>
         </div>
-        <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: timeMode === 'custom' ? '10px' : '0' }}>
+
+        {/* SCROLLABLE PILLS FOR MOBILE */}
+        <div className="no-scrollbar" style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '4px' }}>
           {[
-            { mode: 'live', label: `🟢 Live SG (${currentTime || 'SG Time'})` },
+            { mode: 'live', label: `🟢 Live (${currentTime || 'SG Time'})` },
             { mode: 'morning_peak', label: '🌅 Morning Peak (08:30)' },
             { mode: 'evening_peak', label: '🌆 Evening Peak (18:30)' },
             { mode: 'custom', label: '⏱️ Custom' },
@@ -473,14 +576,17 @@ export default function Home() {
               type="button"
               onClick={() => setTimeMode(item.mode as any)}
               style={{
-                padding: '6px 10px',
-                fontSize: '11px',
-                borderRadius: '6px',
-                border: timeMode === item.mode ? '1px solid #22c55e' : '1px solid #334155',
+                minHeight: '40px',
+                padding: '0 12px',
+                fontSize: '12px',
+                borderRadius: '8px',
+                whiteSpace: 'nowrap',
+                border: timeMode === item.mode ? '1.5px solid #22c55e' : '1px solid #334155',
                 backgroundColor: timeMode === item.mode ? '#15803d' : '#1e293b',
                 color: '#fff',
                 cursor: 'pointer',
-                fontWeight: timeMode === item.mode ? 'bold' : 'normal',
+                fontWeight: timeMode === item.mode ? '700' : '500',
+                boxShadow: timeMode === item.mode ? '0 0 8px rgba(34,197,94,0.3)' : 'none'
               }}
             >
               {item.label}
@@ -489,30 +595,34 @@ export default function Home() {
         </div>
 
         {timeMode === 'custom' && (
-          <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
+          <div style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
             <input
               type="time"
               value={customTime}
               onChange={(e) => setCustomTime(e.target.value)}
               style={{
-                padding: '6px 10px',
-                borderRadius: '6px',
+                height: '42px',
+                padding: '0 10px',
+                borderRadius: '8px',
                 border: '1px solid #475569',
                 backgroundColor: '#1e293b',
                 color: '#fff',
-                fontSize: '13px',
+                fontSize: '14px',
+                flex: 1
               }}
             />
             <select
               value={selectedDayType}
               onChange={(e) => setSelectedDayType(e.target.value)}
               style={{
-                padding: '6px 10px',
-                borderRadius: '6px',
+                height: '42px',
+                padding: '0 10px',
+                borderRadius: '8px',
                 border: '1px solid #475569',
                 backgroundColor: '#1e293b',
                 color: '#fff',
-                fontSize: '13px',
+                fontSize: '14px',
+                flex: 1
               }}
             >
               <option value="Weekdays">Weekdays</option>
@@ -521,52 +631,48 @@ export default function Home() {
             </select>
           </div>
         )}
-      </div>
+      </section>
 
-      {/* FUEL CONSUMPTION CONTROLS */}
-      <div style={{ backgroundColor: '#0f172a', padding: '16px', borderRadius: '8px', marginBottom: '16px', border: '1px solid #334155' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-          <label style={{ fontSize: '12px', fontWeight: 'bold', color: '#94a3b8' }}>
-            ⛽ ESTIMATED FUEL CONSUMPTION & EFFICIENCY
+      {/* FUEL CONSUMPTION CARD */}
+      <section style={{ backgroundColor: '#0f172a', padding: '14px 16px', borderRadius: '12px', marginBottom: '16px', border: '1px solid #334155' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+          <label style={{ fontSize: '12px', fontWeight: '700', color: '#94a3b8' }}>
+            ⛽ FUEL CONSUMPTION & EFFICIENCY
           </label>
-          <span style={{ fontSize: '11px', color: '#38bdf8', backgroundColor: '#1e293b', padding: '3px 8px', borderRadius: '6px', border: '1px solid #0284c7', fontWeight: 'bold' }}>
-            🚦 Speed & Light Overhead Included
-          </span>
         </div>
 
-        <div style={{ marginBottom: '8px' }}>
-          <select
-            value={fuelPreset}
-            onChange={(e) => setFuelPreset(e.target.value)}
-            style={{
-              width: '100%',
-              padding: '8px 10px',
-              borderRadius: '6px',
-              border: '1px solid #475569',
-              backgroundColor: '#1e293b',
-              color: '#fff',
-              fontSize: '13px',
-            }}
-          >
-            {FUEL_PRESETS.map((preset) => (
-              <option key={preset.id} value={preset.id}>
-                {preset.label}
-              </option>
-            ))}
-          </select>
-        </div>
+        <select
+          value={fuelPreset}
+          onChange={(e) => setFuelPreset(e.target.value)}
+          style={{
+            width: '100%',
+            height: '44px',
+            padding: '0 10px',
+            borderRadius: '8px',
+            border: '1px solid #475569',
+            backgroundColor: '#1e293b',
+            color: '#fff',
+            fontSize: '13px',
+          }}
+        >
+          {FUEL_PRESETS.map((preset) => (
+            <option key={preset.id} value={preset.id}>
+              {preset.label}
+            </option>
+          ))}
+        </select>
 
         {fuelPreset === 'custom' && (
           <div style={{ marginTop: '10px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
-              <label style={{ fontSize: '11px', color: '#94a3b8' }}>Custom Efficiency Value:</label>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+              <label style={{ fontSize: '11px', color: '#94a3b8' }}>Custom Value:</label>
               <div style={{ display: 'flex', gap: '4px' }}>
                 <button
                   type="button"
                   onClick={() => setFuelUnit('kml')}
                   style={{
-                    fontSize: '10px',
-                    padding: '2px 8px',
+                    fontSize: '11px',
+                    padding: '4px 10px',
                     borderRadius: '4px',
                     border: '1px solid #475569',
                     backgroundColor: fuelUnit === 'kml' ? '#0284c7' : '#1e293b',
@@ -581,8 +687,8 @@ export default function Home() {
                   type="button"
                   onClick={() => setFuelUnit('l100km')}
                   style={{
-                    fontSize: '10px',
-                    padding: '2px 8px',
+                    fontSize: '11px',
+                    padding: '4px 10px',
                     borderRadius: '4px',
                     border: '1px solid #475569',
                     backgroundColor: fuelUnit === 'l100km' ? '#0284c7' : '#1e293b',
@@ -611,12 +717,13 @@ export default function Home() {
                 placeholder="e.g. 10.4 km/L"
                 style={{
                   width: '100%',
-                  padding: '6px 8px',
+                  height: '42px',
+                  padding: '0 10px',
                   borderRadius: '6px',
                   border: '1px solid #0284c7',
                   backgroundColor: '#1e293b',
                   color: '#fff',
-                  fontSize: '12px',
+                  fontSize: '13px',
                   boxSizing: 'border-box',
                 }}
               />
@@ -635,12 +742,13 @@ export default function Home() {
                 placeholder="e.g. 9.6 L/100km"
                 style={{
                   width: '100%',
-                  padding: '6px 8px',
+                  height: '42px',
+                  padding: '0 10px',
                   borderRadius: '6px',
                   border: '1px solid #0284c7',
                   backgroundColor: '#1e293b',
                   color: '#fff',
-                  fontSize: '12px',
+                  fontSize: '13px',
                   boxSizing: 'border-box',
                 }}
               />
@@ -649,91 +757,51 @@ export default function Home() {
         )}
 
         <div style={{ fontSize: '11px', color: '#64748b', marginTop: '8px', lineHeight: '1.4' }}>
-          💡 <em>Fuel model automatically adds extra consumption for slow/crawling traffic (&lt;35 km/h) and start-stop idling at traffic light junctions (~20ml per light).</em>
+          💡 <em>Includes extra fuel overhead for crawling traffic (&lt;35 km/h) & traffic light idling (~20ml/light).</em>
         </div>
-      </div>
+      </section>
 
-      {/* START LOCATION SEARCH */}
-      <div style={{ backgroundColor: '#0f172a', padding: '16px', borderRadius: '8px', marginBottom: '16px', border: '1px solid #334155' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-          <label style={{ fontSize: '14px', fontWeight: 'bold', color: '#38bdf8' }}>🟢 Start Location</label>
-          <button 
-            type="button"
-            onClick={useCurrentLocation}
-            style={{ padding: '4px 8px', fontSize: '12px', backgroundColor: '#0284c7', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
-          >
-            🎯 Use GPS
-          </button>
-        </div>
-
-        <Autocomplete
-          onLoad={(autocomplete) => (originAutocompleteRef.current = autocomplete)}
-          onPlaceChanged={onOriginPlaceChanged}
-          options={{ componentRestrictions: { country: 'sg' } }}
-        >
-          <input 
-            type="text" 
-            placeholder="Type start address or click 'Use GPS'..." 
-            value={originText} 
-            onChange={(e) => {
-              setOriginText(e.target.value);
-              // Reset stored coords if user types manually so they pick a valid place
-              setOriginCoords({ lat: '', lng: '' });
-            }}
-            style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #475569', backgroundColor: '#1e293b', color: '#fff', boxSizing: 'border-box' }}
-          />
-        </Autocomplete>
-      </div>
-
-      {/* DESTINATION SEARCH */}
-      <div style={{ backgroundColor: '#0f172a', padding: '16px', borderRadius: '8px', marginBottom: '20px', border: '1px solid #334155' }}>
-        <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: '#ef4444', marginBottom: '8px' }}>🔴 Destination</label>
-
-        <Autocomplete
-          onLoad={(autocomplete) => (destAutocompleteRef.current = autocomplete)}
-          onPlaceChanged={onDestPlaceChanged}
-          options={{ componentRestrictions: { country: 'sg' } }}
-        >
-          <input 
-            type="text" 
-            placeholder="Search destination address..." 
-            value={destText} 
-            onChange={(e) => {
-              setDestText(e.target.value);
-              setDestCoords({ lat: '', lng: '' });
-            }}
-            style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #475569', backgroundColor: '#1e293b', color: '#fff', boxSizing: 'border-box' }}
-          />
-        </Autocomplete>
-      </div>
-
-      {/* CALCULATE BUTTON */}
+      {/* MAIN ACTION BUTTON */}
       <button 
         type="button"
         onClick={handleSearch}
         disabled={loading || !isFormValid}
         style={{
-          padding: '14px 20px',
+          width: '100%',
+          height: '52px',
           fontSize: '16px',
           cursor: (loading || !isFormValid) ? 'not-allowed' : 'pointer',
-          borderRadius: '8px',
+          borderRadius: '10px',
           border: 'none',
-          backgroundColor: (loading || !isFormValid) ? '#475569' : '#0070f3',
+          background: (loading || !isFormValid) 
+            ? '#475569' 
+            : 'linear-gradient(135deg, #0284c7 0%, #2563eb 100%)',
           color: '#ffffff',
-          fontWeight: 'bold',
-          width: '100%',
-          boxShadow: '0 4px 12px rgba(0, 112, 243, 0.3)',
-          opacity: isFormValid ? 1 : 0.6
+          fontWeight: '700',
+          boxShadow: isFormValid ? '0 4px 20px rgba(2, 132, 199, 0.4)' : 'none',
+          opacity: isFormValid ? 1 : 0.6,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '8px',
+          transition: 'transform 0.1s ease, box-shadow 0.15s ease'
         }}
       >
-        {loading ? 'Evaluating All Routes...' : 'Calculate Routes'}
+        {loading ? (
+          <>
+            <span style={{ animation: 'spin 1s linear infinite', display: 'inline-block' }}>⚡</span>
+            <span>Evaluating All Routes...</span>
+          </>
+        ) : (
+          <span>Calculate Best Routes</span>
+        )}
       </button>
 
-      {/* ROUTE RESULTS LIST */}
+      {/* ROUTE RESULTS */}
       {routes.length > 0 && (
-        <div style={{ marginTop: '24px' }}>
+        <section style={{ marginTop: '20px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-            <h2 style={{ fontSize: '18px', margin: 0, color: '#e0e0e0' }}>
+            <h2 style={{ fontSize: '17px', margin: 0, fontWeight: '700', color: '#f8fafc' }}>
               Considered Routes ({routes.length})
             </h2>
             {currentTime && (
@@ -742,38 +810,37 @@ export default function Home() {
               </span>
             )}
           </div>
-          
 
-{routes.map((route, idx) => {
-  const routeKey = route.id || `route-${idx}`;
-  const effectiveWinnerId = computedWinnerId || winnerRouteId;
-  const isWinner = effectiveWinnerId ? routeKey === effectiveWinnerId : idx === 0;
-  const isSelected = selectedRouteId === routeKey;
+          {routes.map((route, idx) => {
+            const routeKey = route.id || `route-${idx}`;
+            const effectiveWinnerId = computedWinnerId || winnerRouteId;
+            const isWinner = effectiveWinnerId ? routeKey === effectiveWinnerId : idx === 0;
+            const isSelected = selectedRouteId === routeKey;
 
-  const erpSummary = routeErpSummaryMap[routeKey];
-  const activeErpFee = erpSummary?.activeFee ?? liveErpMap[routeKey] ?? route.erpTotalCost ?? route.erpFee ?? 0;
-  const maxPeakFee = erpSummary?.maxPeakFee ?? 0;
-  const detectedZones = erpSummary?.zones || [];
-  const fuelLiters = erpSummary?.fuelLiters ?? 0;
-  const baseFuelLiters = erpSummary?.baseFuelLiters ?? 0;
-  const trafficOverheadLiters = erpSummary?.trafficOverheadLiters ?? 0;
-  const fuelUnitText = erpSummary?.fuelUnitText ?? 'L';
-  const trafficConditionText = erpSummary?.trafficConditionText ?? '';
-  const avgSpeedKmH = erpSummary?.avgSpeedKmH ?? 0;
-  const isEv = erpSummary?.isEv ?? false;
-  const erpPenalty = erpSummary?.erpPenalty ?? (activeErpFee * 5.0);
-  const fuelPenalty = erpSummary?.fuelPenalty ?? (isEv ? fuelLiters * 3.0 : fuelLiters * 10.0);
-  const totalCostPenalty = erpPenalty + fuelPenalty;
-  const displayCompositeScore = erpSummary?.compositeScore ?? route.compositeScore;
-  const intersectionScore = route.intersectionScore ?? route.trafficLightScore ?? 0;
+            const erpSummary = routeErpSummaryMap[routeKey];
+            const activeErpFee = erpSummary?.activeFee ?? liveErpMap[routeKey] ?? route.erpTotalCost ?? route.erpFee ?? 0;
+            const maxPeakFee = erpSummary?.maxPeakFee ?? 0;
+            const detectedZones = erpSummary?.zones || [];
+            const fuelLiters = erpSummary?.fuelLiters ?? 0;
+            const baseFuelLiters = erpSummary?.baseFuelLiters ?? 0;
+            const trafficOverheadLiters = erpSummary?.trafficOverheadLiters ?? 0;
+            const fuelUnitText = erpSummary?.fuelUnitText ?? 'L';
+            const trafficConditionText = erpSummary?.trafficConditionText ?? '';
+            const avgSpeedKmH = erpSummary?.avgSpeedKmH ?? 0;
+            const isEv = erpSummary?.isEv ?? false;
+            const erpPenalty = erpSummary?.erpPenalty ?? (activeErpFee * 5.0);
+            const fuelPenalty = erpSummary?.fuelPenalty ?? (isEv ? fuelLiters * 3.0 : fuelLiters * 10.0);
+            const totalCostPenalty = erpPenalty + fuelPenalty;
+            const displayCompositeScore = erpSummary?.compositeScore ?? route.compositeScore;
+            const intersectionScore = route.intersectionScore ?? route.trafficLightScore ?? 0;
 
-  return (
-              <div 
+            return (
+              <article 
                 key={routeKey}
                 onClick={() => setSelectedRouteId(routeKey)}
                 style={{
                   padding: '16px',
-                  marginBottom: '16px',
+                  marginBottom: '14px',
                   borderRadius: '12px',
                   backgroundColor: isSelected ? '#1e293b' : '#0f172a',
                   border: isWinner 
@@ -781,18 +848,19 @@ export default function Home() {
                     : isSelected 
                       ? '2px solid #38bdf8' 
                       : '1px solid #334155',
+                  boxShadow: isWinner ? '0 0 16px rgba(34, 197, 94, 0.2)' : 'none',
                   cursor: 'pointer',
                   position: 'relative',
-                  transition: 'border 0.15s ease-in-out'
+                  transition: 'all 0.15s ease-in-out'
                 }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                  <span style={{ fontWeight: 'bold', fontSize: '16px', color: isWinner ? '#4ade80' : '#38bdf8' }}>
+                  <span style={{ fontWeight: '700', fontSize: '16px', color: isWinner ? '#4ade80' : '#38bdf8' }}>
                     {route.summary || route.via || route.label || `Route Option ${idx + 1}`}
                   </span>
                   
                   {isWinner ? (
-                    <span style={{ backgroundColor: '#16a34a', color: '#fff', fontSize: '11px', fontWeight: 'bold', padding: '3px 8px', borderRadius: '12px' }}>
+                    <span style={{ backgroundColor: '#16a34a', color: '#fff', fontSize: '11px', fontWeight: 'bold', padding: '3px 10px', borderRadius: '12px' }}>
                       ⭐ Optimal Route
                     </span>
                   ) : (
@@ -802,100 +870,100 @@ export default function Home() {
                   )}
                 </div>
 
-<div style={{ color: '#f1f5f9', fontSize: '14px', lineHeight: '1.8' }}>
-  <div>⏱️ <strong>Time:</strong> {route.durationMin !== undefined ? Number(route.durationMin).toFixed(0) : route.duration || 'N/A'} mins ({avgSpeedKmH.toFixed(0)} km/h avg speed)</div>
-  <div>🛣️ <strong>Distance:</strong> {route.distanceKm !== undefined ? Number(route.distanceKm).toFixed(1) : route.distance || 'N/A'} km</div>
-  
-  {/* ERP & Fuel Consumption Breakdown Box */}
-  <div style={{ backgroundColor: '#0b1329', padding: '10px 12px', borderRadius: '8px', border: '1px solid #334155', margin: '8px 0' }}>
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-      <span style={{ fontSize: '13px' }}>💳 Active ERP Toll:</span>
-      <span style={{ color: activeErpFee > 0 ? '#fbbf24' : '#34d399', fontWeight: 'bold', fontSize: '14px' }}>
-        ${Number(activeErpFee).toFixed(2)}
-      </span>
-    </div>
+                <div style={{ color: '#f1f5f9', fontSize: '14px', lineHeight: '1.7' }}>
+                  <div>⏱️ <strong>Time:</strong> {route.durationMin !== undefined ? Number(route.durationMin).toFixed(0) : route.duration || 'N/A'} mins ({avgSpeedKmH.toFixed(0)} km/h avg speed)</div>
+                  <div>🛣️ <strong>Distance:</strong> {route.distanceKm !== undefined ? Number(route.distanceKm).toFixed(1) : route.distance || 'N/A'} km</div>
+                  
+                  {/* ERP & Fuel Consumption Breakdown Box */}
+                  <div style={{ backgroundColor: '#0b1329', padding: '10px 12px', borderRadius: '8px', border: '1px solid #334155', margin: '8px 0' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                      <span style={{ fontSize: '13px' }}>💳 Active ERP Toll:</span>
+                      <span style={{ color: activeErpFee > 0 ? '#fbbf24' : '#34d399', fontWeight: 'bold', fontSize: '15px' }}>
+                        ${Number(activeErpFee).toFixed(2)}
+                      </span>
+                    </div>
 
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
-      <span style={{ fontSize: '13px' }}>{isEv ? '🔋 Energy Consumed:' : '⛽ Fuel Consumed:'}</span>
-      <span style={{ color: '#f59e0b', fontWeight: 'bold', fontSize: '14px' }}>
-        ~{Number(fuelLiters).toFixed(2)} {fuelUnitText}
-      </span>
-    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                      <span style={{ fontSize: '13px' }}>{isEv ? '🔋 Energy Consumed:' : '⛽ Fuel Consumed:'}</span>
+                      <span style={{ color: '#f59e0b', fontWeight: 'bold', fontSize: '15px' }}>
+                        ~{Number(fuelLiters).toFixed(2)} {fuelUnitText}
+                      </span>
+                    </div>
 
-    <div style={{ fontSize: '11px', color: '#94a3b8', marginBottom: '6px', lineHeight: '1.4' }}>
-      📊 Base: ~{baseFuelLiters.toFixed(2)} {fuelUnitText} | Traffic & {intersectionScore} lights: <span style={{ color: '#38bdf8', fontWeight: 'bold' }}>+{trafficOverheadLiters.toFixed(2)} {fuelUnitText}</span> ({trafficConditionText})
-    </div>
+                    <div style={{ fontSize: '11px', color: '#94a3b8', marginBottom: '6px', lineHeight: '1.4' }}>
+                      📊 Base: ~{baseFuelLiters.toFixed(2)} {fuelUnitText} | Traffic & {intersectionScore} lights: <span style={{ color: '#38bdf8', fontWeight: 'bold' }}>+{trafficOverheadLiters.toFixed(2)} {fuelUnitText}</span> ({trafficConditionText})
+                    </div>
 
-    {maxPeakFee > 0 && activeErpFee === 0 && (
-      <div style={{ fontSize: '11px', color: '#38bdf8', marginTop: '6px' }}>
-        ℹ️ Off-peak at selected time. <strong>Peak rate during operating hours: ${Number(maxPeakFee).toFixed(2)}</strong>
-      </div>
-    )}
+                    {maxPeakFee > 0 && activeErpFee === 0 && (
+                      <div style={{ fontSize: '11px', color: '#38bdf8', marginTop: '6px' }}>
+                        ℹ️ Off-peak at selected time. <strong>Peak rate during operating hours: ${Number(maxPeakFee).toFixed(2)}</strong>
+                      </div>
+                    )}
 
-    {/* Detected Gantries / Zones List */}
-    {detectedZones.length > 0 ? (
-      <div style={{ marginTop: '8px', paddingTop: '8px', borderTop: '1px solid #1e293b', fontSize: '12px' }}>
-        <div style={{ color: '#94a3b8', fontWeight: 'bold', marginBottom: '4px' }}>📍 DETECTED ERP ZONES ({detectedZones.length}):</div>
-        {detectedZones.map((z) => (
-          <div key={z.zoneId} style={{ display: 'flex', justifyContent: 'space-between', color: '#cbd5e1', padding: '2px 0' }}>
-            <span>• {z.name} {z.gantries.length > 0 ? `(#${z.gantries.join(', #')})` : ''}</span>
-            <span style={{ color: z.activeFee > 0 ? '#f59e0b' : '#38bdf8', fontWeight: 'bold' }}>
-              ${z.activeFee.toFixed(2)} {z.activeFee === 0 ? `(Peak $${z.peakFee.toFixed(2)})` : ''}
-            </span>
-          </div>
-        ))}
-      </div>
-    ) : (
-      <div style={{ fontSize: '11px', color: '#10b981', marginTop: '4px' }}>
-        ✅ Toll-Free Route (No ERP Gantries Detected)
-      </div>
-    )}
-  </div>
+                    {/* Detected Gantries / Zones List */}
+                    {detectedZones.length > 0 ? (
+                      <div style={{ marginTop: '8px', paddingTop: '8px', borderTop: '1px solid #1e293b', fontSize: '12px' }}>
+                        <div style={{ color: '#94a3b8', fontWeight: 'bold', marginBottom: '4px' }}>📍 DETECTED ERP ZONES ({detectedZones.length}):</div>
+                        {detectedZones.map((z) => (
+                          <div key={z.zoneId} style={{ display: 'flex', justifyContent: 'space-between', color: '#cbd5e1', padding: '2px 0' }}>
+                            <span>• {z.name} {z.gantries.length > 0 ? `(#${z.gantries.join(', #')})` : ''}</span>
+                            <span style={{ color: z.activeFee > 0 ? '#f59e0b' : '#38bdf8', fontWeight: 'bold' }}>
+                              ${z.activeFee.toFixed(2)} {z.activeFee === 0 ? `(Peak $${z.peakFee.toFixed(2)})` : ''}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div style={{ fontSize: '11px', color: '#10b981', marginTop: '4px' }}>
+                        ✅ Toll-Free Route (No ERP Gantries Detected)
+                      </div>
+                    )}
+                  </div>
 
-{/* 🚦 Traffic Light Score */}
-  <div>
-    🚦 <strong>Traffic Light Score:</strong>{' '}
-    {(route.intersectionScore !== undefined && route.intersectionScore !== null)
-      ? route.intersectionScore
-      : (route.trafficLightScore !== undefined && route.trafficLightScore !== null)
-        ? route.trafficLightScore
-        : 'N/A'}
-  </div>
+                  {/* 🚦 Traffic Light Score */}
+                  <div>
+                    🚦 <strong>Traffic Light Score:</strong>{' '}
+                    {(route.intersectionScore !== undefined && route.intersectionScore !== null)
+                      ? route.intersectionScore
+                      : (route.trafficLightScore !== undefined && route.trafficLightScore !== null)
+                        ? route.trafficLightScore
+                        : 'N/A'}
+                  </div>
 
-{/* ⚠️ Total Cost Penalty Indicator */}
-<div>
-  ⚠️ <strong>Toll & Fuel Penalty:</strong>{' '}
-  {totalCostPenalty > 0 ? (
-    <span style={{ color: '#f59e0b', fontWeight: 'bold' }}>
-      +{totalCostPenalty.toFixed(1)} pts (${activeErpFee.toFixed(2)} ERP + {fuelLiters.toFixed(2)} {fuelUnitText})
-    </span>
-  ) : (
-    <span style={{ color: '#10b981', fontWeight: 'bold' }}>
-      0.0 pts ($0 Toll & Minimal Fuel)
-    </span>
-  )}
-</div>
+                  {/* ⚠️ Total Cost Penalty Indicator */}
+                  <div>
+                    ⚠️ <strong>Toll & Fuel Penalty:</strong>{' '}
+                    {totalCostPenalty > 0 ? (
+                      <span style={{ color: '#f59e0b', fontWeight: 'bold' }}>
+                        +{totalCostPenalty.toFixed(1)} pts (${activeErpFee.toFixed(2)} ERP + {fuelLiters.toFixed(2)} {fuelUnitText})
+                      </span>
+                    ) : (
+                      <span style={{ color: '#10b981', fontWeight: 'bold' }}>
+                        0.0 pts ($0 Toll & Minimal Fuel)
+                      </span>
+                    )}
+                  </div>
 
-{/* 📊 Composite / Weighted Score */}
-{(displayCompositeScore !== undefined || route.score !== undefined) && (
-  <div 
-    style={{ 
-      color: '#38bdf8', 
-      fontSize: '13px', 
-      marginTop: '6px', 
-      fontWeight: 'bold', 
-      borderTop: '1px solid #334155', 
-      paddingTop: '6px' 
-    }}
-  >
-    📊 <strong>Composite Score:</strong>{' '}
-    {Number(displayCompositeScore ?? route.score).toFixed(1)} pts
-  </div>
-)}
-  
-</div>
+                  {/* 📊 Composite / Weighted Score */}
+                  {(displayCompositeScore !== undefined || route.score !== undefined) && (
+                    <div 
+                      style={{ 
+                        color: '#38bdf8', 
+                        fontSize: '13px', 
+                        marginTop: '6px', 
+                        fontWeight: 'bold', 
+                        borderTop: '1px solid #334155', 
+                        paddingTop: '6px' 
+                      }}
+                    >
+                      📊 <strong>Composite Score:</strong>{' '}
+                      {Number(displayCompositeScore ?? route.score).toFixed(1)} pts
+                    </div>
+                  )}
+                </div>
 
-                <div style={{ display: 'flex', gap: '8px', marginTop: '14px' }}>
+                {/* MOBILE ACTION BUTTONS */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '14px' }}>
                   <button 
                     type="button"
                     title="Opens Google Maps routed through key expressway waypoint"
@@ -905,15 +973,21 @@ export default function Home() {
                       launchGoogleMaps(route, 'via');
                     }}
                     style={{
-                      flex: 1,
-                      padding: '10px 12px',
+                      width: '100%',
+                      minHeight: '48px',
+                      padding: '10px 14px',
                       backgroundColor: isWinner ? '#16a34a' : '#2563eb',
                       color: '#ffffff',
                       border: 'none',
-                      borderRadius: '6px',
+                      borderRadius: '8px',
                       cursor: 'pointer',
-                      fontWeight: 'bold',
-                      fontSize: '13px'
+                      fontWeight: '700',
+                      fontSize: '14px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '6px',
+                      boxShadow: isWinner ? '0 4px 12px rgba(22, 163, 74, 0.3)' : 'none'
                     }}
                   >
                     🧭 Navigate via Waypoint
@@ -927,23 +1001,29 @@ export default function Home() {
                       launchGoogleMaps(route, 'direct');
                     }}
                     style={{
-                      padding: '10px 12px',
-                      backgroundColor: '#334155',
-                      color: '#cbd5e1',
-                      border: '1px solid #475569',
-                      borderRadius: '6px',
+                      width: '100%',
+                      minHeight: '42px',
+                      padding: '8px 14px',
+                      backgroundColor: '#1e293b',
+                      color: '#94a3b8',
+                      border: '1px solid #334155',
+                      borderRadius: '8px',
                       cursor: 'pointer',
                       fontWeight: '500',
-                      fontSize: '12px'
+                      fontSize: '13px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '6px'
                     }}
                   >
                     📍 Direct A-to-B
                   </button>
                 </div>
-              </div>
+              </article>
             );
           })}
-        </div>
+        </section>
       )}
     </main>
   );
