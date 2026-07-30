@@ -342,27 +342,41 @@ export default function Home() {
     }
   };
 
-  // Called ONLY when clicking "Use GPS" button
+  // Called ONLY when clicking "Use GPS" button - Optimized for instant response
   const useCurrentLocation = () => {
     if (!navigator.geolocation) {
       alert("Geolocation is not supported by your browser.");
       return;
     }
     setOriginText('📍 Fetching GPS location...');
+
+    const handleSuccess = (position: GeolocationPosition) => {
+      setOriginCoords({
+        lat: position.coords.latitude.toString(),
+        lng: position.coords.longitude.toString()
+      });
+      setOriginText('📍 My Current Location');
+    };
+
+    const handleError = (error: GeolocationPositionError) => {
+      console.warn("High accuracy GPS timed out or failed, falling back to network triangulation...", error);
+      // Fallback: Use fast cellular/Wi-Fi triangulation with lenient timeout & cached fix
+      navigator.geolocation.getCurrentPosition(
+        handleSuccess,
+        (finalErr) => {
+          console.error("Final GPS Error:", finalErr);
+          alert("Unable to fetch your location. Please ensure Location/GPS permission is allowed in your browser settings.");
+          setOriginText('');
+        },
+        { enableHighAccuracy: false, timeout: 8000, maximumAge: 120000 }
+      );
+    };
+
+    // Fast attempt: allow cached fix up to 60s old, 3.5s timeout before network fallback
     navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setOriginCoords({
-          lat: position.coords.latitude.toString(),
-          lng: position.coords.longitude.toString()
-        });
-        setOriginText('📍 My Current Location');
-      },
-      (error) => {
-        console.error("GPS Error:", error);
-        alert("Unable to fetch your location. Please check browser permissions.");
-        setOriginText('');
-      },
-      { enableHighAccuracy: true }
+      handleSuccess,
+      handleError,
+      { enableHighAccuracy: true, timeout: 3500, maximumAge: 60000 }
     );
   };
 
