@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-// Zone and Gantry mapping table with rich keyword matching and GPS centroids
+// Zone and Gantry mapping table for active ERP gantries
 const ZONE_KEYWORD_MAP: Array<{
   keywords: string[];
   zoneId: string;
@@ -8,19 +8,19 @@ const ZONE_KEYWORD_MAP: Array<{
   coord?: { lat: number; lng: number };
 }> = [
   {
-    keywords: ['central expy', 'central expressway', 'cte', 'braddell', 'serangoon', 'balestier'],
+    keywords: ['cte southbound', 'southbound cte', 'cte after braddell', 'cte (city)'],
     zoneId: 'CTE_SOUTHBOUND_BRADDELL',
     gantryIds: [31, 33, 34],
     coord: { lat: 1.3410, lng: 103.8560 },
   },
   {
-    keywords: ['cte slip', 'serangoon rd', 'pie (changi)'],
+    keywords: ['cte slip to pie', 'slip road to pie (changi)', 'cte slip road'],
     zoneId: 'CTE_SLIP_PIE_SERANGOON',
     gantryIds: [68],
     coord: { lat: 1.3350, lng: 103.8570 },
   },
   {
-    keywords: ['central expy', 'central expressway', 'cte', 'ang mo kio'],
+    keywords: ['cte southbound between amk', 'southbound cte amk', 'cte after amk'],
     zoneId: 'CTE_SOUTHBOUND_AMK',
     gantryIds: [35],
     coord: { lat: 1.3600, lng: 103.8540 },
@@ -38,100 +38,64 @@ const ZONE_KEYWORD_MAP: Array<{
     coord: { lat: 1.3210, lng: 103.8590 },
   },
   {
-    keywords: ['ayer rajah expy', 'ayer rajah expressway', 'aye', 'jurong town hall', 'clementi'],
+    keywords: ['aye citybound', 'citybound aye', 'aye towards city'],
     zoneId: 'AYE_CITYBOUND_SET3',
     gantryIds: [52, 53, 74],
     coord: { lat: 1.3180, lng: 103.7650 },
   },
   {
-    keywords: ['ayer rajah expy', 'ayer rajah expressway', 'aye', 'north buona vista', 'buona vista'],
+    keywords: ['aye tuasbound', 'tuasbound aye', 'aye towards tuas'],
     zoneId: 'AYE_TUASBOUND_NORTH_BUONA_VISTA',
     gantryIds: [41],
     coord: { lat: 1.2980, lng: 103.7870 },
   },
   {
-    keywords: ['ayer rajah expy', 'ayer rajah expressway', 'aye', 'jurong town hall'],
+    keywords: ['aye west of jurong town hall'],
     zoneId: 'AYE_JURONG_TOWN_HALL',
     gantryIds: [36],
     coord: { lat: 1.3275, lng: 103.7435 },
   },
   {
-    keywords: ['kallang-paya lebar expy', 'kallang paya lebar expressway', 'kallang paya lebar', 'kpe', 'defu', 'buangkok'],
+    keywords: ['kpe southbound', 'southbound kpe', 'kpe after defu'],
     zoneId: 'KPE_SOUTHBOUND_DEFU',
     gantryIds: [50],
     coord: { lat: 1.3530, lng: 103.8965 },
   },
   {
-    keywords: ['marina coastal expy', 'marina coastal expressway', 'mce', 'central blvd', 'maxwell'],
+    keywords: ['mce westbound', 'westbound mce'],
     zoneId: 'MCE_WESTBOUND',
     gantryIds: [90, 91],
     coord: { lat: 1.2720, lng: 103.8510 },
   },
   {
-    keywords: ['marina coastal expy', 'marina coastal expressway', 'mce', 'marina blvd'],
+    keywords: ['mce eastbound', 'eastbound mce'],
     zoneId: 'MCE_EASTBOUND',
     gantryIds: [92, 93],
     coord: { lat: 1.2740, lng: 103.8540 },
   },
   {
-    keywords: ['pan island expy', 'pan island expressway', 'pan island', 'pie', 'bendemeer', 'kallang bahru', 'woodsville'],
+    keywords: ['pie eastbound after kallang', 'eastbound pie kallang'],
     zoneId: 'PIE_EASTBOUND_KALLANG',
     gantryIds: [32, 45],
     coord: { lat: 1.3220, lng: 103.8640 },
   },
   {
-    keywords: ['pan island expy', 'pan island expressway', 'pie', 'adam rd', 'mount pleasant'],
+    keywords: ['pie eastbound after adam', 'eastbound pie adam'],
     zoneId: 'PIE_EASTBOUND_ADAM',
     gantryIds: [37, 38],
     coord: { lat: 1.3320, lng: 103.8290 },
   },
   {
-    keywords: ['pan island expy', 'pie slip', 'cte'],
+    keywords: ['pie slip road into cte', 'pie slip to cte'],
     zoneId: 'PIE_SLIP_CTE',
     gantryIds: [42],
     coord: { lat: 1.3280, lng: 103.8560 },
   },
   {
-    keywords: ['pan island expy', 'pan island expressway', 'pan island', 'pie', 'eunos', 'jalan eunos'],
+    keywords: ['pie westbound before eunos', 'westbound pie eunos'],
     zoneId: 'PIE_WESTBOUND_EUNOS',
     gantryIds: [65],
     coord: { lat: 1.3280, lng: 103.8990 },
-  },
-  {
-    keywords: ['bugis', 'marina centre', 'marina center', 'rochor', 'nicoll hwy', 'nicoll highway', 'beach rd', 'middle rd', 'ophir rd', 'temasek', 'raffles blvd', 'suntec', 'victoria st'],
-    zoneId: 'BUGIS_MARINA_CENTRE',
-    gantryIds: [1, 2, 9, 10, 11, 16, 17, 18, 23],
-    coord: { lat: 1.2980, lng: 103.8570 },
-  },
-  {
-    keywords: ['shenton', 'chinatown', 'cantonment', 'keppel', 'maxwell', 'anson rd', 'anson road', 'cross st', 'eu tong sen', 'south bridge', 'cecil st', 'robinson rd', 'marina blvd', 'peck seah'],
-    zoneId: 'SHENTON_WAY_CHINATOWN',
-    gantryIds: [3, 5, 6, 7, 19, 20, 24, 25, 28, 29, 72],
-    coord: { lat: 1.2785, lng: 103.8465 },
-  },
-  {
-    keywords: ['orchard', 'somerset', 'scotts rd', 'scotts road', 'paterson rd', 'grange rd', 'cairnhill'],
-    zoneId: 'ORCHARD_CORDON',
-    gantryIds: [4, 12, 13, 14, 15, 21, 22, 26, 27],
-    coord: { lat: 1.3050, lng: 103.8330 },
-  },
-  {
-    keywords: ['fort canning', 'ymca', 'clemenceau', 'bras basah', 'oxley'],
-    zoneId: 'YMCA_FORT_CANNING',
-    gantryIds: [47, 49],
-    coord: { lat: 1.2975, lng: 103.8450 },
-  },
-  {
-    keywords: ['handy rd', 'handy road'],
-    zoneId: 'HANDY_ROAD',
-    gantryIds: [48],
-    coord: { lat: 1.2995, lng: 103.8475 },
-  },
-  {
-    keywords: ['new bridge', 'south bridge', 'fullerton', 'bayfront', 'collyer quay', 'esplanade'],
-    zoneId: 'NEW_BRIDGE_SOUTH_BRIDGE_FULLERTON_BAYFRONT',
-    gantryIds: [60, 61, 62, 63, 64, 66, 69],
-    coord: { lat: 1.2860, lng: 103.8530 },
   },
 ];
 
@@ -305,10 +269,10 @@ export async function POST(request: Request) {
       // Calculate the Intersection / Traffic Light Score
       const intersectionScore = calculateIntersectionScore(leg);
 
-      // Apply +15.0 penalty points if the route passes through any detected ERP zone
-      const erpPenalty = zoneIds.length > 0 ? 15.0 : 0.0;
+      // ERP Penalty is scaled per dollar ($1.00 ERP = 5.0 PTS penalty, 0.0 PTS if no active toll)
+      const erpPenalty = 0.0;
 
-      // Composite Score: 1.0/min + 0.5/light + 0.2/km + ERP penalty
+      // Composite Score: 1.0/min + 0.5/light + 0.2/km + ERP penalty ($1 = 5 PTS)
       const compositeScore = Number(
         (
           durationMin * 1.0 +

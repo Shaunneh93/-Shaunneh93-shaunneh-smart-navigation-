@@ -85,10 +85,10 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  // Compute live & peak ERP fees per route based on selected time mode & route ZoneIDs
-  const { liveErpMap, routeErpSummaryMap } = useMemo(() => {
-    if (erpRates.length === 0 || routes.length === 0) {
-      return { liveErpMap: {}, routeErpSummaryMap: {} };
+  // Compute live & peak ERP fees, scaled ERP penalty (5 PTS per $1), and dynamic composite score per route
+  const { liveErpMap, routeErpSummaryMap, computedWinnerId } = useMemo(() => {
+    if (routes.length === 0) {
+      return { liveErpMap: {}, routeErpSummaryMap: {}, computedWinnerId: null };
     }
 
     const effectiveTimeStr = (
@@ -109,9 +109,14 @@ export default function Home() {
       {
         activeFee: number;
         maxPeakFee: number;
+        erpPenalty: number;
+        compositeScore: number;
         zones: Array<{ zoneId: string; name: string; activeFee: number; peakFee: number; gantries: number[] }>;
       }
     > = {};
+
+    let minScore = Infinity;
+    let bestRouteId: string | null = null;
 
     routes.forEach((route, idx) => {
       const routeKey = route.id || `route-${idx}`;
@@ -165,15 +170,38 @@ export default function Home() {
         });
       });
 
+      // 🔴 Scaled ERP Penalty: $1.00 ERP = 5.0 PTS
+      const erpPenalty = totalActiveFee * 5.0;
+
+      const durationMin = route.durationMin ?? 0;
+      const intersectionScore = route.intersectionScore ?? route.trafficLightScore ?? 0;
+      const distanceKm = Number(route.distanceKm ?? 0);
+
+      const compositeScore = Number(
+        (
+          durationMin * 1.0 +
+          intersectionScore * 0.5 +
+          distanceKm * 0.2 +
+          erpPenalty
+        ).toFixed(1)
+      );
+
+      if (compositeScore < minScore) {
+        minScore = compositeScore;
+        bestRouteId = routeKey;
+      }
+
       costMap[routeKey] = totalActiveFee;
       summaryMap[routeKey] = {
         activeFee: totalActiveFee,
         maxPeakFee: totalMaxPeakFee,
+        erpPenalty,
+        compositeScore,
         zones: detectedZones,
       };
     });
 
-    return { liveErpMap: costMap, routeErpSummaryMap: summaryMap };
+    return { liveErpMap: costMap, routeErpSummaryMap: summaryMap, computedWinnerId: bestRouteId };
   }, [currentTime, erpRates, routes, timeMode, customTime, selectedDayType]);
 
   const onOriginPlaceChanged = () => {
@@ -480,7 +508,8 @@ export default function Home() {
 
 {routes.map((route, idx) => {
   const routeKey = route.id || `route-${idx}`;
-  const isWinner = winnerRouteId ? routeKey === winnerRouteId : idx === 0;
+  const effectiveWinnerId = computedWinnerId || winnerRouteId;
+  const isWinner = effectiveWinnerId ? routeKey === effectiveWinnerId : idx === 0;
   const isSelected = selectedRouteId === routeKey;
 
   const erpSummary = routeErpSummaryMap[routeKey];
@@ -489,7 +518,8 @@ export default function Home() {
   const detectedZones = erpSummary?.zones || [];
 
   // 🔴 1 Dollar of ERP = 5 Penalty Points
-  const calculatedErpPenalty = route.erpPenalty ?? (activeErpFee * 5.0);
+  const calculatedErpPenalty = erpSummary?.erpPenalty ?? (activeErpFee * 5.0);
+  const displayCompositeScore = erpSummary?.compositeScore ?? route.compositeScore;
 
   return (
               <div 
@@ -580,17 +610,17 @@ export default function Home() {
   ⚠️ <strong>ERP Penalty:</strong>{' '}
   {calculatedErpPenalty > 0 ? (
     <span style={{ color: '#f59e0b', fontWeight: 'bold' }}>
-      +{calculatedErpPenalty.toFixed(1)} pts (Avoided ERP Preference)
+      +{calculatedErpPenalty.toFixed(1)} pts (${activeErpFee.toFixed(2)} @ 5.0 pts/$1)
     </span>
   ) : (
     <span style={{ color: '#10b981', fontWeight: 'bold' }}>
-      {activeErpFee > 0 ? 'Applied' : 'None ($0 Toll)'}
+      0.0 pts ($0 Toll)
     </span>
   )}
 </div>
 
 {/* 📊 Composite / Weighted Score */}
-{(route.compositeScore !== undefined || route.score !== undefined) && (
+{(displayCompositeScore !== undefined || route.score !== undefined) && (
   <div 
     style={{ 
       color: '#38bdf8', 
@@ -602,7 +632,7 @@ export default function Home() {
     }}
   >
     📊 <strong>Composite Score:</strong>{' '}
-    {Number(route.compositeScore ?? route.score).toFixed(1)} pts
+    {Number(displayCompositeScore ?? route.score).toFixed(1)} pts
   </div>
 )}
   
