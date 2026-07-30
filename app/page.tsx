@@ -457,10 +457,10 @@ export default function Home() {
   const isFormValid = Boolean(originCoords.lat && destCoords.lat);
 
   return (
-    <main style={{ padding: '16px 12px 32px 12px', fontFamily: 'system-ui, -apple-system, sans-serif', maxWidth: '540px', margin: '0 auto', color: '#f8fafc' }}>
+    <main style={{ width: '100%', maxWidth: '540px', margin: '0 auto', padding: '12px 12px 32px 12px', boxSizing: 'border-box', overflowX: 'hidden', color: '#f8fafc' }}>
       {/* HEADER BAR */}
-      <header style={{ textAlign: 'center', marginBottom: '16px', paddingTop: '4px' }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', backgroundColor: '#1e293b', border: '1px solid #334155', padding: '4px 10px', borderRadius: '20px', fontSize: '11px', color: '#38bdf8', marginBottom: '6px' }}>
+      <header style={{ textAlign: 'center', marginBottom: '14px', paddingTop: '4px', width: '100%', boxSizing: 'border-box' }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', backgroundColor: '#1e293b', border: '1px solid #334155', padding: '4px 12px', borderRadius: '20px', fontSize: '11px', color: '#38bdf8', marginBottom: '6px', maxWidth: '100%', boxSizing: 'border-box' }}>
           <span>🇸🇬 Singapore ERP & Toll Route Optimizer</span>
         </div>
         <h1 style={{ fontSize: '26px', fontWeight: '800', margin: '0 0 2px 0', letterSpacing: '-0.5px', background: 'linear-gradient(135deg, #38bdf8 0%, #818cf8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
@@ -470,48 +470,50 @@ export default function Home() {
       </header>
 
       {/* LOCATION SETUP CARD WITH SWAP */}
-      <section style={{ backgroundColor: '#0f172a', padding: '16px', borderRadius: '12px', marginBottom: '12px', border: '1px solid #334155', boxShadow: '0 4px 16px rgba(0,0,0,0.2)' }}>
+      <section style={{ width: '100%', boxSizing: 'border-box', backgroundColor: '#0f172a', padding: '14px 12px', borderRadius: '12px', marginBottom: '12px', border: '1px solid #334155', boxShadow: '0 4px 16px rgba(0,0,0,0.2)' }}>
         {/* START LOCATION */}
-        <div style={{ marginBottom: '8px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+        <div style={{ marginBottom: '8px', width: '100%', boxSizing: 'border-box' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '6px', marginBottom: '6px', width: '100%', boxSizing: 'border-box' }}>
             <label style={{ fontSize: '13px', fontWeight: '700', color: '#38bdf8', display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span>🟢</span> Start Location
             </label>
             <button 
               type="button"
               onClick={useCurrentLocation}
-              style={{ minHeight: '36px', padding: '4px 10px', fontSize: '12px', backgroundColor: '#0284c7', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '4px' }}
+              style={{ minHeight: '34px', padding: '4px 10px', fontSize: '12px', backgroundColor: '#0284c7', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '4px' }}
             >
               🎯 Use GPS
             </button>
           </div>
 
-          <Autocomplete
-            onLoad={(autocomplete) => (originAutocompleteRef.current = autocomplete)}
-            onPlaceChanged={onOriginPlaceChanged}
-            options={{ componentRestrictions: { country: 'sg' } }}
-          >
-            <input 
-              type="text" 
-              placeholder="Type start address or tap 'Use GPS'..." 
-              value={originText} 
-              onChange={(e) => {
-                setOriginText(e.target.value);
-                setOriginCoords({ lat: '', lng: '' });
-              }}
-              style={{ width: '100%', height: '48px', padding: '0 12px', borderRadius: '8px', border: '1px solid #475569', backgroundColor: '#1e293b', color: '#fff', boxSizing: 'border-box' }}
-            />
-          </Autocomplete>
+          <div style={{ width: '100%', boxSizing: 'border-box' }}>
+            <Autocomplete
+              onLoad={(autocomplete) => (originAutocompleteRef.current = autocomplete)}
+              onPlaceChanged={onOriginPlaceChanged}
+              options={{ componentRestrictions: { country: 'sg' } }}
+            >
+              <input 
+                type="text" 
+                placeholder="Type start address or tap 'Use GPS'..." 
+                value={originText} 
+                onChange={(e) => {
+                  setOriginText(e.target.value);
+                  setOriginCoords({ lat: '', lng: '' });
+                }}
+                style={{ width: '100%', height: '48px', padding: '0 12px', borderRadius: '8px', border: '1px solid #475569', backgroundColor: '#1e293b', color: '#fff', boxSizing: 'border-box' }}
+              />
+            </Autocomplete>
+          </div>
         </div>
 
         {/* SWAP LOCATIONS BUTTON */}
-        <div style={{ display: 'flex', justifyContent: 'center', margin: '4px 0' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '6px 0', width: '100%' }}>
           <button
             type="button"
             onClick={swapLocations}
             title="Swap Start & Destination"
             style={{
-              minHeight: '36px',
+              minHeight: '34px',
               padding: '4px 14px',
               fontSize: '12px',
               backgroundColor: '#1e293b',
@@ -530,31 +532,33 @@ export default function Home() {
         </div>
 
         {/* DESTINATION */}
-        <div>
+        <div style={{ width: '100%', boxSizing: 'border-box' }}>
           <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', color: '#ef4444', marginBottom: '6px' }}>🔴 Destination</label>
 
-          <Autocomplete
-            onLoad={(autocomplete) => (destAutocompleteRef.current = autocomplete)}
-            onPlaceChanged={onDestPlaceChanged}
-            options={{ componentRestrictions: { country: 'sg' } }}
-          >
-            <input 
-              type="text" 
-              placeholder="Search destination address..." 
-              value={destText} 
-              onChange={(e) => {
-                setDestText(e.target.value);
-                setDestCoords({ lat: '', lng: '' });
-              }}
-              style={{ width: '100%', height: '48px', padding: '0 12px', borderRadius: '8px', border: '1px solid #475569', backgroundColor: '#1e293b', color: '#fff', boxSizing: 'border-box' }}
-            />
-          </Autocomplete>
+          <div style={{ width: '100%', boxSizing: 'border-box' }}>
+            <Autocomplete
+              onLoad={(autocomplete) => (destAutocompleteRef.current = autocomplete)}
+              onPlaceChanged={onDestPlaceChanged}
+              options={{ componentRestrictions: { country: 'sg' } }}
+            >
+              <input 
+                type="text" 
+                placeholder="Search destination address..." 
+                value={destText} 
+                onChange={(e) => {
+                  setDestText(e.target.value);
+                  setDestCoords({ lat: '', lng: '' });
+                }}
+                style={{ width: '100%', height: '48px', padding: '0 12px', borderRadius: '8px', border: '1px solid #475569', backgroundColor: '#1e293b', color: '#fff', boxSizing: 'border-box' }}
+              />
+            </Autocomplete>
+          </div>
         </div>
       </section>
 
       {/* ERP DEPARTURE WINDOW CARD */}
-      <section style={{ backgroundColor: '#0f172a', padding: '14px 16px', borderRadius: '12px', marginBottom: '12px', border: '1px solid #334155' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+      <section style={{ width: '100%', boxSizing: 'border-box', backgroundColor: '#0f172a', padding: '14px 12px', borderRadius: '12px', marginBottom: '12px', border: '1px solid #334155' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '6px', marginBottom: '10px', width: '100%', boxSizing: 'border-box' }}>
           <label style={{ fontSize: '12px', fontWeight: '700', color: '#94a3b8', letterSpacing: '0.3px' }}>
             🕒 ERP DEPARTURE WINDOW
           </label>
@@ -564,7 +568,7 @@ export default function Home() {
         </div>
 
         {/* SCROLLABLE PILLS FOR MOBILE */}
-        <div className="no-scrollbar" style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '4px' }}>
+        <div className="no-scrollbar" style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '4px', width: '100%', boxSizing: 'border-box' }}>
           {[
             { mode: 'live', label: `🟢 Live (${currentTime || 'SG Time'})` },
             { mode: 'morning_peak', label: '🌅 Morning Peak (08:30)' },
@@ -586,7 +590,8 @@ export default function Home() {
                 color: '#fff',
                 cursor: 'pointer',
                 fontWeight: timeMode === item.mode ? '700' : '500',
-                boxShadow: timeMode === item.mode ? '0 0 8px rgba(34,197,94,0.3)' : 'none'
+                boxShadow: timeMode === item.mode ? '0 0 8px rgba(34,197,94,0.3)' : 'none',
+                flexShrink: 0
               }}
             >
               {item.label}
@@ -595,7 +600,7 @@ export default function Home() {
         </div>
 
         {timeMode === 'custom' && (
-          <div style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
+          <div style={{ display: 'flex', gap: '8px', marginTop: '10px', width: '100%', boxSizing: 'border-box' }}>
             <input
               type="time"
               value={customTime}
@@ -608,7 +613,8 @@ export default function Home() {
                 backgroundColor: '#1e293b',
                 color: '#fff',
                 fontSize: '14px',
-                flex: 1
+                flex: 1,
+                minWidth: 0
               }}
             />
             <select
@@ -622,7 +628,8 @@ export default function Home() {
                 backgroundColor: '#1e293b',
                 color: '#fff',
                 fontSize: '14px',
-                flex: 1
+                flex: 1,
+                minWidth: 0
               }}
             >
               <option value="Weekdays">Weekdays</option>
@@ -634,8 +641,8 @@ export default function Home() {
       </section>
 
       {/* FUEL CONSUMPTION CARD */}
-      <section style={{ backgroundColor: '#0f172a', padding: '14px 16px', borderRadius: '12px', marginBottom: '16px', border: '1px solid #334155' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+      <section style={{ width: '100%', boxSizing: 'border-box', backgroundColor: '#0f172a', padding: '14px 12px', borderRadius: '12px', marginBottom: '16px', border: '1px solid #334155' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', width: '100%', boxSizing: 'border-box' }}>
           <label style={{ fontSize: '12px', fontWeight: '700', color: '#94a3b8' }}>
             ⛽ FUEL CONSUMPTION & EFFICIENCY
           </label>
@@ -653,6 +660,7 @@ export default function Home() {
             backgroundColor: '#1e293b',
             color: '#fff',
             fontSize: '13px',
+            boxSizing: 'border-box'
           }}
         >
           {FUEL_PRESETS.map((preset) => (
@@ -663,8 +671,8 @@ export default function Home() {
         </select>
 
         {fuelPreset === 'custom' && (
-          <div style={{ marginTop: '10px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+          <div style={{ marginTop: '10px', width: '100%', boxSizing: 'border-box' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px', flexWrap: 'wrap', gap: '6px' }}>
               <label style={{ fontSize: '11px', color: '#94a3b8' }}>Custom Value:</label>
               <div style={{ display: 'flex', gap: '4px' }}>
                 <button
@@ -799,8 +807,8 @@ export default function Home() {
 
       {/* ROUTE RESULTS */}
       {routes.length > 0 && (
-        <section style={{ marginTop: '20px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+        <section style={{ marginTop: '20px', width: '100%', boxSizing: 'border-box' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '6px', marginBottom: '12px', width: '100%', boxSizing: 'border-box' }}>
             <h2 style={{ fontSize: '17px', margin: 0, fontWeight: '700', color: '#f8fafc' }}>
               Considered Routes ({routes.length})
             </h2>
@@ -839,7 +847,9 @@ export default function Home() {
                 key={routeKey}
                 onClick={() => setSelectedRouteId(routeKey)}
                 style={{
-                  padding: '16px',
+                  width: '100%',
+                  boxSizing: 'border-box',
+                  padding: '14px 12px',
                   marginBottom: '14px',
                   borderRadius: '12px',
                   backgroundColor: isSelected ? '#1e293b' : '#0f172a',
@@ -851,11 +861,12 @@ export default function Home() {
                   boxShadow: isWinner ? '0 0 16px rgba(34, 197, 94, 0.2)' : 'none',
                   cursor: 'pointer',
                   position: 'relative',
-                  transition: 'all 0.15s ease-in-out'
+                  transition: 'all 0.15s ease-in-out',
+                  overflow: 'hidden'
                 }}
               >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                  <span style={{ fontWeight: '700', fontSize: '16px', color: isWinner ? '#4ade80' : '#38bdf8' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '6px', marginBottom: '8px', width: '100%', boxSizing: 'border-box' }}>
+                  <span style={{ fontWeight: '700', fontSize: '15px', color: isWinner ? '#4ade80' : '#38bdf8' }}>
                     {route.summary || route.via || route.label || `Route Option ${idx + 1}`}
                   </span>
                   
@@ -870,22 +881,22 @@ export default function Home() {
                   )}
                 </div>
 
-                <div style={{ color: '#f1f5f9', fontSize: '14px', lineHeight: '1.7' }}>
+                <div style={{ color: '#f1f5f9', fontSize: '13px', lineHeight: '1.6', width: '100%', boxSizing: 'border-box' }}>
                   <div>⏱️ <strong>Time:</strong> {route.durationMin !== undefined ? Number(route.durationMin).toFixed(0) : route.duration || 'N/A'} mins ({avgSpeedKmH.toFixed(0)} km/h avg speed)</div>
                   <div>🛣️ <strong>Distance:</strong> {route.distanceKm !== undefined ? Number(route.distanceKm).toFixed(1) : route.distance || 'N/A'} km</div>
                   
                   {/* ERP & Fuel Consumption Breakdown Box */}
-                  <div style={{ backgroundColor: '#0b1329', padding: '10px 12px', borderRadius: '8px', border: '1px solid #334155', margin: '8px 0' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                      <span style={{ fontSize: '13px' }}>💳 Active ERP Toll:</span>
-                      <span style={{ color: activeErpFee > 0 ? '#fbbf24' : '#34d399', fontWeight: 'bold', fontSize: '15px' }}>
+                  <div style={{ backgroundColor: '#0b1329', padding: '10px 12px', borderRadius: '8px', border: '1px solid #334155', margin: '8px 0', width: '100%', boxSizing: 'border-box' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px', flexWrap: 'wrap', gap: '4px' }}>
+                      <span style={{ fontSize: '12px' }}>💳 Active ERP Toll:</span>
+                      <span style={{ color: activeErpFee > 0 ? '#fbbf24' : '#34d399', fontWeight: 'bold', fontSize: '14px' }}>
                         ${Number(activeErpFee).toFixed(2)}
                       </span>
                     </div>
 
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
-                      <span style={{ fontSize: '13px' }}>{isEv ? '🔋 Energy Consumed:' : '⛽ Fuel Consumed:'}</span>
-                      <span style={{ color: '#f59e0b', fontWeight: 'bold', fontSize: '15px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px', flexWrap: 'wrap', gap: '4px' }}>
+                      <span style={{ fontSize: '12px' }}>{isEv ? '🔋 Energy Consumed:' : '⛽ Fuel Consumed:'}</span>
+                      <span style={{ color: '#f59e0b', fontWeight: 'bold', fontSize: '14px' }}>
                         ~{Number(fuelLiters).toFixed(2)} {fuelUnitText}
                       </span>
                     </div>
@@ -902,11 +913,11 @@ export default function Home() {
 
                     {/* Detected Gantries / Zones List */}
                     {detectedZones.length > 0 ? (
-                      <div style={{ marginTop: '8px', paddingTop: '8px', borderTop: '1px solid #1e293b', fontSize: '12px' }}>
+                      <div style={{ marginTop: '8px', paddingTop: '8px', borderTop: '1px solid #1e293b', fontSize: '12px', width: '100%', boxSizing: 'border-box' }}>
                         <div style={{ color: '#94a3b8', fontWeight: 'bold', marginBottom: '4px' }}>📍 DETECTED ERP ZONES ({detectedZones.length}):</div>
                         {detectedZones.map((z) => (
-                          <div key={z.zoneId} style={{ display: 'flex', justifyContent: 'space-between', color: '#cbd5e1', padding: '2px 0' }}>
-                            <span>• {z.name} {z.gantries.length > 0 ? `(#${z.gantries.join(', #')})` : ''}</span>
+                          <div key={z.zoneId} style={{ display: 'flex', justifyContent: 'space-between', color: '#cbd5e1', padding: '2px 0', flexWrap: 'wrap', gap: '4px' }}>
+                            <span style={{ wordBreak: 'break-word' }}>• {z.name} {z.gantries.length > 0 ? `(#${z.gantries.join(', #')})` : ''}</span>
                             <span style={{ color: z.activeFee > 0 ? '#f59e0b' : '#38bdf8', fontWeight: 'bold' }}>
                               ${z.activeFee.toFixed(2)} {z.activeFee === 0 ? `(Peak $${z.peakFee.toFixed(2)})` : ''}
                             </span>
