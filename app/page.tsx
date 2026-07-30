@@ -431,19 +431,11 @@ export default function Home() {
 
     let mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${orig.latitude},${orig.longitude}&destination=${dest.latitude},${dest.longitude}&travelmode=driving`;
 
-    if (mode === 'via') {
-      if (route?.waypoints && Array.isArray(route.waypoints) && route.waypoints.length > 0) {
-        const total = route.waypoints.length;
-        const midPoint = route.waypoints[Math.floor(total / 2)];
-        
-        if (midPoint?.latitude && midPoint?.longitude) {
-          // Using 'via:' prefix instructs Google Maps to shape the route through this coordinate
-          // as a pass-through point WITHOUT creating a stopover station / destination flag.
-          const waypointsString = `via:${midPoint.latitude},${midPoint.longitude}`;
-          mapsUrl += `&waypoints=${encodeURIComponent(waypointsString)}`;
-        }
-      } else if (route?.via && typeof route.via === 'string') {
-        mapsUrl += `&via=${encodeURIComponent(route.via)}`;
+    if (mode === 'via' && route?.waypoints && Array.isArray(route.waypoints) && route.waypoints.length > 0) {
+      const wp = route.waypoints[0];
+      if (wp?.latitude && wp?.longitude) {
+        // Precise highway centerline coordinate forces Google Maps onto this specific expressway route
+        mapsUrl += `&waypoints=${wp.latitude},${wp.longitude}`;
       }
     }
 
@@ -906,7 +898,7 @@ export default function Home() {
                 <div style={{ display: 'flex', gap: '8px', marginTop: '14px' }}>
                   <button 
                     type="button"
-                    title="Opens Google Maps with pass-through 'via:' points (no intermediate stops)"
+                    title="Opens Google Maps routed through key expressway waypoint"
                     onClick={(e) => {
                       e.stopPropagation();
                       setSelectedRouteId(routeKey);
@@ -924,11 +916,11 @@ export default function Home() {
                       fontSize: '13px'
                     }}
                   >
-                    🧭 Navigate Route (Seamless)
+                    🧭 Navigate via Waypoint
                   </button>
                   <button 
                     type="button"
-                    title="Opens Google Maps with direct Origin & Destination only"
+                    title="Opens Google Maps with direct Origin & Destination"
                     onClick={(e) => {
                       e.stopPropagation();
                       setSelectedRouteId(routeKey);

@@ -434,10 +434,13 @@ export async function POST(request: Request) {
         startAddress: leg.start_address,
         endAddress: leg.end_address,
         overviewPolyline: route.overview_polyline?.points,
-        waypoints: leg.steps.map((step: any) => ({
-          latitude: step.end_location.lat,
-          longitude: step.end_location.lng,
-        })),
+        waypoints: (() => {
+          const rawPoints = decodePolyline(route.overview_polyline?.points || '');
+          if (rawPoints.length === 0) return [];
+          // Pick the exact midpoint along the road centerline (45%-55% along polyline)
+          const midPt = rawPoints[Math.floor(rawPoints.length * 0.5)];
+          return [{ latitude: midPt.lat, longitude: midPt.lng }];
+        })(),
       };
     });
 
