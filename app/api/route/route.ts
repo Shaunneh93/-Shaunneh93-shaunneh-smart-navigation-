@@ -15,108 +15,107 @@ const ZONE_CONFIGS: ZoneConfig[] = [
     zoneId: 'CTE_SOUTHBOUND_BRADDELL',
     gantryIds: [31, 33, 34],
     coord: { lat: 1.3410, lng: 103.8558 },
-    headingRange: { min: 120, max: 240 }, // Southbound
-    radiusKm: 0.20,
+    headingRange: { min: 100, max: 260 }, // Southbound
+    radiusKm: 0.35,
   },
   {
     zoneId: 'CTE_SLIP_PIE_SERANGOON',
     gantryIds: [68],
     coord: { lat: 1.3350, lng: 103.8572 },
-    headingRange: { min: 80, max: 170 }, // Slip road turning SE towards PIE Changi
-    radiusKm: 0.12,
+    headingRange: { min: 70, max: 180 }, // Slip road turning SE towards PIE Changi
+    radiusKm: 0.25,
   },
   {
     zoneId: 'CTE_SOUTHBOUND_AMK',
     gantryIds: [35],
     coord: { lat: 1.3595, lng: 103.8542 },
-    headingRange: { min: 120, max: 240 }, // Southbound
-    radiusKm: 0.20,
+    headingRange: { min: 100, max: 260 }, // Southbound
+    radiusKm: 0.35,
   },
   {
     zoneId: 'CTE_NORTHBOUND_PIE_BRADDELL',
     gantryIds: [46, 67],
     coord: { lat: 1.3262, lng: 103.8585 },
-    headingRange: { min: 300, max: 60 }, // Northbound
-    radiusKm: 0.20,
+    headingRange: { min: 280, max: 80 }, // Northbound
+    radiusKm: 0.35,
   },
   {
     zoneId: 'CTE_NORTHBOUND_JALAN_BAHAGIA',
     gantryIds: [51],
     coord: { lat: 1.3210, lng: 103.8592 },
-    headingRange: { min: 300, max: 60 }, // Northbound
-    radiusKm: 0.20,
+    headingRange: { min: 280, max: 80 }, // Northbound
+    radiusKm: 0.35,
   },
   {
     zoneId: 'AYE_CITYBOUND_SET3',
     gantryIds: [52, 53, 74],
     coord: { lat: 1.3180, lng: 103.7650 },
-    headingRange: { min: 45, max: 135 }, // Eastbound
-    radiusKm: 0.20,
+    headingRange: { min: 30, max: 150 }, // Eastbound
+    radiusKm: 0.35,
   },
   {
     zoneId: 'AYE_TUASBOUND_NORTH_BUONA_VISTA',
     gantryIds: [41],
     coord: { lat: 1.2980, lng: 103.7870 },
-    headingRange: { min: 225, max: 315 }, // Westbound
-    radiusKm: 0.20,
+    headingRange: { min: 210, max: 330 }, // Westbound
+    radiusKm: 0.35,
   },
   {
     zoneId: 'AYE_JURONG_TOWN_HALL',
     gantryIds: [36],
     coord: { lat: 1.3275, lng: 103.7435 },
-    headingRange: { min: 225, max: 315 }, // Westbound
-    radiusKm: 0.20,
+    headingRange: { min: 210, max: 330 }, // Westbound
+    radiusKm: 0.35,
   },
   {
     zoneId: 'KPE_SOUTHBOUND_DEFU',
     gantryIds: [50],
     coord: { lat: 1.3530, lng: 103.8965 },
-    headingRange: { min: 120, max: 240 }, // Southbound
-    radiusKm: 0.20,
+    headingRange: { min: 100, max: 260 }, // Southbound
+    radiusKm: 0.35,
   },
   {
     zoneId: 'MCE_WESTBOUND',
     gantryIds: [90, 91],
-    // Precise main trunk coordinate past Maxwell/Central Blvd exit ramp
     coord: { lat: 1.2705, lng: 103.8470 },
-    headingRange: { min: 200, max: 300 }, // Westbound
-    radiusKm: 0.12,
+    headingRange: { min: 180, max: 320 }, // Westbound
+    radiusKm: 0.25,
   },
   {
     zoneId: 'MCE_EASTBOUND',
     gantryIds: [92, 93],
     coord: { lat: 1.2725, lng: 103.8525 },
-    headingRange: { min: 45, max: 135 }, // Eastbound
-    radiusKm: 0.20,
+    headingRange: { min: 30, max: 150 }, // Eastbound
+    radiusKm: 0.35,
   },
   {
     zoneId: 'PIE_EASTBOUND_KALLANG',
     gantryIds: [32, 45],
     coord: { lat: 1.3220, lng: 103.8640 },
-    headingRange: { min: 45, max: 135 }, // Eastbound
-    radiusKm: 0.20,
+    headingRange: { min: 30, max: 150 }, // Eastbound
+    radiusKm: 0.35,
   },
   {
     zoneId: 'PIE_EASTBOUND_ADAM',
     gantryIds: [37, 38],
     coord: { lat: 1.3320, lng: 103.8290 },
-    headingRange: { min: 45, max: 135 }, // Eastbound
-    radiusKm: 0.20,
+    headingRange: { min: 30, max: 150 }, // Eastbound
+    radiusKm: 0.35,
   },
   {
     zoneId: 'PIE_SLIP_CTE',
     gantryIds: [42],
     coord: { lat: 1.3265, lng: 103.8580 },
-    headingRange: { min: 120, max: 240 }, // Southbound onto CTE
-    radiusKm: 0.18,
+    headingRange: { min: 100, max: 260 }, // Southbound onto CTE
+    radiusKm: 0.30,
     excludeIfHeadingEast: true,
   },
   {
     zoneId: 'PIE_WESTBOUND_EUNOS',
     gantryIds: [65],
     coord: { lat: 1.3280, lng: 103.8990 },
-    headingRange: { min: 240, max: 300 }, // Westbound
-    radiusKm: 0.20,
+    headingRange: { min: 210, max: 330 }, // Westbound
+    radiusKm: 0.35,
   },
 ];
 
@@ -184,6 +183,30 @@ function decodePolyline(encoded: string): Array<{ lat: number; lng: number }> {
   return array;
 }
 
+// Interpolate dense sampling points along polylines so highway speed points don't skip gantry coordinates
+function interpolatePolylinePoints(rawPoints: Array<{ lat: number; lng: number }>): Array<{ lat: number; lng: number }> {
+  if (rawPoints.length === 0) return [];
+  const dense: Array<{ lat: number; lng: number }> = [];
+  for (let i = 0; i < rawPoints.length - 1; i++) {
+    const p1 = rawPoints[i];
+    const p2 = rawPoints[i + 1];
+    dense.push(p1);
+    const distKm = haversineKm(p1.lat, p1.lng, p2.lat, p2.lng);
+    if (distKm > 0.025) { // 25 meters step
+      const steps = Math.ceil(distKm / 0.025);
+      for (let s = 1; s < steps; s++) {
+        const f = s / steps;
+        dense.push({
+          lat: p1.lat + (p2.lat - p1.lat) * f,
+          lng: p1.lng + (p2.lng - p1.lng) * f,
+        });
+      }
+    }
+  }
+  dense.push(rawPoints[rawPoints.length - 1]);
+  return dense;
+}
+
 // Upgraded zone and gantry detection using GPS polyline trajectory & directional bearing
 function detectLtaZoneIds(route: any): { zoneIds: string[]; gantryIds: number[] } {
   const zoneSet = new Set<string>();
@@ -192,37 +215,39 @@ function detectLtaZoneIds(route: any): { zoneIds: string[]; gantryIds: number[] 
   const leg = route.legs?.[0];
   const steps = leg?.steps || [];
 
-  let points: Array<{ lat: number; lng: number }> = [];
+  let rawPoints: Array<{ lat: number; lng: number }> = [];
 
   if (route.overview_polyline?.points) {
-    points = decodePolyline(route.overview_polyline.points);
+    rawPoints = decodePolyline(route.overview_polyline.points);
   }
 
-  if (points.length < 5 && steps.length > 0) {
+  if (rawPoints.length < 5 && steps.length > 0) {
     steps.forEach((step: any) => {
       if (step.polyline?.points) {
-        points.push(...decodePolyline(step.polyline.points));
+        rawPoints.push(...decodePolyline(step.polyline.points));
       } else {
-        if (step.start_location) points.push({ lat: step.start_location.lat, lng: step.start_location.lng });
-        if (step.end_location) points.push({ lat: step.end_location.lat, lng: step.end_location.lng });
+        if (step.start_location) rawPoints.push({ lat: step.start_location.lat, lng: step.start_location.lng });
+        if (step.end_location) rawPoints.push({ lat: step.end_location.lat, lng: step.end_location.lng });
       }
     });
   }
 
-  if (points.length === 0) {
+  if (rawPoints.length === 0) {
     return { zoneIds: [], gantryIds: [] };
   }
 
-  ZONE_CONFIGS.forEach((config) => {
-    const thresholdKm = config.radiusKm || 0.10;
+  const densePoints = interpolatePolylinePoints(rawPoints);
 
-    for (let i = 0; i < points.length; i++) {
-      const pt = points[i];
+  ZONE_CONFIGS.forEach((config) => {
+    const thresholdKm = config.radiusKm || 0.25;
+
+    for (let i = 0; i < densePoints.length; i++) {
+      const pt = densePoints[i];
       const dist = haversineKm(pt.lat, pt.lng, config.coord.lat, config.coord.lng);
 
       if (dist <= thresholdKm) {
-        const prevPt = points[Math.max(0, i - 2)];
-        const nextPt = points[Math.min(points.length - 1, i + 2)];
+        const prevPt = densePoints[Math.max(0, i - 4)];
+        const nextPt = densePoints[Math.min(densePoints.length - 1, i + 4)];
         const heading = calculateBearing(prevPt.lat, prevPt.lng, nextPt.lat, nextPt.lng);
 
         if (config.excludeIfHeadingEast && isHeadingMatching(heading, 45, 135)) {
@@ -239,6 +264,20 @@ function detectLtaZoneIds(route: any): { zoneIds: string[]; gantryIds: number[] 
       }
     }
   });
+
+  // Fallback: Check route text instructions / summary for explicit expressway CTE route indicator
+  const summaryText = (route.summary || '').toLowerCase();
+  const stepTexts = steps.map((s: any) => (s.html_instructions || '').toLowerCase()).join(' ');
+  const isCteRoute = summaryText.includes('central expw') || summaryText.includes('cte') || stepTexts.includes('central expw') || stepTexts.includes('central expressway');
+
+  if (isCteRoute) {
+    // Check if route travels Southbound through the CTE corridor near Braddell / Toa Payoh (lat 1.33 to 1.36)
+    const cteSouthboundPoint = densePoints.find((p) => p.lat >= 1.330 && p.lat <= 1.355 && p.lng >= 1.350 && p.lng <= 1.362);
+    if (cteSouthboundPoint && !zoneSet.has('CTE_SOUTHBOUND_BRADDELL')) {
+      zoneSet.add('CTE_SOUTHBOUND_BRADDELL');
+      [31, 33, 34].forEach((id) => gantrySet.add(id));
+    }
+  }
 
   return {
     zoneIds: Array.from(zoneSet),

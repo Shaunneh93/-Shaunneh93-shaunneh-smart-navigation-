@@ -25,7 +25,7 @@ export interface FuelPreset {
 }
 
 const FUEL_PRESETS: FuelPreset[] = [
-  { id: 'petrol_104kml', label: '🚗 Standard Car (10.4 km/L / 9.6 L/100km)', consumptionKmL: 10.4, consumptionLPer100Km: 9.615 },
+  { id: 'petrol_104kml', label: '🚗 Yeti (10.4 km/L / 9.6 L/100km)', consumptionKmL: 10.4, consumptionLPer100Km: 9.615 },
   { id: 'petrol_sedan', label: '🚘 Sedan (14.3 km/L / 7.0 L/100km)', consumptionKmL: 14.285, consumptionLPer100Km: 7.0 },
   { id: 'petrol_suv', label: '🚙 SUV / Crossover (11.8 km/L / 8.5 L/100km)', consumptionKmL: 11.765, consumptionLPer100Km: 8.5 },
   { id: 'hybrid', label: '⚡ Hybrid Car (25.0 km/L / 4.0 L/100km)', consumptionKmL: 25.0, consumptionLPer100Km: 4.0 },

@@ -1,1244 +1,2016 @@
 [
   {
+    "zoneId": "AYE_PORTSDOWN",
+    "gantryIds": [
+      36
+    ],
+    "location": "AYE between Portsdown Road and Alexandra Road",
+    "dayType": "Weekdays",
+    "startTime": "08:00",
+    "endTime": "08:05",
+    "baseRate": 0.5
+  },
+  {
+    "zoneId": "AYE_PORTSDOWN",
+    "gantryIds": [
+      36
+    ],
+    "location": "AYE between Portsdown Road and Alexandra Road",
+    "dayType": "Weekdays",
+    "startTime": "08:05",
+    "endTime": "08:25",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "AYE_PORTSDOWN",
+    "gantryIds": [
+      36
+    ],
+    "location": "AYE between Portsdown Road and Alexandra Road",
+    "dayType": "Weekdays",
+    "startTime": "08:25",
+    "endTime": "08:30",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "AYE_PORTSDOWN",
+    "gantryIds": [
+      36
+    ],
+    "location": "AYE between Portsdown Road and Alexandra Road",
+    "dayType": "Weekdays",
+    "startTime": "08:30",
+    "endTime": "08:35",
+    "baseRate": 1.5
+  },
+  {
+    "zoneId": "AYE_PORTSDOWN",
+    "gantryIds": [
+      36
+    ],
+    "location": "AYE between Portsdown Road and Alexandra Road",
+    "dayType": "Weekdays",
+    "startTime": "08:35",
+    "endTime": "08:55",
+    "baseRate": 2
+  },
+  {
+    "zoneId": "AYE_PORTSDOWN",
+    "gantryIds": [
+      36
+    ],
+    "location": "AYE between Portsdown Road and Alexandra Road",
+    "dayType": "Weekdays",
+    "startTime": "08:55",
+    "endTime": "09:00",
+    "baseRate": 1.5
+  },
+  {
+    "zoneId": "AYE_PORTSDOWN",
+    "gantryIds": [
+      36
+    ],
+    "location": "AYE between Portsdown Road and Alexandra Road",
+    "dayType": "Weekdays",
+    "startTime": "09:00",
+    "endTime": "09:05",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "AYE_PORTSDOWN",
+    "gantryIds": [
+      36
+    ],
+    "location": "AYE between Portsdown Road and Alexandra Road",
+    "dayType": "Weekdays",
+    "startTime": "09:05",
+    "endTime": "09:25",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "AYE_PORTSDOWN",
+    "gantryIds": [
+      36
+    ],
+    "location": "AYE between Portsdown Road and Alexandra Road",
+    "dayType": "Weekdays",
+    "startTime": "09:25",
+    "endTime": "09:30",
+    "baseRate": 0.5
+  },
+  {
     "zoneId": "AYE_CITYBOUND_SET3",
-    "gantryIds": [52, 53, 74],
+    "gantryIds": [
+      52,
+      53,
+      74
+    ],
     "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
     "dayType": "Weekdays",
     "startTime": "07:00",
     "endTime": "07:05",
-    "baseRate": 0.50
+    "baseRate": 0.5
   },
   {
     "zoneId": "AYE_CITYBOUND_SET3",
-    "gantryIds": [52, 53, 74],
+    "gantryIds": [
+      52,
+      53,
+      74
+    ],
     "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
     "dayType": "Weekdays",
     "startTime": "07:05",
-    "endTime": "07:30",
-    "baseRate": 1.00
+    "endTime": "07:25",
+    "baseRate": 1
   },
   {
     "zoneId": "AYE_CITYBOUND_SET3",
-    "gantryIds": [52, 53, 74],
+    "gantryIds": [
+      52,
+      53,
+      74
+    ],
+    "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
+    "dayType": "Weekdays",
+    "startTime": "07:25",
+    "endTime": "07:30",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "AYE_CITYBOUND_SET3",
+    "gantryIds": [
+      52,
+      53,
+      74
+    ],
     "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
     "dayType": "Weekdays",
     "startTime": "07:30",
     "endTime": "07:35",
-    "baseRate": 3.00
+    "baseRate": 3
   },
   {
     "zoneId": "AYE_CITYBOUND_SET3",
-    "gantryIds": [52, 53, 74],
+    "gantryIds": [
+      52,
+      53,
+      74
+    ],
     "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
     "dayType": "Weekdays",
     "startTime": "07:35",
     "endTime": "07:55",
-    "baseRate": 5.00
+    "baseRate": 5
   },
   {
     "zoneId": "AYE_CITYBOUND_SET3",
-    "gantryIds": [52, 53, 74],
+    "gantryIds": [
+      52,
+      53,
+      74
+    ],
     "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
     "dayType": "Weekdays",
     "startTime": "07:55",
     "endTime": "08:00",
-    "baseRate": 3.50
+    "baseRate": 3.5
   },
   {
     "zoneId": "AYE_CITYBOUND_SET3",
-    "gantryIds": [52, 53, 74],
+    "gantryIds": [
+      52,
+      53,
+      74
+    ],
     "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
     "dayType": "Weekdays",
     "startTime": "08:00",
-    "endTime": "08:30",
-    "baseRate": 2.00
+    "endTime": "08:05",
+    "baseRate": 2
   },
   {
     "zoneId": "AYE_CITYBOUND_SET3",
-    "gantryIds": [52, 53, 74],
+    "gantryIds": [
+      52,
+      53,
+      74
+    ],
+    "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
+    "dayType": "Weekdays",
+    "startTime": "08:05",
+    "endTime": "08:25",
+    "baseRate": 2
+  },
+  {
+    "zoneId": "AYE_CITYBOUND_SET3",
+    "gantryIds": [
+      52,
+      53,
+      74
+    ],
+    "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
+    "dayType": "Weekdays",
+    "startTime": "08:25",
+    "endTime": "08:30",
+    "baseRate": 2
+  },
+  {
+    "zoneId": "AYE_CITYBOUND_SET3",
+    "gantryIds": [
+      52,
+      53,
+      74
+    ],
     "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
     "dayType": "Weekdays",
     "startTime": "08:30",
     "endTime": "08:35",
-    "baseRate": 3.00
+    "baseRate": 3
   },
   {
     "zoneId": "AYE_CITYBOUND_SET3",
-    "gantryIds": [52, 53, 74],
+    "gantryIds": [
+      52,
+      53,
+      74
+    ],
     "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
     "dayType": "Weekdays",
     "startTime": "08:35",
     "endTime": "08:55",
-    "baseRate": 4.00
+    "baseRate": 4
   },
   {
     "zoneId": "AYE_CITYBOUND_SET3",
-    "gantryIds": [52, 53, 74],
+    "gantryIds": [
+      52,
+      53,
+      74
+    ],
     "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
     "dayType": "Weekdays",
     "startTime": "08:55",
     "endTime": "09:00",
-    "baseRate": 3.50
+    "baseRate": 3.5
   },
   {
     "zoneId": "AYE_CITYBOUND_SET3",
-    "gantryIds": [52, 53, 74],
+    "gantryIds": [
+      52,
+      53,
+      74
+    ],
     "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
     "dayType": "Weekdays",
     "startTime": "09:00",
-    "endTime": "09:25",
-    "baseRate": 3.00
+    "endTime": "09:05",
+    "baseRate": 3
   },
   {
     "zoneId": "AYE_CITYBOUND_SET3",
-    "gantryIds": [52, 53, 74],
+    "gantryIds": [
+      52,
+      53,
+      74
+    ],
+    "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
+    "dayType": "Weekdays",
+    "startTime": "09:05",
+    "endTime": "09:25",
+    "baseRate": 3
+  },
+  {
+    "zoneId": "AYE_CITYBOUND_SET3",
+    "gantryIds": [
+      52,
+      53,
+      74
+    ],
     "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
     "dayType": "Weekdays",
     "startTime": "09:25",
     "endTime": "09:30",
-    "baseRate": 2.50
+    "baseRate": 2.5
   },
   {
     "zoneId": "AYE_CITYBOUND_SET3",
-    "gantryIds": [52, 53, 74],
+    "gantryIds": [
+      52,
+      53,
+      74
+    ],
     "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
     "dayType": "Weekdays",
     "startTime": "09:30",
-    "endTime": "09:55",
-    "baseRate": 2.00
+    "endTime": "09:35",
+    "baseRate": 2
   },
   {
     "zoneId": "AYE_CITYBOUND_SET3",
-    "gantryIds": [52, 53, 74],
+    "gantryIds": [
+      52,
+      53,
+      74
+    ],
+    "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
+    "dayType": "Weekdays",
+    "startTime": "09:35",
+    "endTime": "09:55",
+    "baseRate": 2
+  },
+  {
+    "zoneId": "AYE_CITYBOUND_SET3",
+    "gantryIds": [
+      52,
+      53,
+      74
+    ],
     "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
     "dayType": "Weekdays",
     "startTime": "09:55",
     "endTime": "10:00",
-    "baseRate": 1.00
-  },
-  {
-    "zoneId": "AYE_CITYBOUND_SET3",
-    "gantryIds": [52, 53, 74],
-    "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
-    "dayType": "Weekdays",
-    "startTime": "17:30",
-    "endTime": "17:35",
-    "baseRate": 2.00
-  },
-  {
-    "zoneId": "AYE_CITYBOUND_SET3",
-    "gantryIds": [52, 53, 74],
-    "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
-    "dayType": "Weekdays",
-    "startTime": "17:35",
-    "endTime": "17:55",
-    "baseRate": 3.00
-  },
-  {
-    "zoneId": "AYE_CITYBOUND_SET3",
-    "gantryIds": [52, 53, 74],
-    "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
-    "dayType": "Weekdays",
-    "startTime": "17:55",
-    "endTime": "18:00",
-    "baseRate": 2.50
-  },
-  {
-    "zoneId": "AYE_CITYBOUND_SET3",
-    "gantryIds": [52, 53, 74],
-    "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
-    "dayType": "Weekdays",
-    "startTime": "18:00",
-    "endTime": "18:30",
-    "baseRate": 2.00
-  },
-  {
-    "zoneId": "AYE_CITYBOUND_SET3",
-    "gantryIds": [52, 53, 74],
-    "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
-    "dayType": "Weekdays",
-    "startTime": "18:30",
-    "endTime": "18:35",
-    "baseRate": 2.50
-  },
-  {
-    "zoneId": "AYE_CITYBOUND_SET3",
-    "gantryIds": [52, 53, 74],
-    "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
-    "dayType": "Weekdays",
-    "startTime": "18:35",
-    "endTime": "18:55",
-    "baseRate": 3.00
-  },
-  {
-    "zoneId": "AYE_CITYBOUND_SET3",
-    "gantryIds": [52, 53, 74],
-    "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
-    "dayType": "Weekdays",
-    "startTime": "18:55",
-    "endTime": "19:00",
-    "baseRate": 2.00
-  },
-  {
-    "zoneId": "AYE_CITYBOUND_SET3",
-    "gantryIds": [52, 53, 74],
-    "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
-    "dayType": "Weekdays",
-    "startTime": "19:00",
-    "endTime": "19:25",
-    "baseRate": 1.00
-  },
-  {
-    "zoneId": "AYE_CITYBOUND_SET3",
-    "gantryIds": [52, 53, 74],
-    "location": "Citybound AYE (After Jurong Town Hall, Clementi Ave 6 & Ave 2)",
-    "dayType": "Weekdays",
-    "startTime": "19:25",
-    "endTime": "19:30",
-    "baseRate": 0.50
+    "baseRate": 1
   },
   {
     "zoneId": "AYE_TUASBOUND_NORTH_BUONA_VISTA",
-    "gantryIds": [41],
-    "location": "Tuasbound AYE (After North Buona Vista)",
-    "dayType": "Weekdays",
-    "startTime": "08:00",
-    "endTime": "08:30",
-    "baseRate": 1.00
-  },
-  {
-    "zoneId": "AYE_TUASBOUND_NORTH_BUONA_VISTA",
-    "gantryIds": [41],
-    "location": "Tuasbound AYE (After North Buona Vista)",
-    "dayType": "Weekdays",
-    "startTime": "08:30",
-    "endTime": "08:35",
-    "baseRate": 1.50
-  },
-  {
-    "zoneId": "AYE_TUASBOUND_NORTH_BUONA_VISTA",
-    "gantryIds": [41],
-    "location": "Tuasbound AYE (After North Buona Vista)",
-    "dayType": "Weekdays",
-    "startTime": "08:35",
-    "endTime": "08:55",
-    "baseRate": 2.00
-  },
-  {
-    "zoneId": "AYE_TUASBOUND_NORTH_BUONA_VISTA",
-    "gantryIds": [41],
-    "location": "Tuasbound AYE (After North Buona Vista)",
-    "dayType": "Weekdays",
-    "startTime": "08:55",
-    "endTime": "09:00",
-    "baseRate": 1.50
-  },
-  {
-    "zoneId": "AYE_TUASBOUND_NORTH_BUONA_VISTA",
-    "gantryIds": [41],
-    "location": "Tuasbound AYE (After North Buona Vista)",
-    "dayType": "Weekdays",
-    "startTime": "09:00",
-    "endTime": "09:25",
-    "baseRate": 1.00
-  },
-  {
-    "zoneId": "AYE_TUASBOUND_NORTH_BUONA_VISTA",
-    "gantryIds": [41],
-    "location": "Tuasbound AYE (After North Buona Vista)",
-    "dayType": "Weekdays",
-    "startTime": "09:25",
-    "endTime": "09:30",
-    "baseRate": 0.50
-  },
-  {
-    "zoneId": "AYE_TUASBOUND_NORTH_BUONA_VISTA",
-    "gantryIds": [41],
-    "location": "Tuasbound AYE (After North Buona Vista)",
-    "dayType": "Weekdays",
-    "startTime": "17:00",
-    "endTime": "17:05",
-    "baseRate": 0.50
-  },
-  {
-    "zoneId": "AYE_TUASBOUND_NORTH_BUONA_VISTA",
-    "gantryIds": [41],
+    "gantryIds": [
+      41
+    ],
     "location": "Tuasbound AYE (After North Buona Vista)",
     "dayType": "Weekdays",
     "startTime": "17:05",
-    "endTime": "17:30",
-    "baseRate": 1.00
+    "endTime": "17:25",
+    "baseRate": 1
   },
   {
     "zoneId": "AYE_TUASBOUND_NORTH_BUONA_VISTA",
-    "gantryIds": [41],
+    "gantryIds": [
+      41
+    ],
+    "location": "Tuasbound AYE (After North Buona Vista)",
+    "dayType": "Weekdays",
+    "startTime": "17:25",
+    "endTime": "17:30",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "AYE_TUASBOUND_NORTH_BUONA_VISTA",
+    "gantryIds": [
+      41
+    ],
     "location": "Tuasbound AYE (After North Buona Vista)",
     "dayType": "Weekdays",
     "startTime": "17:30",
     "endTime": "17:35",
-    "baseRate": 1.50
+    "baseRate": 1.5
   },
   {
     "zoneId": "AYE_TUASBOUND_NORTH_BUONA_VISTA",
-    "gantryIds": [41],
+    "gantryIds": [
+      41
+    ],
     "location": "Tuasbound AYE (After North Buona Vista)",
     "dayType": "Weekdays",
     "startTime": "17:35",
     "endTime": "17:55",
-    "baseRate": 3.00
+    "baseRate": 3
   },
   {
     "zoneId": "AYE_TUASBOUND_NORTH_BUONA_VISTA",
-    "gantryIds": [41],
+    "gantryIds": [
+      41
+    ],
     "location": "Tuasbound AYE (After North Buona Vista)",
     "dayType": "Weekdays",
     "startTime": "17:55",
     "endTime": "18:00",
-    "baseRate": 2.00
+    "baseRate": 2
   },
   {
     "zoneId": "AYE_TUASBOUND_NORTH_BUONA_VISTA",
-    "gantryIds": [41],
+    "gantryIds": [
+      41
+    ],
     "location": "Tuasbound AYE (After North Buona Vista)",
     "dayType": "Weekdays",
     "startTime": "18:00",
-    "endTime": "18:25",
-    "baseRate": 1.00
+    "endTime": "18:05",
+    "baseRate": 1
   },
   {
     "zoneId": "AYE_TUASBOUND_NORTH_BUONA_VISTA",
-    "gantryIds": [41],
+    "gantryIds": [
+      41
+    ],
+    "location": "Tuasbound AYE (After North Buona Vista)",
+    "dayType": "Weekdays",
+    "startTime": "18:05",
+    "endTime": "18:25",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "AYE_TUASBOUND_NORTH_BUONA_VISTA",
+    "gantryIds": [
+      41
+    ],
     "location": "Tuasbound AYE (After North Buona Vista)",
     "dayType": "Weekdays",
     "startTime": "18:25",
     "endTime": "18:30",
-    "baseRate": 0.50
+    "baseRate": 0.5
+  },
+  {
+    "zoneId": "AYE_TUASBOUND_NORTH_BUONA_VISTA",
+    "gantryIds": [
+      41
+    ],
+    "location": "Tuasbound AYE (After North Buona Vista)",
+    "dayType": "Weekdays",
+    "startTime": "18:30",
+    "endTime": "18:35",
+    "baseRate": 2.5
+  },
+  {
+    "zoneId": "AYE_TUASBOUND_NORTH_BUONA_VISTA",
+    "gantryIds": [
+      41
+    ],
+    "location": "Tuasbound AYE (After North Buona Vista)",
+    "dayType": "Weekdays",
+    "startTime": "18:35",
+    "endTime": "18:55",
+    "baseRate": 3
+  },
+  {
+    "zoneId": "AYE_TUASBOUND_NORTH_BUONA_VISTA",
+    "gantryIds": [
+      41
+    ],
+    "location": "Tuasbound AYE (After North Buona Vista)",
+    "dayType": "Weekdays",
+    "startTime": "18:55",
+    "endTime": "19:00",
+    "baseRate": 2
+  },
+  {
+    "zoneId": "AYE_TUASBOUND_NORTH_BUONA_VISTA",
+    "gantryIds": [
+      41
+    ],
+    "location": "Tuasbound AYE (After North Buona Vista)",
+    "dayType": "Weekdays",
+    "startTime": "19:00",
+    "endTime": "19:05",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "AYE_TUASBOUND_NORTH_BUONA_VISTA",
+    "gantryIds": [
+      41
+    ],
+    "location": "Tuasbound AYE (After North Buona Vista)",
+    "dayType": "Weekdays",
+    "startTime": "19:05",
+    "endTime": "19:25",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "AYE_TUASBOUND_NORTH_BUONA_VISTA",
+    "gantryIds": [
+      41
+    ],
+    "location": "Tuasbound AYE (After North Buona Vista)",
+    "dayType": "Weekdays",
+    "startTime": "19:25",
+    "endTime": "19:30",
+    "baseRate": 0.5
   },
   {
     "zoneId": "CTE_SOUTHBOUND_BRADDELL",
-    "gantryIds": [31, 33, 34],
+    "gantryIds": [
+      31,
+      33,
+      34
+    ],
     "location": "CTE Southbound (After Braddell Rd, Serangoon Rd, Balestier slip)",
     "dayType": "Weekdays",
     "startTime": "07:30",
     "endTime": "07:35",
-    "baseRate": 1.00
+    "baseRate": 1
   },
   {
     "zoneId": "CTE_SOUTHBOUND_BRADDELL",
-    "gantryIds": [31, 33, 34],
+    "gantryIds": [
+      31,
+      33,
+      34
+    ],
     "location": "CTE Southbound (After Braddell Rd, Serangoon Rd, Balestier slip)",
     "dayType": "Weekdays",
     "startTime": "07:35",
-    "endTime": "08:00",
-    "baseRate": 2.00
+    "endTime": "07:55",
+    "baseRate": 2
   },
   {
     "zoneId": "CTE_SOUTHBOUND_BRADDELL",
-    "gantryIds": [31, 33, 34],
+    "gantryIds": [
+      31,
+      33,
+      34
+    ],
+    "location": "CTE Southbound (After Braddell Rd, Serangoon Rd, Balestier slip)",
+    "dayType": "Weekdays",
+    "startTime": "07:55",
+    "endTime": "08:00",
+    "baseRate": 2
+  },
+  {
+    "zoneId": "CTE_SOUTHBOUND_BRADDELL",
+    "gantryIds": [
+      31,
+      33,
+      34
+    ],
     "location": "CTE Southbound (After Braddell Rd, Serangoon Rd, Balestier slip)",
     "dayType": "Weekdays",
     "startTime": "08:00",
     "endTime": "08:05",
-    "baseRate": 3.00
+    "baseRate": 3
   },
   {
     "zoneId": "CTE_SOUTHBOUND_BRADDELL",
-    "gantryIds": [31, 33, 34],
+    "gantryIds": [
+      31,
+      33,
+      34
+    ],
     "location": "CTE Southbound (After Braddell Rd, Serangoon Rd, Balestier slip)",
     "dayType": "Weekdays",
     "startTime": "08:05",
-    "endTime": "08:30",
-    "baseRate": 4.00
+    "endTime": "08:25",
+    "baseRate": 4
   },
   {
     "zoneId": "CTE_SOUTHBOUND_BRADDELL",
-    "gantryIds": [31, 33, 34],
+    "gantryIds": [
+      31,
+      33,
+      34
+    ],
+    "location": "CTE Southbound (After Braddell Rd, Serangoon Rd, Balestier slip)",
+    "dayType": "Weekdays",
+    "startTime": "08:25",
+    "endTime": "08:30",
+    "baseRate": 4
+  },
+  {
+    "zoneId": "CTE_SOUTHBOUND_BRADDELL",
+    "gantryIds": [
+      31,
+      33,
+      34
+    ],
     "location": "CTE Southbound (After Braddell Rd, Serangoon Rd, Balestier slip)",
     "dayType": "Weekdays",
     "startTime": "08:30",
     "endTime": "08:35",
-    "baseRate": 4.50
+    "baseRate": 4.5
   },
   {
     "zoneId": "CTE_SOUTHBOUND_BRADDELL",
-    "gantryIds": [31, 33, 34],
+    "gantryIds": [
+      31,
+      33,
+      34
+    ],
     "location": "CTE Southbound (After Braddell Rd, Serangoon Rd, Balestier slip)",
     "dayType": "Weekdays",
     "startTime": "08:35",
     "endTime": "08:55",
-    "baseRate": 5.00
+    "baseRate": 5
   },
   {
     "zoneId": "CTE_SOUTHBOUND_BRADDELL",
-    "gantryIds": [31, 33, 34],
+    "gantryIds": [
+      31,
+      33,
+      34
+    ],
     "location": "CTE Southbound (After Braddell Rd, Serangoon Rd, Balestier slip)",
     "dayType": "Weekdays",
     "startTime": "08:55",
     "endTime": "09:00",
-    "baseRate": 4.50
+    "baseRate": 4.5
   },
   {
     "zoneId": "CTE_SOUTHBOUND_BRADDELL",
-    "gantryIds": [31, 33, 34],
+    "gantryIds": [
+      31,
+      33,
+      34
+    ],
     "location": "CTE Southbound (After Braddell Rd, Serangoon Rd, Balestier slip)",
     "dayType": "Weekdays",
     "startTime": "09:00",
-    "endTime": "09:25",
-    "baseRate": 4.00
+    "endTime": "09:05",
+    "baseRate": 4
   },
   {
     "zoneId": "CTE_SOUTHBOUND_BRADDELL",
-    "gantryIds": [31, 33, 34],
+    "gantryIds": [
+      31,
+      33,
+      34
+    ],
+    "location": "CTE Southbound (After Braddell Rd, Serangoon Rd, Balestier slip)",
+    "dayType": "Weekdays",
+    "startTime": "09:05",
+    "endTime": "09:25",
+    "baseRate": 4
+  },
+  {
+    "zoneId": "CTE_SOUTHBOUND_BRADDELL",
+    "gantryIds": [
+      31,
+      33,
+      34
+    ],
     "location": "CTE Southbound (After Braddell Rd, Serangoon Rd, Balestier slip)",
     "dayType": "Weekdays",
     "startTime": "09:25",
     "endTime": "09:30",
-    "baseRate": 3.50
+    "baseRate": 3.5
   },
   {
     "zoneId": "CTE_SOUTHBOUND_BRADDELL",
-    "gantryIds": [31, 33, 34],
+    "gantryIds": [
+      31,
+      33,
+      34
+    ],
     "location": "CTE Southbound (After Braddell Rd, Serangoon Rd, Balestier slip)",
     "dayType": "Weekdays",
     "startTime": "09:30",
-    "endTime": "09:55",
-    "baseRate": 3.00
+    "endTime": "09:35",
+    "baseRate": 3
   },
   {
     "zoneId": "CTE_SOUTHBOUND_BRADDELL",
-    "gantryIds": [31, 33, 34],
+    "gantryIds": [
+      31,
+      33,
+      34
+    ],
+    "location": "CTE Southbound (After Braddell Rd, Serangoon Rd, Balestier slip)",
+    "dayType": "Weekdays",
+    "startTime": "09:35",
+    "endTime": "09:55",
+    "baseRate": 3
+  },
+  {
+    "zoneId": "CTE_SOUTHBOUND_BRADDELL",
+    "gantryIds": [
+      31,
+      33,
+      34
+    ],
     "location": "CTE Southbound (After Braddell Rd, Serangoon Rd, Balestier slip)",
     "dayType": "Weekdays",
     "startTime": "09:55",
     "endTime": "10:00",
-    "baseRate": 1.50
+    "baseRate": 1.5
   },
   {
     "zoneId": "CTE_SLIP_PIE_SERANGOON",
-    "gantryIds": [68],
+    "gantryIds": [
+      68
+    ],
     "location": "CTE Slip road to PIE (Changi) / Serangoon Rd",
     "dayType": "Weekdays",
     "startTime": "07:30",
     "endTime": "07:35",
-    "baseRate": 1.00
+    "baseRate": 1
   },
   {
     "zoneId": "CTE_SLIP_PIE_SERANGOON",
-    "gantryIds": [68],
+    "gantryIds": [
+      68
+    ],
     "location": "CTE Slip road to PIE (Changi) / Serangoon Rd",
     "dayType": "Weekdays",
     "startTime": "07:35",
-    "endTime": "08:00",
-    "baseRate": 2.00
+    "endTime": "07:55",
+    "baseRate": 2
   },
   {
     "zoneId": "CTE_SLIP_PIE_SERANGOON",
-    "gantryIds": [68],
+    "gantryIds": [
+      68
+    ],
+    "location": "CTE Slip road to PIE (Changi) / Serangoon Rd",
+    "dayType": "Weekdays",
+    "startTime": "07:55",
+    "endTime": "08:00",
+    "baseRate": 2
+  },
+  {
+    "zoneId": "CTE_SLIP_PIE_SERANGOON",
+    "gantryIds": [
+      68
+    ],
     "location": "CTE Slip road to PIE (Changi) / Serangoon Rd",
     "dayType": "Weekdays",
     "startTime": "08:00",
     "endTime": "08:05",
-    "baseRate": 2.50
+    "baseRate": 2.5
   },
   {
     "zoneId": "CTE_SLIP_PIE_SERANGOON",
-    "gantryIds": [68],
+    "gantryIds": [
+      68
+    ],
     "location": "CTE Slip road to PIE (Changi) / Serangoon Rd",
     "dayType": "Weekdays",
     "startTime": "08:05",
-    "endTime": "08:30",
-    "baseRate": 3.00
+    "endTime": "08:25",
+    "baseRate": 3
   },
   {
     "zoneId": "CTE_SLIP_PIE_SERANGOON",
-    "gantryIds": [68],
+    "gantryIds": [
+      68
+    ],
+    "location": "CTE Slip road to PIE (Changi) / Serangoon Rd",
+    "dayType": "Weekdays",
+    "startTime": "08:25",
+    "endTime": "08:30",
+    "baseRate": 3
+  },
+  {
+    "zoneId": "CTE_SLIP_PIE_SERANGOON",
+    "gantryIds": [
+      68
+    ],
     "location": "CTE Slip road to PIE (Changi) / Serangoon Rd",
     "dayType": "Weekdays",
     "startTime": "08:30",
     "endTime": "08:35",
-    "baseRate": 4.00
+    "baseRate": 4
   },
   {
     "zoneId": "CTE_SLIP_PIE_SERANGOON",
-    "gantryIds": [68],
+    "gantryIds": [
+      68
+    ],
     "location": "CTE Slip road to PIE (Changi) / Serangoon Rd",
     "dayType": "Weekdays",
     "startTime": "08:35",
     "endTime": "08:55",
-    "baseRate": 5.00
+    "baseRate": 5
   },
   {
     "zoneId": "CTE_SLIP_PIE_SERANGOON",
-    "gantryIds": [68],
+    "gantryIds": [
+      68
+    ],
     "location": "CTE Slip road to PIE (Changi) / Serangoon Rd",
     "dayType": "Weekdays",
     "startTime": "08:55",
     "endTime": "09:00",
-    "baseRate": 4.50
+    "baseRate": 4.5
   },
   {
     "zoneId": "CTE_SLIP_PIE_SERANGOON",
-    "gantryIds": [68],
+    "gantryIds": [
+      68
+    ],
     "location": "CTE Slip road to PIE (Changi) / Serangoon Rd",
     "dayType": "Weekdays",
     "startTime": "09:00",
-    "endTime": "09:25",
-    "baseRate": 4.00
+    "endTime": "09:05",
+    "baseRate": 4
   },
   {
     "zoneId": "CTE_SLIP_PIE_SERANGOON",
-    "gantryIds": [68],
+    "gantryIds": [
+      68
+    ],
+    "location": "CTE Slip road to PIE (Changi) / Serangoon Rd",
+    "dayType": "Weekdays",
+    "startTime": "09:05",
+    "endTime": "09:25",
+    "baseRate": 4
+  },
+  {
+    "zoneId": "CTE_SLIP_PIE_SERANGOON",
+    "gantryIds": [
+      68
+    ],
     "location": "CTE Slip road to PIE (Changi) / Serangoon Rd",
     "dayType": "Weekdays",
     "startTime": "09:25",
     "endTime": "09:30",
-    "baseRate": 3.50
+    "baseRate": 3.5
   },
   {
     "zoneId": "CTE_SLIP_PIE_SERANGOON",
-    "gantryIds": [68],
+    "gantryIds": [
+      68
+    ],
     "location": "CTE Slip road to PIE (Changi) / Serangoon Rd",
     "dayType": "Weekdays",
     "startTime": "09:30",
-    "endTime": "09:55",
-    "baseRate": 3.00
+    "endTime": "09:35",
+    "baseRate": 3
   },
   {
     "zoneId": "CTE_SLIP_PIE_SERANGOON",
-    "gantryIds": [68],
+    "gantryIds": [
+      68
+    ],
+    "location": "CTE Slip road to PIE (Changi) / Serangoon Rd",
+    "dayType": "Weekdays",
+    "startTime": "09:35",
+    "endTime": "09:55",
+    "baseRate": 3
+  },
+  {
+    "zoneId": "CTE_SLIP_PIE_SERANGOON",
+    "gantryIds": [
+      68
+    ],
     "location": "CTE Slip road to PIE (Changi) / Serangoon Rd",
     "dayType": "Weekdays",
     "startTime": "09:55",
     "endTime": "10:00",
-    "baseRate": 1.50
+    "baseRate": 1.5
   },
   {
     "zoneId": "CTE_SOUTHBOUND_AMK",
-    "gantryIds": [35],
+    "gantryIds": [
+      35
+    ],
     "location": "CTE Southbound between Ang Mo Kio Ave 1 and Braddell Rd",
     "dayType": "Weekdays",
     "startTime": "07:00",
     "endTime": "07:05",
-    "baseRate": 1.00
+    "baseRate": 1
   },
   {
     "zoneId": "CTE_SOUTHBOUND_AMK",
-    "gantryIds": [35],
+    "gantryIds": [
+      35
+    ],
     "location": "CTE Southbound between Ang Mo Kio Ave 1 and Braddell Rd",
     "dayType": "Weekdays",
     "startTime": "07:05",
-    "endTime": "08:00",
-    "baseRate": 2.00
+    "endTime": "07:25",
+    "baseRate": 2
   },
   {
     "zoneId": "CTE_SOUTHBOUND_AMK",
-    "gantryIds": [35],
+    "gantryIds": [
+      35
+    ],
+    "location": "CTE Southbound between Ang Mo Kio Ave 1 and Braddell Rd",
+    "dayType": "Weekdays",
+    "startTime": "07:25",
+    "endTime": "07:30",
+    "baseRate": 2
+  },
+  {
+    "zoneId": "CTE_SOUTHBOUND_AMK",
+    "gantryIds": [
+      35
+    ],
+    "location": "CTE Southbound between Ang Mo Kio Ave 1 and Braddell Rd",
+    "dayType": "Weekdays",
+    "startTime": "07:30",
+    "endTime": "07:35",
+    "baseRate": 2
+  },
+  {
+    "zoneId": "CTE_SOUTHBOUND_AMK",
+    "gantryIds": [
+      35
+    ],
+    "location": "CTE Southbound between Ang Mo Kio Ave 1 and Braddell Rd",
+    "dayType": "Weekdays",
+    "startTime": "07:35",
+    "endTime": "07:55",
+    "baseRate": 2
+  },
+  {
+    "zoneId": "CTE_SOUTHBOUND_AMK",
+    "gantryIds": [
+      35
+    ],
+    "location": "CTE Southbound between Ang Mo Kio Ave 1 and Braddell Rd",
+    "dayType": "Weekdays",
+    "startTime": "07:55",
+    "endTime": "08:00",
+    "baseRate": 2
+  },
+  {
+    "zoneId": "CTE_SOUTHBOUND_AMK",
+    "gantryIds": [
+      35
+    ],
     "location": "CTE Southbound between Ang Mo Kio Ave 1 and Braddell Rd",
     "dayType": "Weekdays",
     "startTime": "08:00",
     "endTime": "08:05",
-    "baseRate": 2.50
+    "baseRate": 2.5
   },
   {
     "zoneId": "CTE_SOUTHBOUND_AMK",
-    "gantryIds": [35],
+    "gantryIds": [
+      35
+    ],
     "location": "CTE Southbound between Ang Mo Kio Ave 1 and Braddell Rd",
     "dayType": "Weekdays",
     "startTime": "08:05",
-    "endTime": "09:25",
-    "baseRate": 3.00
+    "endTime": "08:25",
+    "baseRate": 3
   },
   {
     "zoneId": "CTE_SOUTHBOUND_AMK",
-    "gantryIds": [35],
+    "gantryIds": [
+      35
+    ],
+    "location": "CTE Southbound between Ang Mo Kio Ave 1 and Braddell Rd",
+    "dayType": "Weekdays",
+    "startTime": "08:25",
+    "endTime": "08:30",
+    "baseRate": 3
+  },
+  {
+    "zoneId": "CTE_SOUTHBOUND_AMK",
+    "gantryIds": [
+      35
+    ],
+    "location": "CTE Southbound between Ang Mo Kio Ave 1 and Braddell Rd",
+    "dayType": "Weekdays",
+    "startTime": "08:30",
+    "endTime": "08:35",
+    "baseRate": 3
+  },
+  {
+    "zoneId": "CTE_SOUTHBOUND_AMK",
+    "gantryIds": [
+      35
+    ],
+    "location": "CTE Southbound between Ang Mo Kio Ave 1 and Braddell Rd",
+    "dayType": "Weekdays",
+    "startTime": "08:35",
+    "endTime": "08:55",
+    "baseRate": 3
+  },
+  {
+    "zoneId": "CTE_SOUTHBOUND_AMK",
+    "gantryIds": [
+      35
+    ],
+    "location": "CTE Southbound between Ang Mo Kio Ave 1 and Braddell Rd",
+    "dayType": "Weekdays",
+    "startTime": "08:55",
+    "endTime": "09:00",
+    "baseRate": 3
+  },
+  {
+    "zoneId": "CTE_SOUTHBOUND_AMK",
+    "gantryIds": [
+      35
+    ],
+    "location": "CTE Southbound between Ang Mo Kio Ave 1 and Braddell Rd",
+    "dayType": "Weekdays",
+    "startTime": "09:00",
+    "endTime": "09:05",
+    "baseRate": 3
+  },
+  {
+    "zoneId": "CTE_SOUTHBOUND_AMK",
+    "gantryIds": [
+      35
+    ],
+    "location": "CTE Southbound between Ang Mo Kio Ave 1 and Braddell Rd",
+    "dayType": "Weekdays",
+    "startTime": "09:05",
+    "endTime": "09:25",
+    "baseRate": 3
+  },
+  {
+    "zoneId": "CTE_SOUTHBOUND_AMK",
+    "gantryIds": [
+      35
+    ],
     "location": "CTE Southbound between Ang Mo Kio Ave 1 and Braddell Rd",
     "dayType": "Weekdays",
     "startTime": "09:25",
     "endTime": "09:30",
-    "baseRate": 2.00
+    "baseRate": 2
   },
   {
     "zoneId": "CTE_SOUTHBOUND_AMK",
-    "gantryIds": [35],
+    "gantryIds": [
+      35
+    ],
     "location": "CTE Southbound between Ang Mo Kio Ave 1 and Braddell Rd",
     "dayType": "Weekdays",
     "startTime": "09:30",
-    "endTime": "09:55",
-    "baseRate": 1.00
+    "endTime": "09:35",
+    "baseRate": 1
   },
   {
     "zoneId": "CTE_SOUTHBOUND_AMK",
-    "gantryIds": [35],
+    "gantryIds": [
+      35
+    ],
+    "location": "CTE Southbound between Ang Mo Kio Ave 1 and Braddell Rd",
+    "dayType": "Weekdays",
+    "startTime": "09:35",
+    "endTime": "09:55",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "CTE_SOUTHBOUND_AMK",
+    "gantryIds": [
+      35
+    ],
     "location": "CTE Southbound between Ang Mo Kio Ave 1 and Braddell Rd",
     "dayType": "Weekdays",
     "startTime": "09:55",
     "endTime": "10:00",
-    "baseRate": 0.50
+    "baseRate": 0.5
   },
   {
     "zoneId": "CTE_NORTHBOUND_PIE_BRADDELL",
-    "gantryIds": [46, 67],
+    "gantryIds": [
+      46,
+      67
+    ],
     "location": "CTE Northbound between PIE and Braddell Rd",
     "dayType": "Weekdays",
     "startTime": "17:30",
     "endTime": "17:35",
-    "baseRate": 2.00
+    "baseRate": 2
   },
   {
     "zoneId": "CTE_NORTHBOUND_PIE_BRADDELL",
-    "gantryIds": [46, 67],
+    "gantryIds": [
+      46,
+      67
+    ],
     "location": "CTE Northbound between PIE and Braddell Rd",
     "dayType": "Weekdays",
     "startTime": "17:35",
-    "endTime": "18:55",
-    "baseRate": 4.00
+    "endTime": "17:55",
+    "baseRate": 4
   },
   {
     "zoneId": "CTE_NORTHBOUND_PIE_BRADDELL",
-    "gantryIds": [46, 67],
+    "gantryIds": [
+      46,
+      67
+    ],
+    "location": "CTE Northbound between PIE and Braddell Rd",
+    "dayType": "Weekdays",
+    "startTime": "17:55",
+    "endTime": "18:00",
+    "baseRate": 4
+  },
+  {
+    "zoneId": "CTE_NORTHBOUND_PIE_BRADDELL",
+    "gantryIds": [
+      46,
+      67
+    ],
+    "location": "CTE Northbound between PIE and Braddell Rd",
+    "dayType": "Weekdays",
+    "startTime": "18:00",
+    "endTime": "18:05",
+    "baseRate": 4
+  },
+  {
+    "zoneId": "CTE_NORTHBOUND_PIE_BRADDELL",
+    "gantryIds": [
+      46,
+      67
+    ],
+    "location": "CTE Northbound between PIE and Braddell Rd",
+    "dayType": "Weekdays",
+    "startTime": "18:05",
+    "endTime": "18:25",
+    "baseRate": 4
+  },
+  {
+    "zoneId": "CTE_NORTHBOUND_PIE_BRADDELL",
+    "gantryIds": [
+      46,
+      67
+    ],
+    "location": "CTE Northbound between PIE and Braddell Rd",
+    "dayType": "Weekdays",
+    "startTime": "18:25",
+    "endTime": "18:30",
+    "baseRate": 4
+  },
+  {
+    "zoneId": "CTE_NORTHBOUND_PIE_BRADDELL",
+    "gantryIds": [
+      46,
+      67
+    ],
+    "location": "CTE Northbound between PIE and Braddell Rd",
+    "dayType": "Weekdays",
+    "startTime": "18:30",
+    "endTime": "18:35",
+    "baseRate": 4
+  },
+  {
+    "zoneId": "CTE_NORTHBOUND_PIE_BRADDELL",
+    "gantryIds": [
+      46,
+      67
+    ],
+    "location": "CTE Northbound between PIE and Braddell Rd",
+    "dayType": "Weekdays",
+    "startTime": "18:35",
+    "endTime": "18:55",
+    "baseRate": 4
+  },
+  {
+    "zoneId": "CTE_NORTHBOUND_PIE_BRADDELL",
+    "gantryIds": [
+      46,
+      67
+    ],
     "location": "CTE Northbound between PIE and Braddell Rd",
     "dayType": "Weekdays",
     "startTime": "18:55",
     "endTime": "19:00",
-    "baseRate": 3.50
+    "baseRate": 3.5
   },
   {
     "zoneId": "CTE_NORTHBOUND_PIE_BRADDELL",
-    "gantryIds": [46, 67],
+    "gantryIds": [
+      46,
+      67
+    ],
     "location": "CTE Northbound between PIE and Braddell Rd",
     "dayType": "Weekdays",
     "startTime": "19:00",
-    "endTime": "19:25",
-    "baseRate": 3.00
+    "endTime": "19:05",
+    "baseRate": 3
   },
   {
     "zoneId": "CTE_NORTHBOUND_PIE_BRADDELL",
-    "gantryIds": [46, 67],
+    "gantryIds": [
+      46,
+      67
+    ],
+    "location": "CTE Northbound between PIE and Braddell Rd",
+    "dayType": "Weekdays",
+    "startTime": "19:05",
+    "endTime": "19:25",
+    "baseRate": 3
+  },
+  {
+    "zoneId": "CTE_NORTHBOUND_PIE_BRADDELL",
+    "gantryIds": [
+      46,
+      67
+    ],
     "location": "CTE Northbound between PIE and Braddell Rd",
     "dayType": "Weekdays",
     "startTime": "19:25",
     "endTime": "19:30",
-    "baseRate": 2.00
+    "baseRate": 2
   },
   {
     "zoneId": "CTE_NORTHBOUND_PIE_BRADDELL",
-    "gantryIds": [46, 67],
+    "gantryIds": [
+      46,
+      67
+    ],
     "location": "CTE Northbound between PIE and Braddell Rd",
     "dayType": "Weekdays",
     "startTime": "19:30",
-    "endTime": "19:55",
-    "baseRate": 1.00
+    "endTime": "19:35",
+    "baseRate": 1
   },
   {
     "zoneId": "CTE_NORTHBOUND_PIE_BRADDELL",
-    "gantryIds": [46, 67],
+    "gantryIds": [
+      46,
+      67
+    ],
+    "location": "CTE Northbound between PIE and Braddell Rd",
+    "dayType": "Weekdays",
+    "startTime": "19:35",
+    "endTime": "19:55",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "CTE_NORTHBOUND_PIE_BRADDELL",
+    "gantryIds": [
+      46,
+      67
+    ],
     "location": "CTE Northbound between PIE and Braddell Rd",
     "dayType": "Weekdays",
     "startTime": "19:55",
     "endTime": "20:00",
-    "baseRate": 0.50
+    "baseRate": 0.5
   },
   {
     "zoneId": "CTE_NORTHBOUND_JALAN_BAHAGIA",
-    "gantryIds": [51],
+    "gantryIds": [
+      51
+    ],
     "location": "CTE Northbound between Jalan Bahagia and PIE",
     "dayType": "Weekdays",
     "startTime": "17:30",
     "endTime": "17:35",
-    "baseRate": 0.50
+    "baseRate": 0.5
   },
   {
     "zoneId": "CTE_NORTHBOUND_JALAN_BAHAGIA",
-    "gantryIds": [51],
+    "gantryIds": [
+      51
+    ],
     "location": "CTE Northbound between Jalan Bahagia and PIE",
     "dayType": "Weekdays",
     "startTime": "17:35",
-    "endTime": "18:55",
-    "baseRate": 1.00
+    "endTime": "17:55",
+    "baseRate": 1
   },
   {
     "zoneId": "CTE_NORTHBOUND_JALAN_BAHAGIA",
-    "gantryIds": [51],
+    "gantryIds": [
+      51
+    ],
+    "location": "CTE Northbound between Jalan Bahagia and PIE",
+    "dayType": "Weekdays",
+    "startTime": "17:55",
+    "endTime": "18:00",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "CTE_NORTHBOUND_JALAN_BAHAGIA",
+    "gantryIds": [
+      51
+    ],
+    "location": "CTE Northbound between Jalan Bahagia and PIE",
+    "dayType": "Weekdays",
+    "startTime": "18:00",
+    "endTime": "18:05",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "CTE_NORTHBOUND_JALAN_BAHAGIA",
+    "gantryIds": [
+      51
+    ],
+    "location": "CTE Northbound between Jalan Bahagia and PIE",
+    "dayType": "Weekdays",
+    "startTime": "18:05",
+    "endTime": "18:25",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "CTE_NORTHBOUND_JALAN_BAHAGIA",
+    "gantryIds": [
+      51
+    ],
+    "location": "CTE Northbound between Jalan Bahagia and PIE",
+    "dayType": "Weekdays",
+    "startTime": "18:25",
+    "endTime": "18:30",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "CTE_NORTHBOUND_JALAN_BAHAGIA",
+    "gantryIds": [
+      51
+    ],
+    "location": "CTE Northbound between Jalan Bahagia and PIE",
+    "dayType": "Weekdays",
+    "startTime": "18:30",
+    "endTime": "18:35",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "CTE_NORTHBOUND_JALAN_BAHAGIA",
+    "gantryIds": [
+      51
+    ],
+    "location": "CTE Northbound between Jalan Bahagia and PIE",
+    "dayType": "Weekdays",
+    "startTime": "18:35",
+    "endTime": "18:55",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "CTE_NORTHBOUND_JALAN_BAHAGIA",
+    "gantryIds": [
+      51
+    ],
     "location": "CTE Northbound between Jalan Bahagia and PIE",
     "dayType": "Weekdays",
     "startTime": "18:55",
     "endTime": "19:00",
-    "baseRate": 0.50
+    "baseRate": 0.5
   },
   {
     "zoneId": "KPE_SOUTHBOUND_DEFU",
-    "gantryIds": [50],
+    "gantryIds": [
+      50
+    ],
     "location": "KPE Southbound after Defu Flyover",
     "dayType": "Weekdays",
     "startTime": "07:00",
     "endTime": "07:05",
-    "baseRate": 0.50
+    "baseRate": 0.5
   },
   {
     "zoneId": "KPE_SOUTHBOUND_DEFU",
-    "gantryIds": [50],
+    "gantryIds": [
+      50
+    ],
     "location": "KPE Southbound after Defu Flyover",
     "dayType": "Weekdays",
     "startTime": "07:05",
-    "endTime": "07:30",
-    "baseRate": 1.00
+    "endTime": "07:25",
+    "baseRate": 1
   },
   {
     "zoneId": "KPE_SOUTHBOUND_DEFU",
-    "gantryIds": [50],
+    "gantryIds": [
+      50
+    ],
+    "location": "KPE Southbound after Defu Flyover",
+    "dayType": "Weekdays",
+    "startTime": "07:25",
+    "endTime": "07:30",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "KPE_SOUTHBOUND_DEFU",
+    "gantryIds": [
+      50
+    ],
     "location": "KPE Southbound after Defu Flyover",
     "dayType": "Weekdays",
     "startTime": "07:30",
     "endTime": "07:35",
-    "baseRate": 2.50
+    "baseRate": 2.5
   },
   {
     "zoneId": "KPE_SOUTHBOUND_DEFU",
-    "gantryIds": [50],
+    "gantryIds": [
+      50
+    ],
     "location": "KPE Southbound after Defu Flyover",
     "dayType": "Weekdays",
     "startTime": "07:35",
-    "endTime": "08:00",
-    "baseRate": 4.00
+    "endTime": "07:55",
+    "baseRate": 4
   },
   {
     "zoneId": "KPE_SOUTHBOUND_DEFU",
-    "gantryIds": [50],
+    "gantryIds": [
+      50
+    ],
+    "location": "KPE Southbound after Defu Flyover",
+    "dayType": "Weekdays",
+    "startTime": "07:55",
+    "endTime": "08:00",
+    "baseRate": 4
+  },
+  {
+    "zoneId": "KPE_SOUTHBOUND_DEFU",
+    "gantryIds": [
+      50
+    ],
     "location": "KPE Southbound after Defu Flyover",
     "dayType": "Weekdays",
     "startTime": "08:00",
     "endTime": "08:05",
-    "baseRate": 4.50
+    "baseRate": 4.5
   },
   {
     "zoneId": "KPE_SOUTHBOUND_DEFU",
-    "gantryIds": [50],
+    "gantryIds": [
+      50
+    ],
     "location": "KPE Southbound after Defu Flyover",
     "dayType": "Weekdays",
     "startTime": "08:05",
-    "endTime": "08:30",
-    "baseRate": 5.00
+    "endTime": "08:25",
+    "baseRate": 5
   },
   {
     "zoneId": "KPE_SOUTHBOUND_DEFU",
-    "gantryIds": [50],
+    "gantryIds": [
+      50
+    ],
+    "location": "KPE Southbound after Defu Flyover",
+    "dayType": "Weekdays",
+    "startTime": "08:25",
+    "endTime": "08:30",
+    "baseRate": 5
+  },
+  {
+    "zoneId": "KPE_SOUTHBOUND_DEFU",
+    "gantryIds": [
+      50
+    ],
     "location": "KPE Southbound after Defu Flyover",
     "dayType": "Weekdays",
     "startTime": "08:30",
     "endTime": "08:35",
-    "baseRate": 5.50
+    "baseRate": 5.5
   },
   {
     "zoneId": "KPE_SOUTHBOUND_DEFU",
-    "gantryIds": [50],
+    "gantryIds": [
+      50
+    ],
     "location": "KPE Southbound after Defu Flyover",
     "dayType": "Weekdays",
     "startTime": "08:35",
     "endTime": "08:55",
-    "baseRate": 6.00
+    "baseRate": 6
   },
   {
     "zoneId": "KPE_SOUTHBOUND_DEFU",
-    "gantryIds": [50],
+    "gantryIds": [
+      50
+    ],
     "location": "KPE Southbound after Defu Flyover",
     "dayType": "Weekdays",
     "startTime": "08:55",
     "endTime": "09:00",
-    "baseRate": 4.00
+    "baseRate": 4
   },
   {
     "zoneId": "KPE_SOUTHBOUND_DEFU",
-    "gantryIds": [50],
+    "gantryIds": [
+      50
+    ],
     "location": "KPE Southbound after Defu Flyover",
     "dayType": "Weekdays",
     "startTime": "09:00",
-    "endTime": "09:25",
-    "baseRate": 2.00
+    "endTime": "09:05",
+    "baseRate": 2
   },
   {
     "zoneId": "KPE_SOUTHBOUND_DEFU",
-    "gantryIds": [50],
+    "gantryIds": [
+      50
+    ],
+    "location": "KPE Southbound after Defu Flyover",
+    "dayType": "Weekdays",
+    "startTime": "09:05",
+    "endTime": "09:25",
+    "baseRate": 2
+  },
+  {
+    "zoneId": "KPE_SOUTHBOUND_DEFU",
+    "gantryIds": [
+      50
+    ],
     "location": "KPE Southbound after Defu Flyover",
     "dayType": "Weekdays",
     "startTime": "09:25",
     "endTime": "09:30",
-    "baseRate": 1.50
+    "baseRate": 1.5
   },
   {
     "zoneId": "KPE_SOUTHBOUND_DEFU",
-    "gantryIds": [50],
+    "gantryIds": [
+      50
+    ],
     "location": "KPE Southbound after Defu Flyover",
     "dayType": "Weekdays",
     "startTime": "09:30",
-    "endTime": "09:55",
-    "baseRate": 1.00
+    "endTime": "09:35",
+    "baseRate": 1
   },
   {
     "zoneId": "KPE_SOUTHBOUND_DEFU",
-    "gantryIds": [50],
+    "gantryIds": [
+      50
+    ],
+    "location": "KPE Southbound after Defu Flyover",
+    "dayType": "Weekdays",
+    "startTime": "09:35",
+    "endTime": "09:55",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "KPE_SOUTHBOUND_DEFU",
+    "gantryIds": [
+      50
+    ],
     "location": "KPE Southbound after Defu Flyover",
     "dayType": "Weekdays",
     "startTime": "09:55",
     "endTime": "10:00",
-    "baseRate": 0.50
-  },
-  {
-    "zoneId": "MCE_WESTBOUND",
-    "gantryIds": [90, 91],
-    "location": "MCE Westbound before exit to Central Blvd / Maxwell Rd",
-    "dayType": "Weekdays",
-    "startTime": "07:00",
-    "endTime": "07:05",
-    "baseRate": 0.50
-  },
-  {
-    "zoneId": "MCE_WESTBOUND",
-    "gantryIds": [90, 91],
-    "location": "MCE Westbound before exit to Central Blvd / Maxwell Rd",
-    "dayType": "Weekdays",
-    "startTime": "07:05",
-    "endTime": "07:30",
-    "baseRate": 1.00
-  },
-  {
-    "zoneId": "MCE_WESTBOUND",
-    "gantryIds": [90, 91],
-    "location": "MCE Westbound before exit to Central Blvd / Maxwell Rd",
-    "dayType": "Weekdays",
-    "startTime": "07:30",
-    "endTime": "07:35",
-    "baseRate": 1.50
-  },
-  {
-    "zoneId": "MCE_WESTBOUND",
-    "gantryIds": [90, 91],
-    "location": "MCE Westbound before exit to Central Blvd / Maxwell Rd",
-    "dayType": "Weekdays",
-    "startTime": "07:35",
-    "endTime": "08:30",
-    "baseRate": 2.00
-  },
-  {
-    "zoneId": "MCE_WESTBOUND",
-    "gantryIds": [90, 91],
-    "location": "MCE Westbound before exit to Central Blvd / Maxwell Rd",
-    "dayType": "Weekdays",
-    "startTime": "08:30",
-    "endTime": "08:35",
-    "baseRate": 3.00
-  },
-  {
-    "zoneId": "MCE_WESTBOUND",
-    "gantryIds": [90, 91],
-    "location": "MCE Westbound before exit to Central Blvd / Maxwell Rd",
-    "dayType": "Weekdays",
-    "startTime": "08:35",
-    "endTime": "08:55",
-    "baseRate": 4.00
-  },
-  {
-    "zoneId": "MCE_WESTBOUND",
-    "gantryIds": [90, 91],
-    "location": "MCE Westbound before exit to Central Blvd / Maxwell Rd",
-    "dayType": "Weekdays",
-    "startTime": "08:55",
-    "endTime": "09:00",
-    "baseRate": 3.00
-  },
-  {
-    "zoneId": "MCE_WESTBOUND",
-    "gantryIds": [90, 91],
-    "location": "MCE Westbound before exit to Central Blvd / Maxwell Rd",
-    "dayType": "Weekdays",
-    "startTime": "09:00",
-    "endTime": "09:25",
-    "baseRate": 2.00
-  },
-  {
-    "zoneId": "MCE_WESTBOUND",
-    "gantryIds": [90, 91],
-    "location": "MCE Westbound before exit to Central Blvd / Maxwell Rd",
-    "dayType": "Weekdays",
-    "startTime": "09:25",
-    "endTime": "09:30",
-    "baseRate": 1.50
-  },
-  {
-    "zoneId": "MCE_WESTBOUND",
-    "gantryIds": [90, 91],
-    "location": "MCE Westbound before exit to Central Blvd / Maxwell Rd",
-    "dayType": "Weekdays",
-    "startTime": "09:30",
-    "endTime": "09:55",
-    "baseRate": 1.00
-  },
-  {
-    "zoneId": "MCE_WESTBOUND",
-    "gantryIds": [90, 91],
-    "location": "MCE Westbound before exit to Central Blvd / Maxwell Rd",
-    "dayType": "Weekdays",
-    "startTime": "09:55",
-    "endTime": "10:00",
-    "baseRate": 0.50
+    "baseRate": 0.5
   },
   {
     "zoneId": "MCE_EASTBOUND",
-    "gantryIds": [92, 93],
-    "location": "MCE Eastbound after entry from Maxwell Rd / slip rd Marina Blvd",
-    "dayType": "Weekdays",
-    "startTime": "07:30",
-    "endTime": "07:35",
-    "baseRate": 1.00
-  },
-  {
-    "zoneId": "MCE_EASTBOUND",
-    "gantryIds": [92, 93],
-    "location": "MCE Eastbound after entry from Maxwell Rd / slip rd Marina Blvd",
-    "dayType": "Weekdays",
-    "startTime": "07:35",
-    "endTime": "08:30",
-    "baseRate": 2.00
-  },
-  {
-    "zoneId": "MCE_EASTBOUND",
-    "gantryIds": [92, 93],
-    "location": "MCE Eastbound after entry from Maxwell Rd / slip rd Marina Blvd",
-    "dayType": "Weekdays",
-    "startTime": "08:30",
-    "endTime": "09:25",
-    "baseRate": 1.00
-  },
-  {
-    "zoneId": "MCE_EASTBOUND",
-    "gantryIds": [92, 93],
-    "location": "MCE Eastbound after entry from Maxwell Rd / slip rd Marina Blvd",
-    "dayType": "Weekdays",
-    "startTime": "09:25",
-    "endTime": "09:30",
-    "baseRate": 0.50
-  },
-  {
-    "zoneId": "MCE_EASTBOUND",
-    "gantryIds": [92, 93],
+    "gantryIds": [
+      92,
+      93
+    ],
     "location": "MCE Eastbound after entry from Maxwell Rd / slip rd Marina Blvd",
     "dayType": "Weekdays",
     "startTime": "18:30",
-    "endTime": "18:55",
-    "baseRate": 1.00
+    "endTime": "18:35",
+    "baseRate": 0.5
   },
   {
     "zoneId": "MCE_EASTBOUND",
-    "gantryIds": [92, 93],
+    "gantryIds": [
+      92,
+      93
+    ],
+    "location": "MCE Eastbound after entry from Maxwell Rd / slip rd Marina Blvd",
+    "dayType": "Weekdays",
+    "startTime": "18:35",
+    "endTime": "18:55",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "MCE_EASTBOUND",
+    "gantryIds": [
+      92,
+      93
+    ],
     "location": "MCE Eastbound after entry from Maxwell Rd / slip rd Marina Blvd",
     "dayType": "Weekdays",
     "startTime": "18:55",
     "endTime": "19:00",
-    "baseRate": 0.50
+    "baseRate": 0.5
   },
   {
     "zoneId": "PIE_EASTBOUND_KALLANG",
-    "gantryIds": [32, 45],
+    "gantryIds": [
+      32,
+      45
+    ],
     "location": "PIE after Kallang Bahru exit / Slip Rd into Bendemeer Rd",
     "dayType": "Weekdays",
     "startTime": "07:30",
     "endTime": "07:35",
-    "baseRate": 1.00
+    "baseRate": 1
   },
   {
     "zoneId": "PIE_EASTBOUND_KALLANG",
-    "gantryIds": [32, 45],
+    "gantryIds": [
+      32,
+      45
+    ],
     "location": "PIE after Kallang Bahru exit / Slip Rd into Bendemeer Rd",
     "dayType": "Weekdays",
     "startTime": "07:35",
-    "endTime": "08:00",
-    "baseRate": 2.00
+    "endTime": "07:55",
+    "baseRate": 2
   },
   {
     "zoneId": "PIE_EASTBOUND_KALLANG",
-    "gantryIds": [32, 45],
+    "gantryIds": [
+      32,
+      45
+    ],
+    "location": "PIE after Kallang Bahru exit / Slip Rd into Bendemeer Rd",
+    "dayType": "Weekdays",
+    "startTime": "07:55",
+    "endTime": "08:00",
+    "baseRate": 2
+  },
+  {
+    "zoneId": "PIE_EASTBOUND_KALLANG",
+    "gantryIds": [
+      32,
+      45
+    ],
     "location": "PIE after Kallang Bahru exit / Slip Rd into Bendemeer Rd",
     "dayType": "Weekdays",
     "startTime": "08:00",
     "endTime": "08:05",
-    "baseRate": 3.00
+    "baseRate": 2
   },
   {
     "zoneId": "PIE_EASTBOUND_KALLANG",
-    "gantryIds": [32, 45],
+    "gantryIds": [
+      32,
+      45
+    ],
     "location": "PIE after Kallang Bahru exit / Slip Rd into Bendemeer Rd",
     "dayType": "Weekdays",
     "startTime": "08:05",
-    "endTime": "08:30",
-    "baseRate": 4.00
+    "endTime": "08:25",
+    "baseRate": 2
   },
   {
     "zoneId": "PIE_EASTBOUND_KALLANG",
-    "gantryIds": [32, 45],
+    "gantryIds": [
+      32,
+      45
+    ],
+    "location": "PIE after Kallang Bahru exit / Slip Rd into Bendemeer Rd",
+    "dayType": "Weekdays",
+    "startTime": "08:25",
+    "endTime": "08:30",
+    "baseRate": 1.5
+  },
+  {
+    "zoneId": "PIE_EASTBOUND_KALLANG",
+    "gantryIds": [
+      32,
+      45
+    ],
     "location": "PIE after Kallang Bahru exit / Slip Rd into Bendemeer Rd",
     "dayType": "Weekdays",
     "startTime": "08:30",
     "endTime": "08:35",
-    "baseRate": 4.50
+    "baseRate": 1
   },
   {
     "zoneId": "PIE_EASTBOUND_KALLANG",
-    "gantryIds": [32, 45],
+    "gantryIds": [
+      32,
+      45
+    ],
     "location": "PIE after Kallang Bahru exit / Slip Rd into Bendemeer Rd",
     "dayType": "Weekdays",
     "startTime": "08:35",
     "endTime": "08:55",
-    "baseRate": 5.00
+    "baseRate": 1
   },
   {
     "zoneId": "PIE_EASTBOUND_KALLANG",
-    "gantryIds": [32, 45],
+    "gantryIds": [
+      32,
+      45
+    ],
     "location": "PIE after Kallang Bahru exit / Slip Rd into Bendemeer Rd",
     "dayType": "Weekdays",
     "startTime": "08:55",
     "endTime": "09:00",
-    "baseRate": 4.50
+    "baseRate": 1
   },
   {
     "zoneId": "PIE_EASTBOUND_KALLANG",
-    "gantryIds": [32, 45],
+    "gantryIds": [
+      32,
+      45
+    ],
     "location": "PIE after Kallang Bahru exit / Slip Rd into Bendemeer Rd",
     "dayType": "Weekdays",
     "startTime": "09:00",
-    "endTime": "09:25",
-    "baseRate": 4.00
+    "endTime": "09:05",
+    "baseRate": 1
   },
   {
     "zoneId": "PIE_EASTBOUND_KALLANG",
-    "gantryIds": [32, 45],
+    "gantryIds": [
+      32,
+      45
+    ],
+    "location": "PIE after Kallang Bahru exit / Slip Rd into Bendemeer Rd",
+    "dayType": "Weekdays",
+    "startTime": "09:05",
+    "endTime": "09:25",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "PIE_EASTBOUND_KALLANG",
+    "gantryIds": [
+      32,
+      45
+    ],
     "location": "PIE after Kallang Bahru exit / Slip Rd into Bendemeer Rd",
     "dayType": "Weekdays",
     "startTime": "09:25",
     "endTime": "09:30",
-    "baseRate": 3.50
+    "baseRate": 0.5
   },
   {
-    "zoneId": "PIE_EASTBOUND_KALLANG",
-    "gantryIds": [32, 45],
-    "location": "PIE after Kallang Bahru exit / Slip Rd into Bendemeer Rd",
+    "zoneId": "PIE_EASTBOUND_ADAM",
+    "gantryIds": [
+      37,
+      38
+    ],
+    "location": "PIE eastbound after Adam Rd and Mount Pleasant slip rd",
+    "dayType": "Weekdays",
+    "startTime": "07:30",
+    "endTime": "07:35",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "PIE_EASTBOUND_ADAM",
+    "gantryIds": [
+      37,
+      38
+    ],
+    "location": "PIE eastbound after Adam Rd and Mount Pleasant slip rd",
+    "dayType": "Weekdays",
+    "startTime": "07:35",
+    "endTime": "07:55",
+    "baseRate": 2
+  },
+  {
+    "zoneId": "PIE_EASTBOUND_ADAM",
+    "gantryIds": [
+      37,
+      38
+    ],
+    "location": "PIE eastbound after Adam Rd and Mount Pleasant slip rd",
+    "dayType": "Weekdays",
+    "startTime": "07:55",
+    "endTime": "08:00",
+    "baseRate": 2
+  },
+  {
+    "zoneId": "PIE_EASTBOUND_ADAM",
+    "gantryIds": [
+      37,
+      38
+    ],
+    "location": "PIE eastbound after Adam Rd and Mount Pleasant slip rd",
+    "dayType": "Weekdays",
+    "startTime": "08:00",
+    "endTime": "08:05",
+    "baseRate": 3
+  },
+  {
+    "zoneId": "PIE_EASTBOUND_ADAM",
+    "gantryIds": [
+      37,
+      38
+    ],
+    "location": "PIE eastbound after Adam Rd and Mount Pleasant slip rd",
+    "dayType": "Weekdays",
+    "startTime": "08:05",
+    "endTime": "08:25",
+    "baseRate": 4
+  },
+  {
+    "zoneId": "PIE_EASTBOUND_ADAM",
+    "gantryIds": [
+      37,
+      38
+    ],
+    "location": "PIE eastbound after Adam Rd and Mount Pleasant slip rd",
+    "dayType": "Weekdays",
+    "startTime": "08:25",
+    "endTime": "08:30",
+    "baseRate": 4
+  },
+  {
+    "zoneId": "PIE_EASTBOUND_ADAM",
+    "gantryIds": [
+      37,
+      38
+    ],
+    "location": "PIE eastbound after Adam Rd and Mount Pleasant slip rd",
+    "dayType": "Weekdays",
+    "startTime": "08:30",
+    "endTime": "08:35",
+    "baseRate": 4.5
+  },
+  {
+    "zoneId": "PIE_EASTBOUND_ADAM",
+    "gantryIds": [
+      37,
+      38
+    ],
+    "location": "PIE eastbound after Adam Rd and Mount Pleasant slip rd",
+    "dayType": "Weekdays",
+    "startTime": "08:35",
+    "endTime": "08:55",
+    "baseRate": 5
+  },
+  {
+    "zoneId": "PIE_EASTBOUND_ADAM",
+    "gantryIds": [
+      37,
+      38
+    ],
+    "location": "PIE eastbound after Adam Rd and Mount Pleasant slip rd",
+    "dayType": "Weekdays",
+    "startTime": "08:55",
+    "endTime": "09:00",
+    "baseRate": 4.5
+  },
+  {
+    "zoneId": "PIE_EASTBOUND_ADAM",
+    "gantryIds": [
+      37,
+      38
+    ],
+    "location": "PIE eastbound after Adam Rd and Mount Pleasant slip rd",
+    "dayType": "Weekdays",
+    "startTime": "09:00",
+    "endTime": "09:05",
+    "baseRate": 4
+  },
+  {
+    "zoneId": "PIE_EASTBOUND_ADAM",
+    "gantryIds": [
+      37,
+      38
+    ],
+    "location": "PIE eastbound after Adam Rd and Mount Pleasant slip rd",
+    "dayType": "Weekdays",
+    "startTime": "09:05",
+    "endTime": "09:25",
+    "baseRate": 4
+  },
+  {
+    "zoneId": "PIE_EASTBOUND_ADAM",
+    "gantryIds": [
+      37,
+      38
+    ],
+    "location": "PIE eastbound after Adam Rd and Mount Pleasant slip rd",
+    "dayType": "Weekdays",
+    "startTime": "09:25",
+    "endTime": "09:30",
+    "baseRate": 3.5
+  },
+  {
+    "zoneId": "PIE_EASTBOUND_ADAM",
+    "gantryIds": [
+      37,
+      38
+    ],
+    "location": "PIE eastbound after Adam Rd and Mount Pleasant slip rd",
     "dayType": "Weekdays",
     "startTime": "09:30",
-    "endTime": "09:55",
-    "baseRate": 3.00
+    "endTime": "09:35",
+    "baseRate": 3
   },
   {
-    "zoneId": "PIE_EASTBOUND_KALLANG",
-    "gantryIds": [32, 45],
-    "location": "PIE after Kallang Bahru exit / Slip Rd into Bendemeer Rd",
+    "zoneId": "PIE_EASTBOUND_ADAM",
+    "gantryIds": [
+      37,
+      38
+    ],
+    "location": "PIE eastbound after Adam Rd and Mount Pleasant slip rd",
+    "dayType": "Weekdays",
+    "startTime": "09:35",
+    "endTime": "09:55",
+    "baseRate": 3
+  },
+  {
+    "zoneId": "PIE_EASTBOUND_ADAM",
+    "gantryIds": [
+      37,
+      38
+    ],
+    "location": "PIE eastbound after Adam Rd and Mount Pleasant slip rd",
     "dayType": "Weekdays",
     "startTime": "09:55",
     "endTime": "10:00",
-    "baseRate": 1.50
-  },
-  {
-    "zoneId": "PIE_EASTBOUND_ADAM",
-    "gantryIds": [37, 38],
-    "location": "PIE eastbound after Adam Rd and Mount Pleasant slip rd",
-    "dayType": "Weekdays",
-    "startTime": "07:30",
-    "endTime": "07:35",
-    "baseRate": 0.50
-  },
-  {
-    "zoneId": "PIE_EASTBOUND_ADAM",
-    "gantryIds": [37, 38],
-    "location": "PIE eastbound after Adam Rd and Mount Pleasant slip rd",
-    "dayType": "Weekdays",
-    "startTime": "07:35",
-    "endTime": "08:30",
-    "baseRate": 1.00
-  },
-  {
-    "zoneId": "PIE_EASTBOUND_ADAM",
-    "gantryIds": [37, 38],
-    "location": "PIE eastbound after Adam Rd and Mount Pleasant slip rd",
-    "dayType": "Weekdays",
-    "startTime": "08:30",
-    "endTime": "08:35",
-    "baseRate": 1.50
-  },
-  {
-    "zoneId": "PIE_EASTBOUND_ADAM",
-    "gantryIds": [37, 38],
-    "location": "PIE eastbound after Adam Rd and Mount Pleasant slip rd",
-    "dayType": "Weekdays",
-    "startTime": "08:35",
-    "endTime": "08:55",
-    "baseRate": 2.00
-  },
-  {
-    "zoneId": "PIE_EASTBOUND_ADAM",
-    "gantryIds": [37, 38],
-    "location": "PIE eastbound after Adam Rd and Mount Pleasant slip rd",
-    "dayType": "Weekdays",
-    "startTime": "08:55",
-    "endTime": "09:00",
-    "baseRate": 1.50
-  },
-  {
-    "zoneId": "PIE_EASTBOUND_ADAM",
-    "gantryIds": [37, 38],
-    "location": "PIE eastbound after Adam Rd and Mount Pleasant slip rd",
-    "dayType": "Weekdays",
-    "startTime": "09:00",
-    "endTime": "09:25",
-    "baseRate": 1.00
-  },
-  {
-    "zoneId": "PIE_EASTBOUND_ADAM",
-    "gantryIds": [37, 38],
-    "location": "PIE eastbound after Adam Rd and Mount Pleasant slip rd",
-    "dayType": "Weekdays",
-    "startTime": "09:25",
-    "endTime": "09:30",
-    "baseRate": 0.50
+    "baseRate": 1.5
   },
   {
     "zoneId": "PIE_SLIP_CTE",
-    "gantryIds": [42],
+    "gantryIds": [
+      42
+    ],
     "location": "PIE slip road into CTE",
     "dayType": "Weekdays",
     "startTime": "07:30",
     "endTime": "07:35",
-    "baseRate": 0.50
+    "baseRate": 0.5
   },
   {
     "zoneId": "PIE_SLIP_CTE",
-    "gantryIds": [42],
+    "gantryIds": [
+      42
+    ],
     "location": "PIE slip road into CTE",
     "dayType": "Weekdays",
     "startTime": "07:35",
-    "endTime": "08:30",
-    "baseRate": 1.00
+    "endTime": "07:55",
+    "baseRate": 1
   },
   {
     "zoneId": "PIE_SLIP_CTE",
-    "gantryIds": [42],
+    "gantryIds": [
+      42
+    ],
     "location": "PIE slip road into CTE",
     "dayType": "Weekdays",
-    "startTime": "08:30",
-    "endTime": "08:35",
-    "baseRate": 1.50
-  },
-  {
-    "zoneId": "PIE_SLIP_CTE",
-    "gantryIds": [42],
-    "location": "PIE slip road into CTE",
-    "dayType": "Weekdays",
-    "startTime": "08:35",
-    "endTime": "08:55",
-    "baseRate": 2.00
-  },
-  {
-    "zoneId": "PIE_SLIP_CTE",
-    "gantryIds": [42],
-    "location": "PIE slip road into CTE",
-    "dayType": "Weekdays",
-    "startTime": "08:55",
-    "endTime": "09:00",
-    "baseRate": 1.50
-  },
-  {
-    "zoneId": "PIE_SLIP_CTE",
-    "gantryIds": [42],
-    "location": "PIE slip road into CTE",
-    "dayType": "Weekdays",
-    "startTime": "09:00",
-    "endTime": "09:25",
-    "baseRate": 1.00
-  },
-  {
-    "zoneId": "PIE_SLIP_CTE",
-    "gantryIds": [42],
-    "location": "PIE slip road into CTE",
-    "dayType": "Weekdays",
-    "startTime": "09:25",
-    "endTime": "09:30",
-    "baseRate": 0.50
-  },
-  {
-    "zoneId": "PIE_WESTBOUND_EUNOS",
-    "gantryIds": [65],
-    "location": "PIE Westbound before Eunos Link",
-    "dayType": "Weekdays",
-    "startTime": "07:30",
-    "endTime": "07:35",
-    "baseRate": 0.50
-  },
-  {
-    "zoneId": "PIE_WESTBOUND_EUNOS",
-    "gantryIds": [65],
-    "location": "PIE Westbound before Eunos Link",
-    "dayType": "Weekdays",
-    "startTime": "07:35",
-    "endTime": "08:30",
-    "baseRate": 1.00
-  },
-  {
-    "zoneId": "PIE_WESTBOUND_EUNOS",
-    "gantryIds": [65],
-    "location": "PIE Westbound before Eunos Link",
-    "dayType": "Weekdays",
-    "startTime": "08:30",
-    "endTime": "08:35",
-    "baseRate": 1.50
-  },
-  {
-    "zoneId": "PIE_WESTBOUND_EUNOS",
-    "gantryIds": [65],
-    "location": "PIE Westbound before Eunos Link",
-    "dayType": "Weekdays",
-    "startTime": "08:35",
-    "endTime": "08:55",
-    "baseRate": 2.00
-  },
-  {
-    "zoneId": "PIE_WESTBOUND_EUNOS",
-    "gantryIds": [65],
-    "location": "PIE Westbound before Eunos Link",
-    "dayType": "Weekdays",
-    "startTime": "08:55",
-    "endTime": "09:00",
-    "baseRate": 1.50
-  },
-  {
-    "zoneId": "PIE_WESTBOUND_EUNOS",
-    "gantryIds": [65],
-    "location": "PIE Westbound before Eunos Link",
-    "dayType": "Weekdays",
-    "startTime": "09:00",
-    "endTime": "09:25",
-    "baseRate": 1.00
-  },
-  {
-    "zoneId": "PIE_WESTBOUND_EUNOS",
-    "gantryIds": [65],
-    "location": "PIE Westbound before Eunos Link",
-    "dayType": "Weekdays",
-    "startTime": "09:25",
-    "endTime": "09:30",
-    "baseRate": 0.50
-  },
-  {
-    "zoneId": "AYE_JURONG_TOWN_HALL",
-    "gantryIds": [36],
-    "location": "AYE West of Jurong Town Hall",
-    "dayType": "Weekdays",
-    "startTime": "07:30",
+    "startTime": "07:55",
     "endTime": "08:00",
-    "baseRate": 1.00
+    "baseRate": 1
   },
   {
-    "zoneId": "AYE_JURONG_TOWN_HALL",
-    "gantryIds": [36],
-    "location": "AYE West of Jurong Town Hall",
+    "zoneId": "PIE_SLIP_CTE",
+    "gantryIds": [
+      42
+    ],
+    "location": "PIE slip road into CTE",
     "dayType": "Weekdays",
     "startTime": "08:00",
+    "endTime": "08:05",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "PIE_SLIP_CTE",
+    "gantryIds": [
+      42
+    ],
+    "location": "PIE slip road into CTE",
+    "dayType": "Weekdays",
+    "startTime": "08:05",
+    "endTime": "08:25",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "PIE_SLIP_CTE",
+    "gantryIds": [
+      42
+    ],
+    "location": "PIE slip road into CTE",
+    "dayType": "Weekdays",
+    "startTime": "08:25",
+    "endTime": "08:30",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "PIE_SLIP_CTE",
+    "gantryIds": [
+      42
+    ],
+    "location": "PIE slip road into CTE",
+    "dayType": "Weekdays",
+    "startTime": "08:30",
+    "endTime": "08:35",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "PIE_SLIP_CTE",
+    "gantryIds": [
+      42
+    ],
+    "location": "PIE slip road into CTE",
+    "dayType": "Weekdays",
+    "startTime": "08:35",
+    "endTime": "08:55",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "PIE_SLIP_CTE",
+    "gantryIds": [
+      42
+    ],
+    "location": "PIE slip road into CTE",
+    "dayType": "Weekdays",
+    "startTime": "08:55",
     "endTime": "09:00",
-    "baseRate": 2.00
+    "baseRate": 1
+  },
+  {
+    "zoneId": "PIE_SLIP_CTE",
+    "gantryIds": [
+      42
+    ],
+    "location": "PIE slip road into CTE",
+    "dayType": "Weekdays",
+    "startTime": "09:00",
+    "endTime": "09:05",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "PIE_SLIP_CTE",
+    "gantryIds": [
+      42
+    ],
+    "location": "PIE slip road into CTE",
+    "dayType": "Weekdays",
+    "startTime": "09:05",
+    "endTime": "09:25",
+    "baseRate": 1
+  },
+  {
+    "zoneId": "PIE_SLIP_CTE",
+    "gantryIds": [
+      42
+    ],
+    "location": "PIE slip road into CTE",
+    "dayType": "Weekdays",
+    "startTime": "09:25",
+    "endTime": "09:30",
+    "baseRate": 0.5
   }
 ]
