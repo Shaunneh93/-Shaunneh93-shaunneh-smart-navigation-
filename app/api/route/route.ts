@@ -6,98 +6,117 @@ interface ZoneConfig {
   gantryIds: number[];
   coord: { lat: number; lng: number };
   headingRange?: { min: number; max: number };
+  radiusKm?: number;
+  excludeIfHeadingEast?: boolean;
 }
 
 const ZONE_CONFIGS: ZoneConfig[] = [
   {
     zoneId: 'CTE_SOUTHBOUND_BRADDELL',
     gantryIds: [31, 33, 34],
-    coord: { lat: 1.3410, lng: 103.8560 },
-    headingRange: { min: 135, max: 225 }, // Southbound
+    coord: { lat: 1.3410, lng: 103.8558 },
+    headingRange: { min: 150, max: 210 }, // Southbound
+    radiusKm: 0.10,
   },
   {
     zoneId: 'CTE_SLIP_PIE_SERANGOON',
     gantryIds: [68],
-    coord: { lat: 1.3350, lng: 103.8570 },
-    headingRange: { min: 80, max: 160 }, // Slip road turning SE towards PIE Changi
+    coord: { lat: 1.3350, lng: 103.8572 },
+    headingRange: { min: 90, max: 160 }, // Slip road turning SE towards PIE Changi
+    radiusKm: 0.08,
   },
   {
     zoneId: 'CTE_SOUTHBOUND_AMK',
     gantryIds: [35],
-    coord: { lat: 1.3600, lng: 103.8540 },
-    headingRange: { min: 135, max: 225 }, // Southbound
+    coord: { lat: 1.3595, lng: 103.8542 },
+    headingRange: { min: 150, max: 210 }, // Southbound
+    radiusKm: 0.10,
   },
   {
     zoneId: 'CTE_NORTHBOUND_PIE_BRADDELL',
     gantryIds: [46, 67],
-    coord: { lat: 1.3262, lng: 103.8580 },
-    headingRange: { min: 315, max: 45 }, // Northbound
+    coord: { lat: 1.3262, lng: 103.8585 },
+    headingRange: { min: 330, max: 30 }, // Northbound
+    radiusKm: 0.10,
   },
   {
     zoneId: 'CTE_NORTHBOUND_JALAN_BAHAGIA',
     gantryIds: [51],
-    coord: { lat: 1.3210, lng: 103.8590 },
-    headingRange: { min: 315, max: 45 }, // Northbound
+    coord: { lat: 1.3210, lng: 103.8592 },
+    headingRange: { min: 330, max: 30 }, // Northbound
+    radiusKm: 0.10,
   },
   {
     zoneId: 'AYE_CITYBOUND_SET3',
     gantryIds: [52, 53, 74],
     coord: { lat: 1.3180, lng: 103.7650 },
-    headingRange: { min: 45, max: 135 }, // Eastbound
+    headingRange: { min: 60, max: 120 }, // Eastbound
+    radiusKm: 0.10,
   },
   {
     zoneId: 'AYE_TUASBOUND_NORTH_BUONA_VISTA',
     gantryIds: [41],
     coord: { lat: 1.2980, lng: 103.7870 },
-    headingRange: { min: 225, max: 315 }, // Westbound
+    headingRange: { min: 240, max: 300 }, // Westbound
+    radiusKm: 0.10,
   },
   {
     zoneId: 'AYE_JURONG_TOWN_HALL',
     gantryIds: [36],
     coord: { lat: 1.3275, lng: 103.7435 },
-    headingRange: { min: 225, max: 315 }, // Westbound
+    headingRange: { min: 240, max: 300 }, // Westbound
+    radiusKm: 0.10,
   },
   {
     zoneId: 'KPE_SOUTHBOUND_DEFU',
     gantryIds: [50],
     coord: { lat: 1.3530, lng: 103.8965 },
-    headingRange: { min: 135, max: 225 }, // Southbound
+    headingRange: { min: 150, max: 210 }, // Southbound
+    radiusKm: 0.10,
   },
   {
     zoneId: 'MCE_WESTBOUND',
     gantryIds: [90, 91],
-    coord: { lat: 1.2720, lng: 103.8510 },
-    headingRange: { min: 210, max: 310 }, // Westbound
+    // Precise main trunk coordinate past Maxwell/Central Blvd exit ramp
+    coord: { lat: 1.2705, lng: 103.8470 },
+    headingRange: { min: 220, max: 290 }, // Westbound
+    radiusKm: 0.08,
   },
   {
     zoneId: 'MCE_EASTBOUND',
     gantryIds: [92, 93],
-    coord: { lat: 1.2740, lng: 103.8540 },
-    headingRange: { min: 30, max: 130 }, // Eastbound
+    coord: { lat: 1.2725, lng: 103.8525 },
+    headingRange: { min: 60, max: 120 }, // Eastbound
+    radiusKm: 0.10,
   },
   {
     zoneId: 'PIE_EASTBOUND_KALLANG',
     gantryIds: [32, 45],
     coord: { lat: 1.3220, lng: 103.8640 },
-    headingRange: { min: 45, max: 135 }, // Eastbound
+    headingRange: { min: 60, max: 120 }, // Eastbound
+    radiusKm: 0.10,
   },
   {
     zoneId: 'PIE_EASTBOUND_ADAM',
     gantryIds: [37, 38],
     coord: { lat: 1.3320, lng: 103.8290 },
-    headingRange: { min: 45, max: 135 }, // Eastbound
+    headingRange: { min: 60, max: 120 }, // Eastbound
+    radiusKm: 0.10,
   },
   {
     zoneId: 'PIE_SLIP_CTE',
     gantryIds: [42],
-    coord: { lat: 1.3280, lng: 103.8560 },
-    headingRange: { min: 135, max: 225 }, // Southbound onto CTE
+    coord: { lat: 1.3265, lng: 103.8580 },
+    headingRange: { min: 150, max: 210 }, // Southbound onto CTE
+    radiusKm: 0.08,
+    excludeIfHeadingEast: true,
   },
   {
     zoneId: 'PIE_WESTBOUND_EUNOS',
     gantryIds: [65],
     coord: { lat: 1.3280, lng: 103.8990 },
-    headingRange: { min: 225, max: 315 }, // Westbound
+    headingRange: { min: 240, max: 300 }, // Westbound
+    radiusKm: 0.10,
   },
 ];
 
@@ -195,19 +214,23 @@ function detectLtaZoneIds(route: any): { zoneIds: string[]; gantryIds: number[] 
   }
 
   ZONE_CONFIGS.forEach((config) => {
+    const thresholdKm = config.radiusKm || 0.10;
+
     for (let i = 0; i < points.length; i++) {
       const pt = points[i];
       const dist = haversineKm(pt.lat, pt.lng, config.coord.lat, config.coord.lng);
 
-      if (dist <= 0.18) {
-        if (config.headingRange) {
-          const prevPt = points[Math.max(0, i - 2)];
-          const nextPt = points[Math.min(points.length - 1, i + 2)];
-          const heading = calculateBearing(prevPt.lat, prevPt.lng, nextPt.lat, nextPt.lng);
+      if (dist <= thresholdKm) {
+        const prevPt = points[Math.max(0, i - 2)];
+        const nextPt = points[Math.min(points.length - 1, i + 2)];
+        const heading = calculateBearing(prevPt.lat, prevPt.lng, nextPt.lat, nextPt.lng);
 
-          if (!isHeadingMatching(heading, config.headingRange.min, config.headingRange.max)) {
-            continue;
-          }
+        if (config.excludeIfHeadingEast && isHeadingMatching(heading, 45, 135)) {
+          continue;
+        }
+
+        if (config.headingRange && !isHeadingMatching(heading, config.headingRange.min, config.headingRange.max)) {
+          continue;
         }
 
         zoneSet.add(config.zoneId);

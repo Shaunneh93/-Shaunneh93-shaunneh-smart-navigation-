@@ -41,7 +41,7 @@ export default function Home() {
   const [erpRates, setErpRates] = useState<LtaErpRateItem[]>([]);
   const [currentTime, setCurrentTime] = useState<string>('');
   const vehicleType = 'Passenger Cars'; // Hardcoded for cars as requested
-  const [timeMode, setTimeMode] = useState<'live' | 'morning_peak' | 'evening_peak' | 'custom'>('morning_peak');
+  const [timeMode, setTimeMode] = useState<'live' | 'morning_peak' | 'evening_peak' | 'custom'>('live');
   const [customTime, setCustomTime] = useState<string>('08:30');
   const [selectedDayType, setSelectedDayType] = useState<string>('Weekdays');
 
@@ -355,9 +355,9 @@ export default function Home() {
         </div>
         <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: timeMode === 'custom' ? '10px' : '0' }}>
           {[
+            { mode: 'live', label: `🟢 Live SG (${currentTime || 'SG Time'})` },
             { mode: 'morning_peak', label: '🌅 Morning Peak (08:30)' },
             { mode: 'evening_peak', label: '🌆 Evening Peak (18:30)' },
-            { mode: 'live', label: `🟢 Live SG (${currentTime || 'SG Time'})` },
             { mode: 'custom', label: '⏱️ Custom' },
           ].map((item) => (
             <button
