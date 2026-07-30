@@ -340,6 +340,86 @@ function calculateIntersectionScore(leg: any): number {
   return Math.max(1, score);
 }
 
+function getSignatureWaypoint(route: any) {
+  const leg = route.legs?.[0];
+  if (!leg || !leg.steps || leg.steps.length === 0) {
+    const rawPoints = decodePolyline(route.overview_polyline?.points || '');
+    if (rawPoints.length === 0) return [];
+    const midPt = rawPoints[Math.floor(rawPoints.length * 0.5)];
+    return [{ latitude: midPt.lat, longitude: midPt.lng }];
+  }
+
+  const steps = leg.steps;
+  const summaryLower = (route.summary || '').toLowerCase();
+
+  // Common Singapore expressway/road keywords
+  const roadKeywords = [
+    'mce', 'marina coastal',
+    'cte', 'central expw', 'central expressway',
+    'kpe', 'kallang-paya lebar', 'kallang paya lebar',
+    'pie', 'pan island',
+    'aye', 'ayer rajah',
+    'ecp', 'east coast parkway',
+    'sle', 'seletar',
+    'tpe', 'tampines',
+    'bke', 'bukit timah expw', 'bukit timah expressway',
+    'nicoll', 'sheares', 'lornie', 'upper thomson', 'serangoon', 'bendemeer'
+  ];
+
+  // Find keywords present in the summary
+  const matchedSummaryKeywords = roadKeywords.filter((kw) => summaryLower.includes(kw));
+
+  let candidateStep: any = null;
+
+  // 1. Search for a step matching summary keywords
+  if (matchedSummaryKeywords.length > 0) {
+    let maxDist = -1;
+    for (const step of steps) {
+      const stepText = (step.html_instructions || '').replace(/<[^>]*>?/gm, '').toLowerCase();
+      if (matchedSummaryKeywords.some((kw) => stepText.includes(kw))) {
+        if ((step.distance?.value || 0) > maxDist) {
+          maxDist = step.distance?.value || 0;
+          candidateStep = step;
+        }
+      }
+    }
+  }
+
+  // 2. Fallback: Find the longest step in the route
+  if (!candidateStep) {
+    let maxDist = -1;
+    for (const step of steps) {
+      const dist = step.distance?.value || 0;
+      if (dist > maxDist) {
+        maxDist = dist;
+        candidateStep = step;
+      }
+    }
+  }
+
+  // Decode candidate step polyline or use step start/end midpoint
+  if (candidateStep) {
+    if (candidateStep.polyline?.points) {
+      const stepPoints = decodePolyline(candidateStep.polyline.points);
+      if (stepPoints.length > 0) {
+        const midPt = stepPoints[Math.floor(stepPoints.length * 0.5)];
+        return [{ latitude: midPt.lat, longitude: midPt.lng }];
+      }
+    }
+    if (candidateStep.start_location && candidateStep.end_location) {
+      const midLat = (candidateStep.start_location.lat + candidateStep.end_location.lat) / 2;
+      const midLng = (candidateStep.start_location.lng + candidateStep.end_location.lng) / 2;
+      return [{ latitude: midLat, longitude: midLng }];
+    }
+  }
+
+  // Ultimate fallback to overview polyline midpoint
+  const rawPoints = decodePolyline(route.overview_polyline?.points || '');
+  if (rawPoints.length === 0) return [];
+  const midPt = rawPoints[Math.floor(rawPoints.length * 0.5)];
+  return [{ latitude: midPt.lat, longitude: midPt.lng }];
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -434,13 +514,7 @@ export async function POST(request: Request) {
         startAddress: leg.start_address,
         endAddress: leg.end_address,
         overviewPolyline: route.overview_polyline?.points,
-        waypoints: (() => {
-          const rawPoints = decodePolyline(route.overview_polyline?.points || '');
-          if (rawPoints.length === 0) return [];
-          // Pick the exact midpoint along the road centerline (45%-55% along polyline)
-          const midPt = rawPoints[Math.floor(rawPoints.length * 0.5)];
-          return [{ latitude: midPt.lat, longitude: midPt.lng }];
-        })(),
+        waypoints: getSignatureWaypoint(route),
       };
     });
 
