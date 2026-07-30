@@ -16,6 +16,25 @@ export interface LtaErpRateItem {
   ChargeAmount: number;
 }
 
+export interface FuelPreset {
+  id: string;
+  label: string;
+  consumptionKmL: number; // km/L
+  consumptionLPer100Km: number; // L/100km
+  isEv?: boolean;
+}
+
+const FUEL_PRESETS: FuelPreset[] = [
+  { id: 'petrol_104kml', label: '🚗 Standard Car (10.4 km/L / 9.6 L/100km)', consumptionKmL: 10.4, consumptionLPer100Km: 9.615 },
+  { id: 'petrol_sedan', label: '🚘 Sedan (14.3 km/L / 7.0 L/100km)', consumptionKmL: 14.285, consumptionLPer100Km: 7.0 },
+  { id: 'petrol_suv', label: '🚙 SUV / Crossover (11.8 km/L / 8.5 L/100km)', consumptionKmL: 11.765, consumptionLPer100Km: 8.5 },
+  { id: 'hybrid', label: '⚡ Hybrid Car (25.0 km/L / 4.0 L/100km)', consumptionKmL: 25.0, consumptionLPer100Km: 4.0 },
+  { id: 'ev', label: '🔋 Electric Vehicle (~0.15 kWh/km)', consumptionKmL: 0, consumptionLPer100Km: 0, isEv: true },
+  { id: 'motorcycle', label: '🛵 Motorcycle (28.6 km/L / 3.5 L/100km)', consumptionKmL: 28.57, consumptionLPer100Km: 3.5 },
+  { id: 'van', label: '🚐 Commercial Van (10.5 km/L / 9.5 L/100km)', consumptionKmL: 10.526, consumptionLPer100Km: 9.5 },
+  { id: 'custom', label: '⚙️ Custom Fuel Efficiency', consumptionKmL: 10.4, consumptionLPer100Km: 9.615 },
+];
+
 export default function Home() {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
@@ -44,6 +63,12 @@ export default function Home() {
   const [timeMode, setTimeMode] = useState<'live' | 'morning_peak' | 'evening_peak' | 'custom'>('live');
   const [customTime, setCustomTime] = useState<string>('08:30');
   const [selectedDayType, setSelectedDayType] = useState<string>('Weekdays');
+
+  // Fuel Efficiency Estimation State
+  const [fuelPreset, setFuelPreset] = useState<string>('petrol_104kml');
+  const [fuelUnit, setFuelUnit] = useState<'kml' | 'l100km'>('kml');
+  const [customKmL, setCustomKmL] = useState<number>(10.4);
+  const [customConsumption, setCustomConsumption] = useState<number>(9.62);
 
   // Fetch ERP rates when vehicleType changes
   useEffect(() => {
@@ -110,6 +135,16 @@ export default function Home() {
         activeFee: number;
         maxPeakFee: number;
         erpPenalty: number;
+        fuelLiters: number;
+        baseFuelLiters: number;
+        trafficOverheadLiters: number;
+        fuelUnitText: string;
+        trafficConditionText: string;
+        avgSpeedKmH: number;
+        speedFactor: number;
+        fuelLabel: string;
+        isEv: boolean;
+        fuelPenalty: number;
         compositeScore: number;
         zones: Array<{ zoneId: string; name: string; activeFee: number; peakFee: number; gantries: number[] }>;
       }
@@ -134,32 +169,36 @@ export default function Home() {
       uniqueZoneIds.forEach((zoneId) => {
         // Find all matching rate entries for this zoneId in erpRates
         const zoneRates = erpRates.filter(
-          (rate: any) => String(rate.ZoneID || rate.ZoneId || '').trim().toUpperCase() === zoneId
+          (rate: any) =>
+            String(rate.zoneId || rate.ZoneID || rate.ZoneId || '').trim().toUpperCase() === zoneId
         );
 
         // Max peak fee for this zone
         const peakFee = zoneRates.reduce(
-          (max, r: any) => Math.max(max, Number(r.ChargeAmount || r.Charge || 0)),
+          (max, r: any) => Math.max(max, Number(r.baseRate ?? r.ChargeAmount ?? r.Charge ?? 0)),
           0
         );
 
         // Active fee at effective time
         const activeRateItem = zoneRates.find((rate: any) => {
-          if (rate.DayType && rate.DayType !== selectedDayType && rate.DayType !== 'Everyday') {
+          const day = rate.dayType || rate.DayType;
+          if (day && day !== selectedDayType && day !== 'Everyday') {
             return false;
           }
-          const start = String(rate.StartTime || '').slice(0, 5);
-          const end = String(rate.EndTime || '').slice(0, 5);
+          const start = String(rate.startTime || rate.StartTime || '').slice(0, 5);
+          const end = String(rate.endTime || rate.EndTime || '').slice(0, 5);
           if (!start || !end) return false;
           return formattedTime >= start && formattedTime < end;
         });
 
-        const activeFee = activeRateItem ? Number((activeRateItem as any).ChargeAmount || (activeRateItem as any).Charge || 0) : 0;
+        const activeFee = activeRateItem
+          ? Number((activeRateItem as any).baseRate ?? (activeRateItem as any).ChargeAmount ?? (activeRateItem as any).Charge ?? 0)
+          : 0;
 
         totalActiveFee += activeFee;
         totalMaxPeakFee += peakFee;
 
-        const zoneGantries = (zoneRates[0] as any)?.GantryIDs || (route.gantryIds || []);
+        const zoneGantries = (zoneRates[0] as any)?.gantryIds || (zoneRates[0] as any)?.GantryIDs || (route.gantryIds || []);
 
         detectedZones.push({
           zoneId: String(zoneId),
@@ -170,19 +209,82 @@ export default function Home() {
         });
       });
 
-      // 🔴 Scaled ERP Penalty: $1.00 ERP = 5.0 PTS
-      const erpPenalty = totalActiveFee * 5.0;
-
       const durationMin = route.durationMin ?? 0;
       const intersectionScore = route.intersectionScore ?? route.trafficLightScore ?? 0;
       const distanceKm = Number(route.distanceKm ?? 0);
+
+      // 🚗 Average Speed & Traffic Congestion Multiplier
+      const avgSpeedKmH = durationMin > 0 ? (distanceKm / (durationMin / 60)) : 45;
+      let speedFactor = 1.0;
+      let trafficConditionText = 'Smooth flow';
+
+      if (avgSpeedKmH < 20) {
+        speedFactor = 1.35; // Heavy crawling congestion (+35% fuel)
+        trafficConditionText = 'Heavy congestion (<20 km/h)';
+      } else if (avgSpeedKmH < 35) {
+        speedFactor = 1.20; // Stop-and-go urban traffic (+20% fuel)
+        trafficConditionText = 'Slow traffic (20–35 km/h)';
+      } else if (avgSpeedKmH < 50) {
+        speedFactor = 1.10; // Moderate city traffic (+10% fuel)
+        trafficConditionText = 'Moderate city traffic (35–50 km/h)';
+      } else if (avgSpeedKmH <= 80) {
+        speedFactor = 1.00; // Optimal cruising flow
+        trafficConditionText = 'Cruising speed (50–80 km/h)';
+      } else {
+        speedFactor = 1.05; // High-speed drag (>80 km/h)
+        trafficConditionText = 'High-speed expressway (>80 km/h)';
+      }
+
+      // ⛽ Base Consumption, Traffic Lights & Speed Factor Calculation
+      const preset = FUEL_PRESETS.find((p) => p.id === fuelPreset) || FUEL_PRESETS[0];
+      let fuelLiters = 0;
+      let baseFuelLiters = 0;
+      let trafficOverheadLiters = 0;
+      let isEv = false;
+      let fuelLabel = '';
+      let fuelUnitText = 'L';
+
+      if (preset.isEv) {
+        isEv = true;
+        fuelUnitText = 'kWh';
+        const baseKwh = distanceKm * 0.15; // 0.15 kWh/km base
+        const startStopKwh = intersectionScore * 0.005; // 0.005 kWh per traffic light
+        const totalKwh = (baseKwh * speedFactor) + startStopKwh;
+        fuelLiters = totalKwh;
+        baseFuelLiters = baseKwh;
+        trafficOverheadLiters = totalKwh - baseKwh;
+        fuelLabel = `~${totalKwh.toFixed(2)} kWh (~${baseKwh.toFixed(2)} kWh base + ${trafficOverheadLiters.toFixed(2)} kWh traffic & lights)`;
+      } else {
+        let kmL = 10.4;
+        if (fuelPreset === 'custom') {
+          if (fuelUnit === 'kml') {
+            kmL = customKmL > 0 ? customKmL : 10.4;
+          } else {
+            const l100 = customConsumption > 0 ? customConsumption : 9.62;
+            kmL = 100 / l100;
+          }
+        } else {
+          kmL = preset.consumptionKmL || (preset.consumptionLPer100Km > 0 ? 100 / preset.consumptionLPer100Km : 10.4);
+        }
+
+        baseFuelLiters = distanceKm / kmL;
+        const startStopLiters = intersectionScore * 0.02; // ~20ml fuel per traffic light stop & go
+        fuelLiters = (baseFuelLiters * speedFactor) + startStopLiters;
+        trafficOverheadLiters = fuelLiters - baseFuelLiters;
+        fuelLabel = `~${fuelLiters.toFixed(2)} L (~${baseFuelLiters.toFixed(2)} L base + ${trafficOverheadLiters.toFixed(2)} L traffic & ${intersectionScore} lights)`;
+      }
+
+      // 🔴 Penalties
+      const erpPenalty = totalActiveFee * 5.0; // $1.00 ERP = 5.0 pts
+      const fuelPenalty = isEv ? (fuelLiters * 3.0) : (fuelLiters * 10.0); // 1.0 L = 10.0 pts
 
       const compositeScore = Number(
         (
           durationMin * 1.0 +
           intersectionScore * 0.5 +
-          distanceKm * 0.2 +
-          erpPenalty
+          distanceKm * 0.1 +
+          erpPenalty +
+          fuelPenalty
         ).toFixed(1)
       );
 
@@ -196,13 +298,23 @@ export default function Home() {
         activeFee: totalActiveFee,
         maxPeakFee: totalMaxPeakFee,
         erpPenalty,
+        fuelLiters,
+        baseFuelLiters,
+        trafficOverheadLiters,
+        fuelUnitText,
+        trafficConditionText,
+        avgSpeedKmH,
+        speedFactor,
+        fuelLabel,
+        isEv,
+        fuelPenalty,
         compositeScore,
         zones: detectedZones,
       };
     });
 
     return { liveErpMap: costMap, routeErpSummaryMap: summaryMap, computedWinnerId: bestRouteId };
-  }, [currentTime, erpRates, routes, timeMode, customTime, selectedDayType]);
+  }, [currentTime, erpRates, routes, timeMode, customTime, selectedDayType, fuelPreset, fuelUnit, customKmL, customConsumption]);
 
   const onOriginPlaceChanged = () => {
     if (originAutocompleteRef.current) {
@@ -415,6 +527,136 @@ export default function Home() {
         )}
       </div>
 
+      {/* FUEL CONSUMPTION CONTROLS */}
+      <div style={{ backgroundColor: '#0f172a', padding: '16px', borderRadius: '8px', marginBottom: '16px', border: '1px solid #334155' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+          <label style={{ fontSize: '12px', fontWeight: 'bold', color: '#94a3b8' }}>
+            ⛽ ESTIMATED FUEL CONSUMPTION & EFFICIENCY
+          </label>
+          <span style={{ fontSize: '11px', color: '#38bdf8', backgroundColor: '#1e293b', padding: '3px 8px', borderRadius: '6px', border: '1px solid #0284c7', fontWeight: 'bold' }}>
+            🚦 Speed & Light Overhead Included
+          </span>
+        </div>
+
+        <div style={{ marginBottom: '8px' }}>
+          <select
+            value={fuelPreset}
+            onChange={(e) => setFuelPreset(e.target.value)}
+            style={{
+              width: '100%',
+              padding: '8px 10px',
+              borderRadius: '6px',
+              border: '1px solid #475569',
+              backgroundColor: '#1e293b',
+              color: '#fff',
+              fontSize: '13px',
+            }}
+          >
+            {FUEL_PRESETS.map((preset) => (
+              <option key={preset.id} value={preset.id}>
+                {preset.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {fuelPreset === 'custom' && (
+          <div style={{ marginTop: '10px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+              <label style={{ fontSize: '11px', color: '#94a3b8' }}>Custom Efficiency Value:</label>
+              <div style={{ display: 'flex', gap: '4px' }}>
+                <button
+                  type="button"
+                  onClick={() => setFuelUnit('kml')}
+                  style={{
+                    fontSize: '10px',
+                    padding: '2px 8px',
+                    borderRadius: '4px',
+                    border: '1px solid #475569',
+                    backgroundColor: fuelUnit === 'kml' ? '#0284c7' : '#1e293b',
+                    color: '#fff',
+                    cursor: 'pointer',
+                    fontWeight: fuelUnit === 'kml' ? 'bold' : 'normal',
+                  }}
+                >
+                  km/L
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setFuelUnit('l100km')}
+                  style={{
+                    fontSize: '10px',
+                    padding: '2px 8px',
+                    borderRadius: '4px',
+                    border: '1px solid #475569',
+                    backgroundColor: fuelUnit === 'l100km' ? '#0284c7' : '#1e293b',
+                    color: '#fff',
+                    cursor: 'pointer',
+                    fontWeight: fuelUnit === 'l100km' ? 'bold' : 'normal',
+                  }}
+                >
+                  L/100km
+                </button>
+              </div>
+            </div>
+
+            {fuelUnit === 'kml' ? (
+              <input
+                type="number"
+                step="0.1"
+                min="0.5"
+                max="50"
+                value={customKmL}
+                onChange={(e) => {
+                  const val = Number(e.target.value) || 10.4;
+                  setCustomKmL(val);
+                  setCustomConsumption(Number((100 / val).toFixed(2)));
+                }}
+                placeholder="e.g. 10.4 km/L"
+                style={{
+                  width: '100%',
+                  padding: '6px 8px',
+                  borderRadius: '6px',
+                  border: '1px solid #0284c7',
+                  backgroundColor: '#1e293b',
+                  color: '#fff',
+                  fontSize: '12px',
+                  boxSizing: 'border-box',
+                }}
+              />
+            ) : (
+              <input
+                type="number"
+                step="0.1"
+                min="0.5"
+                max="30"
+                value={customConsumption}
+                onChange={(e) => {
+                  const val = Number(e.target.value) || 9.62;
+                  setCustomConsumption(val);
+                  setCustomKmL(Number((100 / val).toFixed(1)));
+                }}
+                placeholder="e.g. 9.6 L/100km"
+                style={{
+                  width: '100%',
+                  padding: '6px 8px',
+                  borderRadius: '6px',
+                  border: '1px solid #0284c7',
+                  backgroundColor: '#1e293b',
+                  color: '#fff',
+                  fontSize: '12px',
+                  boxSizing: 'border-box',
+                }}
+              />
+            )}
+          </div>
+        )}
+
+        <div style={{ fontSize: '11px', color: '#64748b', marginTop: '8px', lineHeight: '1.4' }}>
+          💡 <em>Fuel model automatically adds extra consumption for slow/crawling traffic (&lt;35 km/h) and start-stop idling at traffic light junctions (~20ml per light).</em>
+        </div>
+      </div>
+
       {/* START LOCATION SEARCH */}
       <div style={{ backgroundColor: '#0f172a', padding: '16px', borderRadius: '8px', marginBottom: '16px', border: '1px solid #334155' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
@@ -516,10 +758,18 @@ export default function Home() {
   const activeErpFee = erpSummary?.activeFee ?? liveErpMap[routeKey] ?? route.erpTotalCost ?? route.erpFee ?? 0;
   const maxPeakFee = erpSummary?.maxPeakFee ?? 0;
   const detectedZones = erpSummary?.zones || [];
-
-  // 🔴 1 Dollar of ERP = 5 Penalty Points
-  const calculatedErpPenalty = erpSummary?.erpPenalty ?? (activeErpFee * 5.0);
+  const fuelLiters = erpSummary?.fuelLiters ?? 0;
+  const baseFuelLiters = erpSummary?.baseFuelLiters ?? 0;
+  const trafficOverheadLiters = erpSummary?.trafficOverheadLiters ?? 0;
+  const fuelUnitText = erpSummary?.fuelUnitText ?? 'L';
+  const trafficConditionText = erpSummary?.trafficConditionText ?? '';
+  const avgSpeedKmH = erpSummary?.avgSpeedKmH ?? 0;
+  const isEv = erpSummary?.isEv ?? false;
+  const erpPenalty = erpSummary?.erpPenalty ?? (activeErpFee * 5.0);
+  const fuelPenalty = erpSummary?.fuelPenalty ?? (isEv ? fuelLiters * 3.0 : fuelLiters * 10.0);
+  const totalCostPenalty = erpPenalty + fuelPenalty;
   const displayCompositeScore = erpSummary?.compositeScore ?? route.compositeScore;
+  const intersectionScore = route.intersectionScore ?? route.trafficLightScore ?? 0;
 
   return (
               <div 
@@ -557,20 +807,31 @@ export default function Home() {
                 </div>
 
 <div style={{ color: '#f1f5f9', fontSize: '14px', lineHeight: '1.8' }}>
-  <div>⏱️ <strong>Time:</strong> {route.durationMin !== undefined ? Number(route.durationMin).toFixed(0) : route.duration || 'N/A'} mins</div>
+  <div>⏱️ <strong>Time:</strong> {route.durationMin !== undefined ? Number(route.durationMin).toFixed(0) : route.duration || 'N/A'} mins ({avgSpeedKmH.toFixed(0)} km/h avg speed)</div>
   <div>🛣️ <strong>Distance:</strong> {route.distanceKm !== undefined ? Number(route.distanceKm).toFixed(1) : route.distance || 'N/A'} km</div>
   
-  {/* ERP Fee Breakdown */}
+  {/* ERP & Fuel Consumption Breakdown Box */}
   <div style={{ backgroundColor: '#0b1329', padding: '10px 12px', borderRadius: '8px', border: '1px solid #334155', margin: '8px 0' }}>
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-      <span style={{ fontWeight: 'bold' }}>💰 Active ERP Fee ({timeMode === 'morning_peak' ? '08:30 Peak' : timeMode === 'evening_peak' ? '18:30 Peak' : timeMode === 'custom' ? customTime : 'Live SG'}):</span>
-      <span style={{ color: activeErpFee > 0 ? '#fbbf24' : '#34d399', fontWeight: 'bold', fontSize: '15px' }}>
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+      <span style={{ fontSize: '13px' }}>💳 Active ERP Toll:</span>
+      <span style={{ color: activeErpFee > 0 ? '#fbbf24' : '#34d399', fontWeight: 'bold', fontSize: '14px' }}>
         ${Number(activeErpFee).toFixed(2)}
       </span>
     </div>
 
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+      <span style={{ fontSize: '13px' }}>{isEv ? '🔋 Energy Consumed:' : '⛽ Fuel Consumed:'}</span>
+      <span style={{ color: '#f59e0b', fontWeight: 'bold', fontSize: '14px' }}>
+        ~{Number(fuelLiters).toFixed(2)} {fuelUnitText}
+      </span>
+    </div>
+
+    <div style={{ fontSize: '11px', color: '#94a3b8', marginBottom: '6px', lineHeight: '1.4' }}>
+      📊 Base: ~{baseFuelLiters.toFixed(2)} {fuelUnitText} | Traffic & {intersectionScore} lights: <span style={{ color: '#38bdf8', fontWeight: 'bold' }}>+{trafficOverheadLiters.toFixed(2)} {fuelUnitText}</span> ({trafficConditionText})
+    </div>
+
     {maxPeakFee > 0 && activeErpFee === 0 && (
-      <div style={{ fontSize: '11px', color: '#38bdf8', marginTop: '4px' }}>
+      <div style={{ fontSize: '11px', color: '#38bdf8', marginTop: '6px' }}>
         ℹ️ Off-peak at selected time. <strong>Peak rate during operating hours: ${Number(maxPeakFee).toFixed(2)}</strong>
       </div>
     )}
@@ -605,16 +866,16 @@ export default function Home() {
         : 'N/A'}
   </div>
 
-{/* ⚠️ ERP Penalty Indicator */}
+{/* ⚠️ Total Cost Penalty Indicator */}
 <div>
-  ⚠️ <strong>ERP Penalty:</strong>{' '}
-  {calculatedErpPenalty > 0 ? (
+  ⚠️ <strong>Toll & Fuel Penalty:</strong>{' '}
+  {totalCostPenalty > 0 ? (
     <span style={{ color: '#f59e0b', fontWeight: 'bold' }}>
-      +{calculatedErpPenalty.toFixed(1)} pts (${activeErpFee.toFixed(2)} @ 5.0 pts/$1)
+      +{totalCostPenalty.toFixed(1)} pts (${activeErpFee.toFixed(2)} ERP + {fuelLiters.toFixed(2)} {fuelUnitText})
     </span>
   ) : (
     <span style={{ color: '#10b981', fontWeight: 'bold' }}>
-      0.0 pts ($0 Toll)
+      0.0 pts ($0 Toll & Minimal Fuel)
     </span>
   )}
 </div>

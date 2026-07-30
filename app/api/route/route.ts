@@ -15,100 +15,100 @@ const ZONE_CONFIGS: ZoneConfig[] = [
     zoneId: 'CTE_SOUTHBOUND_BRADDELL',
     gantryIds: [31, 33, 34],
     coord: { lat: 1.3410, lng: 103.8558 },
-    headingRange: { min: 150, max: 210 }, // Southbound
-    radiusKm: 0.10,
+    headingRange: { min: 120, max: 240 }, // Southbound
+    radiusKm: 0.20,
   },
   {
     zoneId: 'CTE_SLIP_PIE_SERANGOON',
     gantryIds: [68],
     coord: { lat: 1.3350, lng: 103.8572 },
-    headingRange: { min: 90, max: 160 }, // Slip road turning SE towards PIE Changi
-    radiusKm: 0.08,
+    headingRange: { min: 80, max: 170 }, // Slip road turning SE towards PIE Changi
+    radiusKm: 0.12,
   },
   {
     zoneId: 'CTE_SOUTHBOUND_AMK',
     gantryIds: [35],
     coord: { lat: 1.3595, lng: 103.8542 },
-    headingRange: { min: 150, max: 210 }, // Southbound
-    radiusKm: 0.10,
+    headingRange: { min: 120, max: 240 }, // Southbound
+    radiusKm: 0.20,
   },
   {
     zoneId: 'CTE_NORTHBOUND_PIE_BRADDELL',
     gantryIds: [46, 67],
     coord: { lat: 1.3262, lng: 103.8585 },
-    headingRange: { min: 330, max: 30 }, // Northbound
-    radiusKm: 0.10,
+    headingRange: { min: 300, max: 60 }, // Northbound
+    radiusKm: 0.20,
   },
   {
     zoneId: 'CTE_NORTHBOUND_JALAN_BAHAGIA',
     gantryIds: [51],
     coord: { lat: 1.3210, lng: 103.8592 },
-    headingRange: { min: 330, max: 30 }, // Northbound
-    radiusKm: 0.10,
+    headingRange: { min: 300, max: 60 }, // Northbound
+    radiusKm: 0.20,
   },
   {
     zoneId: 'AYE_CITYBOUND_SET3',
     gantryIds: [52, 53, 74],
     coord: { lat: 1.3180, lng: 103.7650 },
-    headingRange: { min: 60, max: 120 }, // Eastbound
-    radiusKm: 0.10,
+    headingRange: { min: 45, max: 135 }, // Eastbound
+    radiusKm: 0.20,
   },
   {
     zoneId: 'AYE_TUASBOUND_NORTH_BUONA_VISTA',
     gantryIds: [41],
     coord: { lat: 1.2980, lng: 103.7870 },
-    headingRange: { min: 240, max: 300 }, // Westbound
-    radiusKm: 0.10,
+    headingRange: { min: 225, max: 315 }, // Westbound
+    radiusKm: 0.20,
   },
   {
     zoneId: 'AYE_JURONG_TOWN_HALL',
     gantryIds: [36],
     coord: { lat: 1.3275, lng: 103.7435 },
-    headingRange: { min: 240, max: 300 }, // Westbound
-    radiusKm: 0.10,
+    headingRange: { min: 225, max: 315 }, // Westbound
+    radiusKm: 0.20,
   },
   {
     zoneId: 'KPE_SOUTHBOUND_DEFU',
     gantryIds: [50],
     coord: { lat: 1.3530, lng: 103.8965 },
-    headingRange: { min: 150, max: 210 }, // Southbound
-    radiusKm: 0.10,
+    headingRange: { min: 120, max: 240 }, // Southbound
+    radiusKm: 0.20,
   },
   {
     zoneId: 'MCE_WESTBOUND',
     gantryIds: [90, 91],
     // Precise main trunk coordinate past Maxwell/Central Blvd exit ramp
     coord: { lat: 1.2705, lng: 103.8470 },
-    headingRange: { min: 220, max: 290 }, // Westbound
-    radiusKm: 0.08,
+    headingRange: { min: 200, max: 300 }, // Westbound
+    radiusKm: 0.12,
   },
   {
     zoneId: 'MCE_EASTBOUND',
     gantryIds: [92, 93],
     coord: { lat: 1.2725, lng: 103.8525 },
-    headingRange: { min: 60, max: 120 }, // Eastbound
-    radiusKm: 0.10,
+    headingRange: { min: 45, max: 135 }, // Eastbound
+    radiusKm: 0.20,
   },
   {
     zoneId: 'PIE_EASTBOUND_KALLANG',
     gantryIds: [32, 45],
     coord: { lat: 1.3220, lng: 103.8640 },
-    headingRange: { min: 60, max: 120 }, // Eastbound
-    radiusKm: 0.10,
+    headingRange: { min: 45, max: 135 }, // Eastbound
+    radiusKm: 0.20,
   },
   {
     zoneId: 'PIE_EASTBOUND_ADAM',
     gantryIds: [37, 38],
     coord: { lat: 1.3320, lng: 103.8290 },
-    headingRange: { min: 60, max: 120 }, // Eastbound
-    radiusKm: 0.10,
+    headingRange: { min: 45, max: 135 }, // Eastbound
+    radiusKm: 0.20,
   },
   {
     zoneId: 'PIE_SLIP_CTE',
     gantryIds: [42],
     coord: { lat: 1.3265, lng: 103.8580 },
-    headingRange: { min: 150, max: 210 }, // Southbound onto CTE
-    radiusKm: 0.08,
+    headingRange: { min: 120, max: 240 }, // Southbound onto CTE
+    radiusKm: 0.18,
     excludeIfHeadingEast: true,
   },
   {
@@ -116,7 +116,7 @@ const ZONE_CONFIGS: ZoneConfig[] = [
     gantryIds: [65],
     coord: { lat: 1.3280, lng: 103.8990 },
     headingRange: { min: 240, max: 300 }, // Westbound
-    radiusKm: 0.10,
+    radiusKm: 0.20,
   },
 ];
 
