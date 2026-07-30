@@ -8,6 +8,7 @@ interface ZoneConfig {
   headingRange?: { min: number; max: number };
   radiusKm?: number;
   excludeIfHeadingEast?: boolean;
+  requiredKeywords?: string[]; // Must match at least one keyword in route summary or instructions
 }
 
 const ZONE_CONFIGS: ZoneConfig[] = [
@@ -17,6 +18,7 @@ const ZONE_CONFIGS: ZoneConfig[] = [
     coord: { lat: 1.3410, lng: 103.8558 },
     headingRange: { min: 100, max: 260 }, // Southbound
     radiusKm: 0.35,
+    requiredKeywords: ['cte', 'central expw', 'central expressway'],
   },
   {
     zoneId: 'CTE_SLIP_PIE_SERANGOON',
@@ -24,6 +26,7 @@ const ZONE_CONFIGS: ZoneConfig[] = [
     coord: { lat: 1.3350, lng: 103.8572 },
     headingRange: { min: 70, max: 180 }, // Slip road turning SE towards PIE Changi
     radiusKm: 0.25,
+    requiredKeywords: ['cte', 'central expw', 'central expressway'],
   },
   {
     zoneId: 'CTE_SOUTHBOUND_AMK',
@@ -31,6 +34,7 @@ const ZONE_CONFIGS: ZoneConfig[] = [
     coord: { lat: 1.3595, lng: 103.8542 },
     headingRange: { min: 100, max: 260 }, // Southbound
     radiusKm: 0.35,
+    requiredKeywords: ['cte', 'central expw', 'central expressway'],
   },
   {
     zoneId: 'CTE_NORTHBOUND_PIE_BRADDELL',
@@ -38,6 +42,7 @@ const ZONE_CONFIGS: ZoneConfig[] = [
     coord: { lat: 1.3262, lng: 103.8585 },
     headingRange: { min: 280, max: 80 }, // Northbound
     radiusKm: 0.35,
+    requiredKeywords: ['cte', 'central expw', 'central expressway'],
   },
   {
     zoneId: 'CTE_NORTHBOUND_JALAN_BAHAGIA',
@@ -45,6 +50,7 @@ const ZONE_CONFIGS: ZoneConfig[] = [
     coord: { lat: 1.3210, lng: 103.8592 },
     headingRange: { min: 280, max: 80 }, // Northbound
     radiusKm: 0.35,
+    requiredKeywords: ['cte', 'central expw', 'central expressway'],
   },
   {
     zoneId: 'AYE_CITYBOUND_SET3',
@@ -52,6 +58,7 @@ const ZONE_CONFIGS: ZoneConfig[] = [
     coord: { lat: 1.3180, lng: 103.7650 },
     headingRange: { min: 30, max: 150 }, // Eastbound
     radiusKm: 0.35,
+    requiredKeywords: ['aye', 'ayer rajah'],
   },
   {
     zoneId: 'AYE_TUASBOUND_NORTH_BUONA_VISTA',
@@ -59,6 +66,7 @@ const ZONE_CONFIGS: ZoneConfig[] = [
     coord: { lat: 1.2980, lng: 103.7870 },
     headingRange: { min: 210, max: 330 }, // Westbound
     radiusKm: 0.35,
+    requiredKeywords: ['aye', 'ayer rajah'],
   },
   {
     zoneId: 'AYE_JURONG_TOWN_HALL',
@@ -66,6 +74,7 @@ const ZONE_CONFIGS: ZoneConfig[] = [
     coord: { lat: 1.3275, lng: 103.7435 },
     headingRange: { min: 210, max: 330 }, // Westbound
     radiusKm: 0.35,
+    requiredKeywords: ['aye', 'ayer rajah'],
   },
   {
     zoneId: 'KPE_SOUTHBOUND_DEFU',
@@ -73,6 +82,7 @@ const ZONE_CONFIGS: ZoneConfig[] = [
     coord: { lat: 1.3530, lng: 103.8965 },
     headingRange: { min: 100, max: 260 }, // Southbound
     radiusKm: 0.35,
+    requiredKeywords: ['kpe', 'kallang-paya lebar', 'kallang paya lebar'],
   },
   {
     zoneId: 'MCE_WESTBOUND',
@@ -80,6 +90,7 @@ const ZONE_CONFIGS: ZoneConfig[] = [
     coord: { lat: 1.2705, lng: 103.8470 },
     headingRange: { min: 180, max: 320 }, // Westbound
     radiusKm: 0.25,
+    requiredKeywords: ['mce', 'marina coastal'],
   },
   {
     zoneId: 'MCE_EASTBOUND',
@@ -87,6 +98,7 @@ const ZONE_CONFIGS: ZoneConfig[] = [
     coord: { lat: 1.2725, lng: 103.8525 },
     headingRange: { min: 30, max: 150 }, // Eastbound
     radiusKm: 0.35,
+    requiredKeywords: ['mce', 'marina coastal'],
   },
   {
     zoneId: 'PIE_EASTBOUND_KALLANG',
@@ -94,6 +106,7 @@ const ZONE_CONFIGS: ZoneConfig[] = [
     coord: { lat: 1.3220, lng: 103.8640 },
     headingRange: { min: 30, max: 150 }, // Eastbound
     radiusKm: 0.35,
+    requiredKeywords: ['pie', 'pan island'],
   },
   {
     zoneId: 'PIE_EASTBOUND_ADAM',
@@ -101,6 +114,7 @@ const ZONE_CONFIGS: ZoneConfig[] = [
     coord: { lat: 1.3320, lng: 103.8290 },
     headingRange: { min: 30, max: 150 }, // Eastbound
     radiusKm: 0.35,
+    requiredKeywords: ['pie', 'pan island'],
   },
   {
     zoneId: 'PIE_SLIP_CTE',
@@ -109,6 +123,7 @@ const ZONE_CONFIGS: ZoneConfig[] = [
     headingRange: { min: 100, max: 260 }, // Southbound onto CTE
     radiusKm: 0.30,
     excludeIfHeadingEast: true,
+    requiredKeywords: ['pie', 'pan island', 'cte', 'central expw'],
   },
   {
     zoneId: 'PIE_WESTBOUND_EUNOS',
@@ -116,6 +131,7 @@ const ZONE_CONFIGS: ZoneConfig[] = [
     coord: { lat: 1.3280, lng: 103.8990 },
     headingRange: { min: 210, max: 330 }, // Westbound
     radiusKm: 0.35,
+    requiredKeywords: ['pie', 'pan island'],
   },
 ];
 
@@ -238,7 +254,20 @@ function detectLtaZoneIds(route: any): { zoneIds: string[]; gantryIds: number[] 
 
   const densePoints = interpolatePolylinePoints(rawPoints);
 
+  const summaryText = (route.summary || '').toLowerCase();
+  const stepTexts = steps.map((s: any) => (s.html_instructions || '').toLowerCase()).join(' ');
+  const fullRouteText = `${summaryText} ${stepTexts}`;
+  const isCteRoute = fullRouteText.includes('central expw') || fullRouteText.includes('cte') || fullRouteText.includes('central expressway');
+
   ZONE_CONFIGS.forEach((config) => {
+    // Corridor Verification: Check if route instructions or summary actually use this road corridor
+    if (config.requiredKeywords && config.requiredKeywords.length > 0) {
+      const isCorridorPresent = config.requiredKeywords.some((kw) => fullRouteText.includes(kw));
+      if (!isCorridorPresent) {
+        return; // Skip this gantry zone as vehicle is not driving on this highway/road
+      }
+    }
+
     const thresholdKm = config.radiusKm || 0.25;
 
     for (let i = 0; i < densePoints.length; i++) {
@@ -264,11 +293,6 @@ function detectLtaZoneIds(route: any): { zoneIds: string[]; gantryIds: number[] 
       }
     }
   });
-
-  // Fallback: Check route text instructions / summary for explicit expressway CTE route indicator
-  const summaryText = (route.summary || '').toLowerCase();
-  const stepTexts = steps.map((s: any) => (s.html_instructions || '').toLowerCase()).join(' ');
-  const isCteRoute = summaryText.includes('central expw') || summaryText.includes('cte') || stepTexts.includes('central expw') || stepTexts.includes('central expressway');
 
   if (isCteRoute) {
     // Check if route travels Southbound through the CTE corridor near Braddell / Toa Payoh (lat 1.33 to 1.36)
