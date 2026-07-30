@@ -435,18 +435,26 @@ export default function Home() {
   };
 
   const launchGoogleMaps = (route: any, mode: 'via' | 'direct' = 'via') => {
-    const dest = route?.destinationCoords || { latitude: destCoords.lat, longitude: destCoords.lng };
-    const orig = route?.originCoords || { latitude: originCoords.lat, longitude: originCoords.lng };
+    const destLat = route?.destinationCoords?.latitude || destCoords.lat;
+    const destLng = route?.destinationCoords?.longitude || destCoords.lng;
+    const origLat = route?.originCoords?.latitude || originCoords.lat;
+    const origLng = route?.originCoords?.longitude || originCoords.lng;
 
-    const originParam = originText ? encodeURIComponent(originText) : `${orig.latitude},${orig.longitude}`;
-    const destParam = destText ? encodeURIComponent(destText) : `${dest.latitude},${dest.longitude}`;
+    // Always prefer exact numeric lat,lng coordinates so Google Maps routes directly without trying to parse display labels like "📍 My Current Location"
+    const originParam = (origLat && origLng) 
+      ? `${origLat},${origLng}` 
+      : encodeURIComponent(originText);
+
+    const destParam = (destLat && destLng) 
+      ? `${destLat},${destLng}` 
+      : encodeURIComponent(destText);
 
     let mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${originParam}&destination=${destParam}&travelmode=driving`;
 
     if (mode === 'via' && route?.waypoints && Array.isArray(route.waypoints) && route.waypoints.length > 0) {
       const wp = route.waypoints[0];
       if (wp?.latitude && wp?.longitude) {
-        // Use clean lat,lng coordinates for waypoints without 'via:' prefix to prevent mobile Google Maps app from treating 'via:' as destination text
+        // Clean lat,lng coordinates for waypoints
         mapsUrl += `&waypoints=${wp.latitude},${wp.longitude}`;
       }
     }
