@@ -36,7 +36,7 @@ function generateDocumentationPDF() {
     doc.setFont('helvetica', 'italic');
     doc.setFontSize(8);
     doc.setTextColor(...mutedText);
-    doc.text('NEHvigation — System Architecture & Technical Documentation', margin, 12);
+    doc.text('NEHvigation - System Architecture & Technical Documentation', margin, 12);
     doc.setDrawColor(226, 232, 240);
     doc.setLineWidth(0.3);
     doc.line(margin, 14, pageWidth - margin, 14);
@@ -51,7 +51,7 @@ function generateDocumentationPDF() {
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(8);
     doc.setTextColor(...mutedText);
-    doc.text('Confidential & Proprietary — Prepared for Shaunneh', margin, pageHeight - 9);
+    doc.text('Confidential & Proprietary - Prepared for Shaunneh', margin, pageHeight - 9);
     doc.text(`Page ${pageNum}`, pageWidth - margin, pageHeight - 9, { align: 'right' });
   }
 
@@ -67,7 +67,7 @@ function generateDocumentationPDF() {
   doc.setFontSize(11);
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(56, 189, 248); // Light Sky Blue
-  doc.text('Singapore ERP & Toll Route Optimizer — Technical Overview', margin + 10, y + 23);
+  doc.text('Singapore ERP & Toll Route Optimizer - Technical Overview', margin + 10, y + 23);
 
   doc.setFontSize(8.5);
   doc.setTextColor(203, 213, 225);
@@ -75,9 +75,15 @@ function generateDocumentationPDF() {
 
   y += 46;
 
-  // Function to draw Section Header
-  function drawSectionHeader(title) {
-    checkPageBreak(18);
+  // Function to draw Section Header with smart page break prevention
+  function drawSectionHeader(title, minNextSpace = 30) {
+    if (y + 15 + minNextSpace > pageHeight - margin - 12) {
+      addFooter();
+      doc.addPage();
+      y = margin + 10;
+      addHeader();
+    }
+
     doc.setFillColor(...primaryColor);
     doc.rect(margin, y, 3, 10, 'F');
     
@@ -104,80 +110,92 @@ function generateDocumentationPDF() {
   }
 
   function drawBullet(title, desc) {
-    doc.setFontSize(9.5);
-    
     const indent = 6;
+    const availWidth = contentWidth - indent;
     const titleText = `${title}: `;
-    
+
+    doc.setFontSize(9.5);
     doc.setFont('helvetica', 'bold');
     const titleWidth = doc.getTextWidth(titleText);
 
     doc.setFont('helvetica', 'normal');
-    const words = desc.split(' ');
-    let line1Words = [];
-    let remainingWords = [];
-    
-    let currentW = 0;
-    const line1Available = contentWidth - indent - titleWidth;
-    
-    for (let i = 0; i < words.length; i++) {
-      const wordW = doc.getTextWidth((line1Words.length > 0 ? ' ' : '') + words[i]);
-      if (currentW + wordW <= line1Available) {
-        line1Words.push(words[i]);
-        currentW += wordW;
-      } else {
-        remainingWords = words.slice(i);
-        break;
-      }
-    }
-    
-    const line1Text = line1Words.join(' ');
-    let otherLines = [];
-    if (remainingWords.length > 0) {
-      otherLines = doc.splitTextToSize(remainingWords.join(' '), contentWidth - indent);
-    }
-    
-    const totalLines = 1 + otherLines.length;
-    checkPageBreak(totalLines * 5 + 2);
 
-    // Draw bullet dot
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(...primaryColor);
-    doc.text('•', margin + 1, y);
+    let usesNewLineForDesc = false;
+    let line1 = '';
+    let restWords = [];
+
+    const minDescWidthOnLine1 = 35; // minimum mm required on line 1 for description text
+    const line1Available = availWidth - titleWidth;
+
+    if (line1Available >= minDescWidthOnLine1) {
+      const words = desc.split(' ');
+      for (let i = 0; i < words.length; i++) {
+        const test = line1 ? line1 + ' ' + words[i] : words[i];
+        if (doc.getTextWidth(test) <= line1Available) {
+          line1 = test;
+        } else {
+          restWords = words.slice(i);
+          break;
+        }
+      }
+    } else {
+      usesNewLineForDesc = true;
+      restWords = desc.split(' ');
+    }
+
+    let restLines = [];
+    if (restWords.length > 0) {
+      restLines = doc.splitTextToSize(restWords.join(' '), availWidth);
+    }
+
+    const totalLines = (usesNewLineForDesc ? 1 : 1) + restLines.length;
+    const neededHeight = totalLines * 4.8 + 3;
+
+    checkPageBreak(neededHeight);
+
+    // Draw bullet dot (crisp blue vector circle instead of ASCII bullet character)
+    doc.setFillColor(...primaryColor);
+    doc.circle(margin + 2, y - 1.1, 0.8, 'F');
 
     // Draw Title
+    doc.setFont('helvetica', 'bold');
     doc.setTextColor(...secondaryColor);
     doc.text(titleText, margin + indent, y);
 
-    // Draw Line 1 of Desc
+    // Draw Desc
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(...darkText);
-    doc.text(line1Text, margin + indent + titleWidth, y);
 
-    // Draw remaining lines
-    if (otherLines.length > 0) {
-      y += 4.8;
-      doc.text(otherLines, margin + indent, y);
-      y += (otherLines.length - 1) * 4.8 + 5.5;
+    if (!usesNewLineForDesc) {
+      doc.text(line1, margin + indent + titleWidth, y);
+      if (restLines.length > 0) {
+        y += 4.8;
+        doc.text(restLines, margin + indent, y);
+        y += (restLines.length - 1) * 4.8 + 4;
+      } else {
+        y += 5.5;
+      }
     } else {
-      y += 5.5;
+      y += 4.8;
+      doc.text(restLines, margin + indent, y);
+      y += (restLines.length - 1) * 4.8 + 4;
     }
   }
 
   // SECTION 1: Problem Statement
-  drawSectionHeader('1. Executive Summary & Problem Statement');
+  drawSectionHeader('1. Executive Summary & Problem Statement', 30);
   drawParagraph(
-    'Driving in Singapore involves navigating a dense network of Electronic Road Pricing (ERP) gantries across expressways (CTE, PIE, AYE, KPE, MCE, ECP) and arterial roads (Central Business District, Orchard, Bugis). Toll rates fluctuate dynamic based on time-of-day, vehicle classification, and traffic congestion schedules.'
+    'Driving in Singapore involves navigating a dense network of Electronic Road Pricing (ERP) gantries across expressways (CTE, PIE, AYE, KPE, MCE, ECP) and arterial roads (Central Business District, Orchard, Bugis). Toll rates fluctuate dynamically based on time-of-day, vehicle classification, and traffic congestion schedules.'
   );
   drawParagraph(
-    'Conventional navigation software (e.g., standard Google Maps or Waze) evaluates routes primarily based on travel time or distance. They frequently fail to address the total cost of ownership per trip, often routing drivers through high-fee ERP gantries to save 1–2 minutes, or taking indirect detours that consume significantly more fuel than the toll avoided.'
+    'Conventional navigation software (e.g., standard Google Maps or Waze) evaluates routes primarily based on travel time or distance. They frequently fail to address the total cost of ownership per trip, often routing drivers through high-fee ERP gantries to save 1-2 minutes, or taking indirect detours that consume significantly more fuel than the toll avoided.'
   );
   drawParagraph(
     'NEHvigation solves this by providing a unified Singapore Toll & Energy Optimizer. It evaluates live and scheduled LTA ERP gantry rates, calculates vehicle-specific fuel/EV consumption with urban traffic idling adjustments, calculates total monetary cost per route option, and automatically identifies the most cost-effective path.'
   );
 
   // SECTION 2: Key Features
-  drawSectionHeader('2. Key Functional Capabilities');
+  drawSectionHeader('2. Key Functional Capabilities', 40);
   drawBullet('Real-Time LTA ERP Gantry Matching', 'Leverages spatial buffer queries (~80m radius) via Turf.js to identify every ERP gantry crossed along alternative route options.');
   drawBullet('Dynamic Time-Window Schedules', 'Supports Live SG Time, Morning Peak (08:30), Evening Peak (18:30), or Custom departure times/days to predict toll fees accurately.');
   drawBullet('Vehicle & Fuel Efficiency Engine', 'Features presets for vehicles (e.g., Skoda Yeti 10.4 km/L, Hyundai Ioniq 5 EV 17.5 kWh/100km, Goods Vehicles, Taxis, Motorcycles) plus custom rate inputs.');
@@ -187,10 +205,9 @@ function generateDocumentationPDF() {
   drawBullet('Seamless Google Maps Handoff', 'Deep-links optimized routes with precise numerical lat/lng waypoints directly into native mobile Google Maps without URL parsing errors.');
 
   // SECTION 3: Tech Stack
-  drawSectionHeader('3. Technical Stack & Dependencies');
+  drawSectionHeader('3. Technical Stack & Dependencies', 50);
   
-  // Table for Tech Stack
-  checkPageBreak(35);
+  // Table Header
   doc.setFillColor(241, 245, 249);
   doc.rect(margin, y, contentWidth, 7, 'F');
   doc.setFont('helvetica', 'bold');
@@ -230,10 +247,10 @@ function generateDocumentationPDF() {
     y += 6.5;
   });
 
-  y += 4;
+  y += 6;
 
   // SECTION 4: System Architecture & Logics Considered
-  drawSectionHeader('4. Core Architectural Logics & Algorithms');
+  drawSectionHeader('4. Core Architectural Logics & Algorithms', 40);
 
   drawBullet(
     'A. Spatial Buffer Gantry Detection Algorithm',
@@ -247,17 +264,17 @@ function generateDocumentationPDF() {
 
   drawBullet(
     'C. Traffic Score & Speed Factor Logic',
-    'Derives average speed (km/h) = Distance / Duration. Categorizes traffic into 5 speed tiers: <20 km/h (Heavy Congestion, 1.35x fuel multiplier), 20–35 km/h (Slow Traffic, 1.20x), 35–50 km/h (Moderate, 1.10x), 50–80 km/h (Optimal Cruising, 1.00x), and >80 km/h (Expressway Drag, 1.05x).'
+    'Derives average speed (km/h) = Distance / Duration. Categorizes traffic into 5 speed tiers: <20 km/h (Heavy Congestion, 1.35x fuel multiplier), 20-35 km/h (Slow Traffic, 1.20x), 35-50 km/h (Moderate, 1.10x), 50-80 km/h (Optimal Cruising, 1.00x), and >80 km/h (Expressway Drag, 1.05x).'
   );
 
   drawBullet(
     'D. Fuel, Energy & Intersection Cost Logic',
-    'Calculates distance-based fuel/EV usage using: Energy = (Distance / Efficiency) × SpeedFactor + TrafficLightStopPenalty (~20ml fuel/0.005 kWh per intersection). Total Cost = ERP Toll ($) + [Energy Consumed × Fuel Price ($/L or $/kWh)].'
+    'Calculates distance-based fuel/EV usage using: Energy = (Distance / Efficiency) x SpeedFactor + TrafficLightStopPenalty (~20ml fuel / 0.005 kWh per intersection). Total Cost = ERP Toll ($) + [Energy Consumed x Fuel Price ($/L or $/kWh)].'
   );
 
   drawBullet(
     'E. Composite Route Optimization Score',
-    'Computes a weighted scoring penalty: CompositeScore = (DurationMin × 1.0) + (TrafficLightScore × 0.5) + (DistanceKm × 0.1) + (ERPTollFee × 5.0) + (FuelLiters × 10.0). The route with the lowest composite score is highlighted as the winner.'
+    'Computes a weighted scoring penalty: CompositeScore = (DurationMin x 1.0) + (TrafficLightScore x 0.5) + (DistanceKm x 0.1) + (ERPTollFee x 5.0) + (FuelLiters x 10.0). The route with the lowest composite score is highlighted as the winner.'
   );
 
   drawBullet(
