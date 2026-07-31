@@ -491,7 +491,27 @@ export default function Home() {
         <h1 style={{ fontSize: '26px', fontWeight: '800', margin: '0 0 2px 0', letterSpacing: '-0.5px', background: 'linear-gradient(135deg, #38bdf8 0%, #818cf8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
           NEHvigation
         </h1>
-        <p style={{ margin: 0, fontSize: '12px', color: '#94a3b8' }}>Real-time LTA ERP gantries + Smart waypoint navigation</p>
+        <p style={{ margin: '0 0 8px 0', fontSize: '12px', color: '#94a3b8' }}>Real-time LTA ERP gantries + Smart waypoint navigation</p>
+        <a 
+          href="/api/documentation-pdf" 
+          download="NEHvigation_Documentation.pdf"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '5px',
+            fontSize: '11px',
+            fontWeight: '600',
+            color: '#38bdf8',
+            backgroundColor: 'rgba(56, 189, 248, 0.1)',
+            border: '1px solid rgba(56, 189, 248, 0.3)',
+            padding: '4px 10px',
+            borderRadius: '12px',
+            textDecoration: 'none',
+            transition: 'all 0.2s'
+          }}
+        >
+          📄 Download Tech Documentation PDF
+        </a>
       </header>
 
       {/* LOCATION SETUP CARD WITH SWAP */}

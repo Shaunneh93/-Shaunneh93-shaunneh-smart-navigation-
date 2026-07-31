@@ -1,0 +1,1015 @@
+%PDF-1.3
+%�߬�
+3 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 4 0 R
+>>
+endobj
+4 0 obj
+<<
+/Length 8560
+>>
+stream
+0.5670000000000001 w
+0 G
+0.06 0.09 0.16 rg
+62.3622047244094517 790.8663779527558972 m
+532.9177952755904926 790.8663779527558972 l
+539.1799215728846093 790.8663779527558972 544.2563779527558836 785.7899215728845093 544.2563779527558836 779.5277952755905062 c
+544.2563779527558836 694.4884251968503577 l
+544.2563779527558836 688.2262988995563546 537.9942516554617669 683.1498425196849666 532.9177952755904926 683.1498425196849666 c
+62.3622047244094517 683.1498425196849666 l
+56.1000784271154203 683.1498425196849666 51.0236220472441033 689.4119688169789697 51.0236220472441033 694.4884251968503577 c
+51.0236220472441033 779.5277952755905062 l
+51.0236220472441033 785.7899215728845093 57.2857483445381348 790.8663779527558972 62.3622047244094517 790.8663779527558972 c
+h
+f
+BT
+/F2 22 Tf
+25.2999999999999972 TL
+1. g
+79.3700787401574814 748.346692913385823 Td
+(NEHvigation) Tj
+ET
+BT
+/F1 11 Tf
+12.6499999999999986 TL
+0.22 0.741 0.973 rg
+79.3700787401574814 725.6695275590550409 Td
+(Singapore ERP & Toll Route Optimizer � Technical Overview) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.796 0.835 0.882 rg
+79.3700787401574814 702.9923622047243725 Td
+(Comprehensive System Architecture, Tech Stack, & Algorithmic Logic Documentation) Tj
+ET
+0.01 0.52 0.78 rg
+51.0236220472441033 660.4726771653542983 8.5039370078740166 -28.3464566929133888 re
+f
+BT
+/F2 13 Tf
+14.9499999999999993 TL
+0.059 0.09 0.165 rg
+70.8661417322834666 639.212834645669318 Td
+(1. Executive Summary & Problem Statement) Tj
+ET
+0.89 0.91 0.94 RG
+1.4173228346456694 w
+51.0236220472441033 626.4569291338582389 m
+544.2563779527558836 626.4569291338582389 l
+S
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+51.0236220472441033 612.2837007874015853 Td
+(Driving in Singapore involves navigating a dense network of Electronic Road Pricing \(ERP\) gantries across) Tj
+T* (expressways \(CTE, PIE, AYE, KPE, MCE, ECP\) and arterial roads \(Central Business District, Orchard, Bugis\). Toll) Tj
+T* (rates fluctuate dynamic based on time-of-day, vehicle classification, and traffic congestion schedules.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+51.0236220472441033 565.5120472440944468 Td
+(Conventional navigation software \(e.g., standard Google Maps or Waze\) evaluates routes primarily based on travel) Tj
+T* (time or distance. They frequently fail to address the total cost of ownership per trip, often routing drivers through) Tj
+T* (high-fee ERP gantries to save 1�2 minutes, or taking indirect detours that consume significantly more fuel than the toll) Tj
+T* (avoided.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+51.0236220472441033 505.9844881889763428 Td
+(NEHvigation solves this by providing a unified Singapore Toll & Energy Optimizer. It evaluates live and scheduled LTA) Tj
+T* (ERP gantry rates, calculates vehicle-specific fuel/EV consumption with urban traffic idling adjustments, calculates total) Tj
+T* (monetary cost per route option, and automatically identifies the most cost-effective path.) Tj
+ET
+0.01 0.52 0.78 rg
+51.0236220472441033 459.2128346456692043 8.5039370078740166 -28.3464566929133888 re
+f
+BT
+/F2 13 Tf
+14.9499999999999993 TL
+0.059 0.09 0.165 rg
+70.8661417322834666 437.952992125984224 Td
+(2. Key Functional Capabilities) Tj
+ET
+0.89 0.91 0.94 RG
+1.4173228346456694 w
+51.0236220472441033 425.1970866141731449 m
+544.2563779527558836 425.1970866141731449 l
+S
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.008 0.518 0.78 rg
+53.8582677165354369 411.0238582677164914 Td
+(�) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.059 0.09 0.165 rg
+68.031496062992133 411.0238582677164914 Td
+(Real-Time LTA ERP Gantry Matching: ) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+237.796496062992162 411.0238582677164914 Td
+(Leverages spatial buffer queries \(~80m radius\) via Turf.js to identify) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+68.031496062992133 397.4175590551180335 Td
+(every ERP gantry crossed along alternative route options.) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.008 0.518 0.78 rg
+53.8582677165354369 381.827007874015635 Td
+(�) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.059 0.09 0.165 rg
+68.031496062992133 381.827007874015635 Td
+(Dynamic Time-Window Schedules: ) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+226.4914960629921268 381.827007874015635 Td
+(Supports Live SG Time, Morning Peak \(08:30\), Evening Peak \(18:30\), or) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+68.031496062992133 368.2207086614171772 Td
+(Custom departure times/days to predict toll fees accurately.) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.008 0.518 0.78 rg
+53.8582677165354369 352.6301574803148355 Td
+(�) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.059 0.09 0.165 rg
+68.031496062992133 352.6301574803148355 Td
+(Vehicle & Fuel Efficiency Engine: ) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+219.9364960629920915 352.6301574803148355 Td
+(Features presets for vehicles \(e.g., Skoda Yeti 10.4 km/L, Hyundai Ioniq 5 EV) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+68.031496062992133 339.0238582677163777 Td
+(17.5 kWh/100km, Goods Vehicles, Taxis, Motorcycles\) plus custom rate inputs.) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.008 0.518 0.78 rg
+53.8582677165354369 323.4333070866140361 Td
+(�) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.059 0.09 0.165 rg
+68.031496062992133 323.4333070866140361 Td
+(Traffic Score & Speed Multiplier Engine: ) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+250.3364960629920972 323.4333070866140361 Td
+(Evaluates real-time average speed \(km/h\) to categorize traffic) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+68.031496062992133 309.8270078740155213 Td
+(conditions into 5 distinct speed tiers, applying dynamic fuel consumption multipliers \(up to +35% for heavy) Tj
+T* (crawling congestion\).) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.008 0.518 0.78 rg
+53.8582677165354369 280.6301574803147787 Td
+(�) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.059 0.09 0.165 rg
+68.031496062992133 280.6301574803147787 Td
+(Intersection & Traffic Light Penalty: ) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+228.7714960629920995 280.6301574803147787 Td
+(Tracks traffic light density along route segments, adding stop-start idling) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+68.031496062992133 267.023858267716264 Td
+(overhead \(~20ml fuel or 0.005 kWh EV penalty per traffic light\).) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.008 0.518 0.78 rg
+53.8582677165354369 251.4333070866139224 Td
+(�) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.059 0.09 0.165 rg
+68.031496062992133 251.4333070866139224 Td
+(Composite Route Recommendation: ) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+234.2814960629921472 251.4333070866139224 Td
+(Computes a multi-variable composite score weighing travel duration,) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+68.031496062992133 237.8270078740154077 Td
+(distance, ERP tolls \($1.00 = 5 pts\), fuel cost, and traffic light delays to auto-select the "Best Value Route".) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.008 0.518 0.78 rg
+53.8582677165354369 222.236456692913066 Td
+(�) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.059 0.09 0.165 rg
+68.031496062992133 222.236456692913066 Td
+(Seamless Google Maps Handoff: ) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+217.8464960629921165 222.236456692913066 Td
+(Deep-links optimized routes with precise numerical lat/lng waypoints directly) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+68.031496062992133 208.630157480314665 Td
+(into native mobile Google Maps without URL parsing errors.) Tj
+ET
+0.01 0.52 0.78 rg
+51.0236220472441033 193.0396062992122381 8.5039370078740166 -28.3464566929133888 re
+f
+BT
+/F2 13 Tf
+14.9499999999999993 TL
+0.059 0.09 0.165 rg
+70.8661417322834666 171.7797637795272294 Td
+(3. Technical Stack & Dependencies) Tj
+ET
+0.89 0.91 0.94 RG
+1.4173228346456694 w
+51.0236220472441033 159.0238582677161787 m
+544.2563779527558836 159.0238582677161787 l
+S
+0.89 0.91 0.94 RG
+0.8503937007874016 w
+51.0236220472441033 39.6850393700787407 m
+544.2563779527558836 39.6850393700787407 l
+S
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.392 0.455 0.545 rg
+51.0236220472441033 25.5118110236220446 Td
+(Confidential & Proprietary � Prepared for Shaunneh) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.392 0.455 0.545 rg
+519.1363779527558791 25.5118110236220446 Td
+(Page 1) Tj
+ET
+endstream
+endobj
+5 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 6 0 R
+>>
+endobj
+6 0 obj
+<<
+/Length 10202
+>>
+stream
+0.8503937007874016 w
+0.89 0.91 0.94 RG
+BT
+/F3 8 Tf
+9.1999999999999993 TL
+0.392 0.455 0.545 rg
+51.0236220472441033 807.8742519685039269 Td
+(NEHvigation � System Architecture & Technical Documentation) Tj
+ET
+0.89 0.91 0.94 RG
+0.8503937007874016 w
+51.0236220472441033 802.2049606299211746 m
+544.2563779527558836 802.2049606299211746 l
+S
+0.95 0.96 0.98 rg
+51.0236220472441033 762.5199212598424765 493.2327559055117376 -19.8425196850393704 re
+f
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.059 0.09 0.165 rg
+62.3622047244094517 748.346692913385823 Td
+(Layer / Component) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.059 0.09 0.165 rg
+206.9291338582677326 748.346692913385823 Td
+(Technology / Library) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.059 0.09 0.165 rg
+377.0078740157480865 748.346692913385823 Td
+(Purpose & Implementation) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.118 0.161 0.231 rg
+62.3622047244094517 729.9214960629921052 Td
+(Framework) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 0.161 0.231 rg
+206.9291338582677326 729.9214960629921052 Td
+(Next.js 16 \(App Router\)) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.118 0.161 0.231 rg
+377.0078740157480865 729.9214960629921052 Td
+(Full-stack React 19 app with API routes & SSR) Tj
+ET
+0.97 0.98 0.99 rg
+51.0236220472441033 724.2522047244094665 493.2327559055117376 -18.4251968503937036 re
+f
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.118 0.161 0.231 rg
+62.3622047244094517 711.4962992125983874 Td
+(Language) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 0.161 0.231 rg
+206.9291338582677326 711.4962992125983874 Td
+(TypeScript 5) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.118 0.161 0.231 rg
+377.0078740157480865 711.4962992125983874 Td
+(End-to-end type safety & structured models) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.118 0.161 0.231 rg
+62.3622047244094517 693.0711023622046696 Td
+(Styling) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 0.161 0.231 rg
+206.9291338582677326 693.0711023622046696 Td
+(Tailwind CSS v4) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.118 0.161 0.231 rg
+377.0078740157480865 693.0711023622046696 Td
+(Dark-theme responsive design for OLED & mobile) Tj
+ET
+0.97 0.98 0.99 rg
+51.0236220472441033 687.4018110236220309 493.2327559055117376 -18.4251968503937036 re
+f
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.118 0.161 0.231 rg
+62.3622047244094517 674.6459055118109518 Td
+(Authentication) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 0.161 0.231 rg
+206.9291338582677326 674.6459055118109518 Td
+(NextAuth.js v5 + Google OAuth) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.118 0.161 0.231 rg
+377.0078740157480865 674.6459055118109518 Td
+(Secure whitelisted email access control) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.118 0.161 0.231 rg
+62.3622047244094517 656.2207086614173477 Td
+(Maps & Geocoding) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 0.161 0.231 rg
+206.9291338582677326 656.2207086614173477 Td
+(@react-google-maps/api) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.118 0.161 0.231 rg
+377.0078740157480865 656.2207086614173477 Td
+(Google Places Autocomplete & Directions API) Tj
+ET
+0.97 0.98 0.99 rg
+51.0236220472441033 650.5514173228345953 493.2327559055117376 -18.4251968503937036 re
+f
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.118 0.161 0.231 rg
+62.3622047244094517 637.7955118110235162 Td
+(Geospatial Engine) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 0.161 0.231 rg
+206.9291338582677326 637.7955118110235162 Td
+(@turf/turf & @mapbox/polyline) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.118 0.161 0.231 rg
+377.0078740157480865 637.7955118110235162 Td
+(Polyline decoding & spatial gantry buffering) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.118 0.161 0.231 rg
+62.3622047244094517 619.3703149606299121 Td
+(PDF Generator) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.118 0.161 0.231 rg
+206.9291338582677326 619.3703149606299121 Td
+(jsPDF) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.118 0.161 0.231 rg
+377.0078740157480865 619.3703149606299121 Td
+(Dynamic architecture & reporting document compilation) Tj
+ET
+0.01 0.52 0.78 rg
+51.0236220472441033 602.3624409448818824 8.5039370078740166 -28.3464566929133888 re
+f
+BT
+/F2 13 Tf
+14.9499999999999993 TL
+0.059 0.09 0.165 rg
+70.8661417322834666 581.1025984251967884 Td
+(4. Core Architectural Logics & Algorithms) Tj
+ET
+0.89 0.91 0.94 RG
+1.4173228346456694 w
+51.0236220472441033 568.346692913385823 m
+544.2563779527558836 568.346692913385823 l
+S
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.008 0.518 0.78 rg
+53.8582677165354369 554.1734645669291695 Td
+(�) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.059 0.09 0.165 rg
+68.031496062992133 554.1734645669291695 Td
+(A. Spatial Buffer Gantry Detection Algorithm: ) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+273.8014960629921575 554.1734645669291695 Td
+(When candidate routes are received from Google Directions) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+68.031496062992133 540.5671653543306547 Td
+(API, polylines are decoded into coordinate arrays. Turf.js constructs spatial line-buffers \(~80m\). Gantry) Tj
+T* (coordinates are checked against these buffers to determine exact gantry hits per route.) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.008 0.518 0.78 rg
+53.8582677165354369 511.3703149606299121 Td
+(�) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.059 0.09 0.165 rg
+68.031496062992133 511.3703149606299121 Td
+(B. LTA Rate Schedule Matrix: ) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+200.93649606299212 511.3703149606299121 Td
+(ERP toll rates are retrieved based on gantry IDs, vehicle type, day of week, and) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+68.031496062992133 497.7640157480314542 Td
+(time window. The engine automatically checks if the departure falls into active operating windows \(e.g.) Tj
+T* (07:00-09:30 CTE inbound\) or off-peak zero-rate periods.) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.008 0.518 0.78 rg
+53.8582677165354369 468.5671653543307116 Td
+(�) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.059 0.09 0.165 rg
+68.031496062992133 468.5671653543307116 Td
+(C. Traffic Score & Speed Factor Logic: ) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+241.9764960629921404 468.5671653543307116 Td
+(Derives average speed \(km/h\) = Distance / Duration. Categorizes traffic) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+68.031496062992133 454.9608661417322537 Td
+(into 5 speed tiers: <20 km/h \(Heavy Congestion, 1.35x fuel multiplier\), 20�35 km/h \(Slow Traffic, 1.20x\), 35�50) Tj
+T* (km/h \(Moderate, 1.10x\), 50�80 km/h \(Optimal Cruising, 1.00x\), and >80 km/h \(Expressway Drag, 1.05x\).) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.008 0.518 0.78 rg
+53.8582677165354369 425.7640157480313974 Td
+(�) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.059 0.09 0.165 rg
+68.031496062992133 425.7640157480313974 Td
+(D. Fuel, Energy & Intersection Cost Logic: ) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+260.1214960629920938 425.7640157480313974 Td
+(Calculates distance-based fuel/EV usage using: Energy = \(Distance) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+68.031496062992133 412.1577165354329395 Td
+(/ Efficiency\) � SpeedFactor + TrafficLightStopPenalty \(~20ml fuel/0.005 kWh per intersection\). Total Cost = ERP) Tj
+T* (Toll \($\) + [Energy Consumed � Fuel Price \($/L or $/kWh\)].) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.008 0.518 0.78 rg
+53.8582677165354369 382.96086614173214 Td
+(�) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.059 0.09 0.165 rg
+68.031496062992133 382.96086614173214 Td
+(E. Composite Route Optimization Score: ) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+252.8064960629921529 382.96086614173214 Td
+(Computes a weighted scoring penalty: CompositeScore =) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+68.031496062992133 369.3545669291336822 Td
+(\(DurationMin � 1.0\) + \(TrafficLightScore � 0.5\) + \(DistanceKm � 0.1\) + \(ERPTollFee � 5.0\) + \(FuelLiters � 10.0\).) Tj
+T* (The route with the lowest composite score is highlighted as the winner.) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.008 0.518 0.78 rg
+53.8582677165354369 340.1577165354328258 Td
+(�) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.059 0.09 0.165 rg
+68.031496062992133 340.1577165354328258 Td
+(F. Mobile GPS & Deep-Linking Optimization: ) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+268.8614960629921029 340.1577165354328258 Td
+(Geolocation utilizes a 2-phase fallback mechanism \(3.5s) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+68.031496062992133 326.551417322834368 Td
+(high-accuracy fix fallback to network cell-triangulation\) for fast response times. Google Maps URLs utilize strict) Tj
+T* (numeric coordinates \(lat,lng\) to prevent mobile app string-parsing errors.) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.008 0.518 0.78 rg
+53.8582677165354369 297.3545669291335116 Td
+(�) Tj
+ET
+BT
+/F2 9.5 Tf
+10.9249999999999989 TL
+0.059 0.09 0.165 rg
+68.031496062992133 297.3545669291335116 Td
+(G. Whitelist Authorization Security: ) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+228.8664960629921268 297.3545669291335116 Td
+(NextAuth middleware verifies user credentials against an authorized) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.118 0.161 0.231 rg
+68.031496062992133 283.7482677165351106 Td
+(whitelist. Unapproved users are redirected to a branded access restriction view \("Access Denied! Reach out to) Tj
+T* (Shaunneh"\).) Tj
+ET
+0.89 0.91 0.94 RG
+0.8503937007874016 w
+51.0236220472441033 39.6850393700787407 m
+544.2563779527558836 39.6850393700787407 l
+S
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.392 0.455 0.545 rg
+51.0236220472441033 25.5118110236220446 Td
+(Confidential & Proprietary � Prepared for Shaunneh) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.392 0.455 0.545 rg
+519.1363779527558791 25.5118110236220446 Td
+(Page 2) Tj
+ET
+BT
+/F3 8 Tf
+9.1999999999999993 TL
+0.392 0.455 0.545 rg
+51.0236220472441033 807.8742519685039269 Td
+(NEHvigation � System Architecture & Technical Documentation) Tj
+ET
+0.89 0.91 0.94 RG
+0.8503937007874016 w
+51.0236220472441033 802.2049606299211746 m
+544.2563779527558836 802.2049606299211746 l
+S
+endstream
+endobj
+1 0 obj
+<</Type /Pages
+/Kids [3 0 R 5 0 R ]
+/Count 2
+>>
+endobj
+7 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+8 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+9 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+10 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+11 0 obj
+<<
+/Type /Font
+/BaseFont /Courier
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+12 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+13 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+14 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+15 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Roman
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+16 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+17 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Italic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+18 0 obj
+<<
+/Type /Font
+/BaseFont /Times-BoldItalic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+19 0 obj
+<<
+/Type /Font
+/BaseFont /ZapfDingbats
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+20 0 obj
+<<
+/Type /Font
+/BaseFont /Symbol
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+2 0 obj
+<<
+/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
+/Font <<
+/F1 7 0 R
+/F2 8 0 R
+/F3 9 0 R
+/F4 10 0 R
+/F5 11 0 R
+/F6 12 0 R
+/F7 13 0 R
+/F8 14 0 R
+/F9 15 0 R
+/F10 16 0 R
+/F11 17 0 R
+/F12 18 0 R
+/F13 19 0 R
+/F14 20 0 R
+>>
+/XObject <<
+>>
+>>
+endobj
+21 0 obj
+<<
+/Producer (jsPDF 4.2.1)
+/CreationDate (D:20260731133045-00'00')
+>>
+endobj
+22 0 obj
+<<
+/Type /Catalog
+/Pages 1 0 R
+/OpenAction [3 0 R /FitH null]
+/PageLayout /OneColumn
+>>
+endobj
+xref
+0 23
+0000000000 65535 f 
+0000019156 00000 n 
+0000020981 00000 n 
+0000000015 00000 n 
+0000000152 00000 n 
+0000008764 00000 n 
+0000008901 00000 n 
+0000019219 00000 n 
+0000019344 00000 n 
+0000019474 00000 n 
+0000019607 00000 n 
+0000019745 00000 n 
+0000019869 00000 n 
+0000019998 00000 n 
+0000020130 00000 n 
+0000020266 00000 n 
+0000020394 00000 n 
+0000020521 00000 n 
+0000020650 00000 n 
+0000020783 00000 n 
+0000020885 00000 n 
+0000021231 00000 n 
+0000021317 00000 n 
+trailer
+<<
+/Size 23
+/Root 22 0 R
+/Info 21 0 R
+/ID [ <8FFFE7B330F5105F87831728BFFC769F> <8FFFE7B330F5105F87831728BFFC769F> ]
+>>
+startxref
+21421
+%%EOF
